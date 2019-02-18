@@ -23,6 +23,176 @@ class Coordinador
 		}
 	}
 
+	public function carreraRegister(){
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM carreras ORDER BY nombre_car"); 
+			$stmt->execute();
+			return $stmt;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function directRegister(){
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM directores ORDER BY nombre_c_dir"); 
+			$stmt->execute();
+			return $stmt;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function docentRegister(){
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM docentes ORDER BY nombre_c_doc"); 
+			$stmt->execute();
+			return $stmt;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function dataDirectSel($clv) {
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM directores dir INNER JOIN carreras car ON car.id_carrera = dir.id_carrera WHERE id_director = :clv"); 
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt->execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function dataDocentSel($clv) {
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM docentes WHERE id_docente = :clv"); 
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt->execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function estadistCarCant(){
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT count(id_carrera) AS 'Cantidad' FROM carreras");
+			$stmt -> execute();
+			$data = $stmt->fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function estadistDirCant(){
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT count(id_director) AS 'Cantidad' FROM directores");
+			$stmt -> execute();
+			$data = $stmt->fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function estadistDocCant(){
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT count(id_docente) AS 'Cantidad' FROM docentes");
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function estadistAlmCant(){
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT COUNT(id_alumno) AS 'Cantidad' FROM alumnos");
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function porcTestComplet() {
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT COUNT(id_alumno) AS 'CantidadAlm' FROM alumnos");
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			$stmt1 = $dbc -> prepare("SELECT COUNT(id_enctestalm) AS 'CantidadTest' FROM enctes_alm");
+			$stmt1 -> execute();
+			$data1 = $stmt1 -> fetch(PDO::FETCH_OBJ);
+			$oper1 = $data1 -> CantidadTest * 100;
+			$oper2 = $oper1 / $data -> CantidadAlm;
+			return number_format($oper2, 0, ".", ".");;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function porcBajaAlumnos() {
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT COUNT(id_alumno) AS 'CantidadAlm' FROM alumnos");
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			$stmt1 = $dbc -> prepare("SELECT COUNT(baj.id_bajaalmdat) AS 'cantTotBaj' FROM bajasalm_dat baj WHERE baj.estado_baj_alm = 1");
+			$stmt1 -> execute();
+			$data1 = $stmt1 -> fetch(PDO::FETCH_OBJ);
+			$oper1 = $data1 -> cantTotBaj * 100;
+			$oper2 = $oper1 / $data -> CantidadAlm;
+			return number_format($oper2, 0, ".", ".");;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function porcJustAlumnos() {
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT COUNT(id_alumno) AS 'CantidadAlm' FROM alumnos");
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			$stmt1 = $dbc -> prepare("SELECT COUNT(id_justificante) AS 'cantJusAct' FROM justificantes WHERE estado_justif = 1");
+			$stmt1 -> execute();
+			$data1 = $stmt1 -> fetch(PDO::FETCH_OBJ);
+			$oper1 = $data1 -> cantJusAct * 100;
+			$oper2 = $oper1 / $data -> CantidadAlm;
+			return number_format($oper2, 0, ".", ".");;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
 	public function datDirCar($id_carrera){
 		try {
 			$dbc = new Connect();
@@ -30,8 +200,7 @@ class Coordinador
 			$valid = 1;
 			$stmt = $dbc->prepare("SELECT * FROM directores dir 
 				INNER JOIN carreras car ON car.id_carrera = dir.id_carrera
-				WHERE dir.estado_dir = :valid && car.id_carrera = :id_carrera"); 
-			$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+				WHERE car.id_carrera = :id_carrera");
 			$stmt -> bindParam("id_carrera", $id_carrera,PDO::PARAM_INT);
 			$stmt -> execute();
 			$data = $stmt->fetch(PDO::FETCH_OBJ);
@@ -204,6 +373,20 @@ class Coordinador
     		$stmt -> execute();
     		$data = $stmt -> fetch(PDO::FETCH_OBJ);
     		return $data;
+    	} catch (PDOException $e) {
+    		echo '{"error":{"text":'.$e->getMessage().'}}';
+    	}
+    }
+
+    public function datMyReportEnv($tag, $clv) {
+    	try {
+    		$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+    		$stmt = $dbc -> prepare("SELECT * FROM reportsprob WHERE tag_user = :tag AND id_user = :clv");
+    		$stmt -> bindParam("tag", $tag, PDO::PARAM_STR);
+    		$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+    		$stmt -> execute();
+    		return $stmt;
     	} catch (PDOException $e) {
     		echo '{"error":{"text":'.$e->getMessage().'}}';
     	}

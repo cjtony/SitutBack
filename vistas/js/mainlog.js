@@ -191,6 +191,7 @@ function validLoginAdm(e) {
 								button : "Aceptar",
 								closeOnClickOutside : false,
 							});
+							passAdm.value = '';
 						} else {
 							console.log(resp);
 						}
@@ -250,6 +251,7 @@ function validLoginCor(e) {
 							button : "Aceptar",
 							closeOnClickOutside : false,
 						});
+						$("#passCor").val("");
 					} else {
 						console.log(resp);
 					}
@@ -306,6 +308,7 @@ function validLoginDirec(e){
 							button : "Aceptar",
 							closeOnClickOutside : false,
 						});
+						$("#passDir").val("");
 					} else {
 						console.log(resp);
 					}
@@ -362,6 +365,7 @@ function validLoginDoc(e) {
 							button : "Aceptar",
 							closeOnClickOutside : false,
 						});
+						$("#passDoc").val("");
 					} else {
 						console.log(resp);
 					}
