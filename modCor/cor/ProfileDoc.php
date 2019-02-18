@@ -20,7 +20,7 @@
                 </div>
                 <div class="card-body">
                   <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="<?php echo SERVERURLCOR; ?>assets/img/undraw_profile.svg" alt="image profile">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="<?php echo SERVERURL; ?>assets/img/undraw_profile.svg" alt="image profile">
                   </div>
                   <div class="row text-center mt-3">
                     <div class="col-sm-4 text-truncate" title="<?php echo $datDirect->nombre_car; ?>">
@@ -51,7 +51,7 @@
                 </div>
                 <div class="card-body">
                   <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="<?php echo SERVERURLCOR; ?>assets/img/undraw_profile.svg" alt="image profile">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="<?php echo SERVERURL; ?>assets/img/undraw_profile.svg" alt="image profile">
                   </div>
                   <div class="row text-center mt-3">
                     <div class="col-sm-4 text-truncate">

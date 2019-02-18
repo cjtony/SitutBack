@@ -30,7 +30,7 @@
         <div class="card-body">
         	<div class="row">
         		<div class="col-sm-4 mb-3 text-center">
-        			<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURLCOR; ?>assets/img/maintenance.svg" alt="info site">
+        			<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURL; ?>assets/img/maintenance.svg" alt="info site">
         			<div class="mt-4 text-center d-none" id="spinLoad">
 		            	<div class="spinner-border text-primary" role="status">
 						  <span class="sr-only">Loading...</span>

@@ -30,7 +30,7 @@ $fema = 'Femenino';
 	                </div>
 	                <div class="card-body">
 	                  <div class="text-center">
-	                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURLCOR; ?>assets/img/report.svg" alt="">
+	                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURL; ?>assets/img/report.svg" alt="">
 	                  </div>
 	                  <p>
 	                  	Las opciones de reportes mostrados en la siguiente tarjeta son los que se encuentran disponibles para esta carrera.

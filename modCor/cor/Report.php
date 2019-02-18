@@ -24,7 +24,7 @@ $NA = "NA";
 	                </div>
 	                <div class="card-body">
 	                  <div class="text-center">
-	                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURLCOR; ?>assets/img/report.svg" alt="">
+	                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURL; ?>assets/img/report.svg" alt="">
 	                  </div>
 	                  <p>
 	                  	Genera reportes generales de la universidad y por carrera, selecciona la carrera para ver los distintos tipos de reporte para cada una.
