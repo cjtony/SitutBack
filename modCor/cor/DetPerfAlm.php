@@ -41,7 +41,7 @@ $datPer = $cordinador -> datPerAlm(base64_decode($valAlm), $clvCar, $clvGrp);
 	                </div>
 	                <div class="card-body">
 	                  	<div class="text-center">
-	                    	<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 18rem;" src="<?php echo SERVERURLCOR; ?>assets/img/undraw_profile.svg" alt="image profile">
+	                    	<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 18rem;" src="<?php echo SERVERURL; ?>assets/img/undraw_profile.svg" alt="image profile">
 	                  	</div>
 	                  	<hr class="sidebar-divider">
 	                  	<div class="row mt-5">
@@ -166,7 +166,7 @@ $datPer = $cordinador -> datPerAlm(base64_decode($valAlm), $clvCar, $clvGrp);
 								} else {
 								?>
 									<div class="text-center">
-			                    		<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURLCOR; ?>assets/img/notdata.svg" alt="image not register">
+			                    		<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURL; ?>assets/img/notdata.svg" alt="image not register">
 			                    		<h1 class="h3 mb-0 mt-2 text-gray-800 text-center">
 			                    			Aún no se han generado registros...
 							            </h1>
@@ -182,7 +182,7 @@ $datPer = $cordinador -> datPerAlm(base64_decode($valAlm), $clvCar, $clvGrp);
 									} else {
 								?>
 									<div class="text-center">
-			                    		<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURLCOR; ?>assets/img/notdata.svg" alt="image not register">
+			                    		<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURL; ?>assets/img/notdata.svg" alt="image not register">
 			                    		<h1 class="h3 mb-0 mt-2 text-gray-800 text-center">
 			                    			Aún no se han generado registros...
 							            </h1>
@@ -235,7 +235,7 @@ $datPer = $cordinador -> datPerAlm(base64_decode($valAlm), $clvCar, $clvGrp);
 									} else {
 									?>
 										<div class="text-center">
-				                    		<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURLCOR; ?>assets/img/notdata.svg" alt="image not register">
+				                    		<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURL; ?>assets/img/notdata.svg" alt="image not register">
 				                    		<h1 class="h3 mb-0 mt-2 text-gray-800 text-center">
 				                    			Aún no se han generado registros...
 								            </h1>
