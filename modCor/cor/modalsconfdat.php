@@ -6,8 +6,8 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-key fa-lg icoIni"></i> Configurar Contraseña</h5>
-        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-key fa-lg icoIni mr-2"></i> Configurar Contraseña</h5>
+        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close" id="icoCloConfCont">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -52,18 +52,17 @@
 ===============================================-->
 
 <div class="modal fade bgModal" id="confDatCor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-user-cog fa-lg icoIni"></i> Configurar Datos</h5>
-        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-user-cog fa-lg icoIni mr-2"></i> Configurar Datos</h5>
+        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close" id="icoCloDatCor">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form class="row" method="POST" id="formConfDatCor" name="formConfDatCor">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-10">
+          <div class="col-sm-6">
             <div class="form-group">
               <label for="nomCor">Nombre:</label>
               <input value="<?php echo $datCor->nombre_c_cor;?>" type="text" id="nomCor" name="nomCor" class="form-control">
@@ -73,6 +72,8 @@
               <input onchange="validEmail()" value="<?php echo $datCor->correo_cor;?>" type="email" id="corCor" name="corCor" class="form-control">
               <div style="font-size: 16px;" id="textcorr" class="text-center"></div>
             </div>
+          </div>
+          <div class="col-sm-6">
             <div class="form-group">
               <label for="telCor">Telefono:</label>
               <input value="<?php echo $datCor->telefono_cor;?>" type="text" id="telCor" name="telCor" class="form-control">
@@ -97,18 +98,22 @@
                 ?>
               </select>
             </div>
+          </div>
+          <div class="col-sm-3"></div>
+          <div class="col-sm-6 mt-2">
             <div class="form-group">
               <label for="passConfCor">Contraseña:</label>
               <input type="password" id="passConfCor" name="passConfCor" class="form-control">
-                <div class="text-center">
-                  Introduce tu contraseña para actualizar
+                <div class="text-center mt-3">
+                  <span class="badge p-1 text-primary" style="font-size: 17px;">
+                    Introduce tu contraseña para actualizar
+                  </span>
                 </div>
             </div>
           </div>
-          <div class="col-sm-1"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" id="btnCloDatCor">
           <i class="fas fa-times-circle mr-2"></i>
           Cerrar</button>
         <button type="submit" class="btn btn-outline-primary" id="btnGDatCor">
@@ -130,8 +135,8 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-image fa-lg icoIni"></i> Foto de perfil</h5>
-        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-image fa-lg icoIni mr-2"></i> Foto de perfil</h5>
+        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close" id="icoCloConfFot">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -160,3 +165,5 @@
 </div>
 
 <!--====  End of Ventana Modal Conf Foto Perfil  ====-->
+
+<script src="<?php echo SERVERURLCOR; ?>cor/js/confContDatCor.js"></script>

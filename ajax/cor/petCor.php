@@ -20,7 +20,7 @@ if ($_SESSION['keyCor'] == "" || $_SESSION['keyCor'] == null) {
 					INNER JOIN det_grupo det ON det.id_detgrupo = alm.id_detgrupo
 					INNER JOIN carreras car ON car.id_carrera = det.id_carrera
 					INNER JOIN grupos grp ON grp.id_grupo = det.id_grupo
-					WHERE car.id_carrera = :clvCar && alm.estado_al = :valid && alm.acept_grp = :valid GROUP BY grp.grupo_n");
+					WHERE car.id_carrera = :clvCar && alm.estado_al = :valid && alm.acept_grp = :valid GROUP BY grp.grupo_n ORDER BY grp.grupo_n DESC");
 				$stmt -> bindParam("clvCar", $clvCar, PDO::PARAM_INT);
 				$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
 				$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
@@ -28,9 +28,9 @@ if ($_SESSION['keyCor'] == "" || $_SESSION['keyCor'] == null) {
 				$data = Array();
 				while ($res = $stmt -> fetch(PDO::FETCH_OBJ)) {
 					$data[] = array(
-						"0" => '<span class="badge badge-pill badge-info font-weight-normal">'.$res -> grupo_n.'</span>',
-						"1" => '<span class="badge badge-pill badge-info font-weight-normal">'.$res -> CantAlm.'</span>',
-						"2" => '<a href="'.SERVERURLCOR.'DetGrp/'.base64_encode($res->id_grupo).'/'.base64_encode($res->id_carrera).'" class="btn btn-outline-primary">Detalles</a>'
+						"0" => '<span class="font-weight-bold text-dark">'.$res -> grupo_n.'</span>',
+						"1" => '<span class="font-weight-bold text-dark">'.$res -> CantAlm.'</span>',
+						"2" => '<a href="'.SERVERURLCOR.'DetGrp/'.base64_encode($res->id_grupo).'/'.base64_encode($res->id_carrera).'/" class="btn btn-outline-primary btn-sm text-center"> <i class="fas fa-plus-circle mr-2 ml-1"></i>Detalles </a>'
 					);
 				}
 				$results = array(
@@ -55,7 +55,7 @@ if ($_SESSION['keyCor'] == "" || $_SESSION['keyCor'] == null) {
 					INNER JOIN grupos grp ON grp.id_grupo = det.id_grupo
 					INNER JOIN carreras car ON car.id_carrera = det.id_carrera
 					INNER JOIN docentes doc ON doc.id_docente = det.id_docente
-					WHERE grp.id_grupo = :clvGrp && car.id_carrera = :clvCar && alm.estado_al = :valid && alm.acept_grp = :valid");
+					WHERE grp.id_grupo = :clvGrp && car.id_carrera = :clvCar && alm.estado_al = :valid && alm.acept_grp = :valid ORDER BY alm.nombre_c_al DESC");
 				$stmt -> bindParam("clvGrp", $clvGrp, PDO::PARAM_INT);
 				$stmt -> bindParam("clvCar", $clvCar, PDO::PARAM_INT);
 				$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
@@ -67,7 +67,7 @@ if ($_SESSION['keyCor'] == "" || $_SESSION['keyCor'] == null) {
 						"0" => $res -> nombre_c_al,
 						"1" => $res -> matricula_al,
 						"2" => $res -> correo_al,
-						"3" => '<a href="'.SERVERURLCOR.'DetPerfAlm/'.base64_encode($res->id_alumno).'/'.base64_encode($res->id_carrera).'/'.base64_encode($res->id_grupo).'" class="btn btn-outline-primary btn-md"> <i class="fas fa-eye mr-2"></i>Perfil </a>'
+						"3" => '<a href="'.SERVERURLCOR.'DetPerfAlm/'.base64_encode($res->id_alumno).'/'.base64_encode($res->id_carrera).'/'.base64_encode($res->id_grupo).'/" class="btn btn-outline-primary btn-sm"> <i class="fas fa-eye mr-2"></i>Perfil </a>'
 					);
 				}
 				$results = array(

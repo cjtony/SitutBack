@@ -18,321 +18,237 @@ $datValAlm = $cordinador -> datAlmGrpCarSel($clvGrp, $clvCar, base64_decode($val
 $datPer = $cordinador -> datPerAlm(base64_decode($valAlm), $clvCar, $clvGrp);
 
 ?>
-
-	<div class="container animated fadeInUp delay-1s">
-		<div class="row">
-			<div class="col-lg-12">
-				<a href="<?php echo SERVERURLCOR; ?>DetCar/<?php echo base64_encode($clvCar); ?>" class="bg-white text-primary cardShadow btn btn-md">
-					<i class="fas fa-users icoIni fa-lg"></i>
-					Grupos de la carrera
-				</a>
-				<a href="<?php echo SERVERURLCOR; ?>DetGrp/<?php echo base64_encode($clvGrp); ?>/<?php echo base64_encode($clvCar); ?>" class="bg-white text-primary cardShadow btn btn-md">
-					<i class="fas fa-list icoIni fa-lg"></i>
-					Lista de alumnos
-				</a>
-			</div>
-		</div>
-	</div>
 		
-	<div class="container-fluid mt-4">
-		<div class="row">
-			<div class="col-md-4 col-lg-3 animated fadeInLeft delay-1s">
-				<!-- SobreMi -->
-                <div class="container py-5">
-                    <div class="card shDC">
-                        <img class="card-img-top" src="<?php echo SERVERURL; ?>vistas/img/iceland.jpg" alt="Card image cap">
-                        <div class="text-center margen-avatar">
-                        	<?php 
-								if ($datCor -> foto_perf_cor != "") {
-							?>
-								<img src='<?php echo SERVERURLCOR; ?>perfilFot/<?php echo $datCor->foto_perf_cor; ?>' class='rounded-circle' width='100px'>
-							<?php
-								} else {
-							?>
-								<img src='<?php echo SERVERURL; ?>vistas/img/usermal.png' class='rounded-circle' width='100px'>
-							<?php
-								}
-							?>
-                        </div>
-                        <div class="card-body text-center">
-                        <h6 class="card-title font-weight-bold">
-                        	<?php echo $datCor -> nombre_c_cor; ?>
-                        </h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-envelope fa-lg icoIni"></i>
-							<?php echo $datCor -> correo_cor; ?>
-						</h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-phone fa-lg icoIni"></i>
-							<?php echo $datCor -> telefono_cor; ?>
-						</h6>
-						<hr class="bg-info mt-4" style="height: 2px;">
-						<h6 class="text-center text-info">
-							<b>Coordinador</b>
-						</h6>
-                        </div>
-                    </div>
-                </div><!-- SobreMi -->
-                <div class="container">
-                    <!-- Comentarios -->
-                    <div class="card">
-                        <div class="card-header text-center">
-                            Frase Celebre
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                            <p class="font-italic text-info">
-                            	<b>"</b> Todo el mundo tiene talento, solo es cuestión de moverse hasta descubrirlo. <b>"</b>
-                            </p>
-                            <footer class="blockquote-footer"><cite title="Source Title">George Lucas</cite></footer>
-                            </blockquote>
-                        </div>
-                    </div><!-- Comentarios -->
-                </div>
-			</div>
-			<div class="col-md-8 col-lg-9">
-				<div class="text-center bg-primary p-1 animated fadeInDown" style="border-radius: 8px;">
-					<h4 class="text-center text-white mt-3">
-						<?php echo $datValAlm -> nombre_car.", ".$datValAlm -> grupo_n; ?>
-					</h4>
-				</div>
-				<div class="row mt-4 animated fadeInUp delay-1s">
-					<div class="col-sm-6 text-center mt-3">
-						<h5 class="text-center text-capitalize text-info mt-5">
-							<br>
-							<span>Alumno</span> : <b><?php echo $datValAlm -> nombre_c_al; ?></b>	
-						</h5>
-						<!-- <h5 class="text-center text-info mt-1">
-							<span>
-								En el grupo:
-								<?php 
-									if ($datValAlm -> acept_grp == 1) {
+	<div class="container-fluid animated fadeIn delay-1s">
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800 text-center">
+            	<?php echo $datValAlm -> nombre_car.", ".$datValAlm -> grupo_n; ?>.
+            </h1>
+            <a href="<?php echo SERVERURLCOR; ?>DetCar/<?php echo base64_encode($clvCar); ?>/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+              <i class="fas fa-users fa-sm text-white-50 mr-2"></i> Grupos de la carrera 
+            </a>
+            <a href="<?php echo SERVERURLCOR; ?>DetGrp/<?php echo base64_encode($clvGrp); ?>/<?php echo base64_encode($clvCar); ?>/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+              <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+            </a>
+        </div>
+		<div class="row mt-5">
+			<div class="col-sm-12">
+				<div class="card shadow mb-4">
+	                <div class="card-header py-3">
+	                  <h5 class="m-0 font-weight-bold text-primary">
+	                  	Alumno: <b><?php echo $datValAlm -> nombre_c_al; ?></b>.
+	                  </h5>
+	                </div>
+	                <div class="card-body">
+	                  	<div class="text-center">
+	                    	<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 18rem;" src="<?php echo SERVERURLCOR; ?>assets/img/undraw_profile.svg" alt="image profile">
+	                  	</div>
+	                  	<hr class="sidebar-divider">
+	                  	<div class="row mt-5">
+	                		<div class="col-sm-6 text-center mb-4">
+		                		<?php
+									if ($datValAlm -> foto_perf_alm == "" && $datValAlm -> sexo_al == "Masculino") {
+										echo "<img src='".SERVERURL."vistas/img/usermal.png' class='img-fluid' width='150'>";
+									} else if ($datValAlm -> foto_perf_alm != "" && $datValAlm -> sexo_al == "Masculino") {
 								?>
-									<span class="badge badge-pill badge-primary">Aceptado</span>
+									<img src="<?php echo SERVERURLFRONT; ?>modAlm/Arch/perfil/<?php echo $datValAlm->foto_perf_alm ?>" class="img-fluid rounded" width="150">
+								<?php
+									} else if ($datValAlm -> foto_perf_alm == "" && $datValAlm -> sexo_al == "Femenino") {
+										echo "<img src='".SERVERURL."vistas/img/userfem.png' class='img-fluid' width='150'>";
+									} else if ($datValAlm -> foto_perf_alm != "" && $datValAlm -> sexo_al == "Femenino") {
+								?>
+									<img src="<?php echo SERVERURLFRONT; ?>modAlm/Arch/perfil/<?php echo $datValAlm->foto_perf_alm ?>" class="img-fluid rounded" width="150">
 								<?php
 									} else {
-								?>
-									<span class="badge badge-danger">Sin aceptar</span>
-								<?php
+									echo "<img src='".SERVERURL."vistas/img/icous.png' class='img-fluid' width='150'>";
 									}
 								?>
-							</span>
-						</h5> -->
-						<hr style="height: 2px;" class="bg-info rounded">
-					</div>
-					<div class="col-sm-6 text-center">
-						<?php
-							if ($datValAlm -> foto_perf_alm == "" && $datValAlm -> sexo_al == "Masculino") {
-								echo "<img src='".SERVERURL."vistas/img/usermal.png' class='img-fluid' width='200'>";
-							} else if ($datValAlm -> foto_perf_alm != "" && $datValAlm -> sexo_al == "Masculino") {
-						?>
-							<img src="<?php echo SERVERURLFRONT; ?>modAlm/Arch/perfil/<?php echo $datValAlm->foto_perf_alm ?>" class="img-fluid img-thumbnail rounded" width="200">
-						<?php
-							} else if ($datValAlm -> foto_perf_alm == "" && $datValAlm -> sexo_al == "Femenino") {
-								echo "<img src='".SERVERURL."vistas/img/userfem.png' class='img-fluid' width='200'>";
-							} else if ($datValAlm -> foto_perf_alm != "" && $datValAlm -> sexo_al == "Femenino") {
-						?>
-							<img src="<?php echo SERVERURLFRONT; ?>modAlm/Arch/perfil/<?php echo $datValAlm->foto_perf_alm ?>" class="img-fluid img-thumbnail rounded" width="200">
-						<?php
-							} else {
-							echo "<img src='".SERVERURL."vistas/img/icous.png' class='img-fluid' width='200'>";
-							}
-						?>
-					</div>
-				</div>
-				
-				<div class="row mt-5 animated fadeInUp delay-2s">
-					<div class="col-sm-6 col-md-6 col-lg-3 text-center">
-						<button id="btnDatGrp" class="btn bg-white text-primary cardShadow btn-md" onclick="mostDatGrp(true),mostJustif(false), mostDatPer(false), mostDatHist(false)">
-							<i class="fas fa-users fa-lg icoIni"></i>
-							Grupo <?php echo $datValAlm->grupo_n; ?>
-						</button>
-						<br><br>
-					</div>
-					<div class="col-sm-6 col-md-6 col-lg-3 text-center">
-						<button id="btnJustif" class="btn bg-white text-primary cardShadow btn-md" onclick="mostJustif(true), mostDatPer(false), mostDatGrp(false), mostDatHist(false)">
-							<i class="fas fa-file-alt fa-lg icoIni"></i>
-							Justificantes
-						</button>
-						<br><br>
-					</div>
-					<div class="col-sm-6 col-md-6 col-lg-3 text-center">
-						<button id="btnDatPer" class="btn bg-white text-primary cardShadow btn-md" onclick="mostDatPer(true), mostJustif(false), mostDatGrp(false), mostDatHist(false)">
-							<i class="fas fa-book fa-lg icoIni"></i>
-							Datos personales
-						</button>
-						<br><br>
-					</div>
-					<div class="col-sm-6 col-md-6 col-lg-3 text-center">
-						<button id="btnDatHist" class="btn bg-white text-primary cardShadow btn-md" onclick="mostDatPer(false), mostJustif(false), mostDatGrp(false), mostDatHist(true)">
-							<i class="fas fa-book-open fa-lg icoIni"></i>
-							Historial
-						</button>
-						<br><br>
-					</div>
-				</div>
-				<div class="row pad10 ocult" id="mostDatGrp">
-					<div class="col-sm-2"></div>
-					<div class="col-sm-8">
-						<br>
-						<div class="card mt-5 pad10 cardShadow rounded animated fadeInUp delay-1s">
-							<div class=" card-body">
-								<div class="card-title mb-4 text-center">
-									<?php
-										if ($datValAlm->foto_perf_doc != "") {
+								<br><br>
+								<span class="h5">
+									<?php 
+										if ($datValAlm -> acept_grp == 1) {
 									?>
-										<img src="../moddoc/perfilFot/<?php echo $datValAlm->foto_perf_doc; ?>" width="150" class="img-fluid img-thumbnail rounded" alt="">
-									<?php		
+										<span class="badge badge-pill badge-primary"> En el grupo: <span class="badge badge-light ml-2">Aceptado</span> </span>
+									<?php
 										} else {
 									?>
-										<h5 class="text-center">
-											<i class="fas fa-user text-info fa-2x text-center"></i>
-										</h5>
+										<span class="badge badge-pill badge-danger"> En el grupo: <span class="badge badge-light ml-2">Sin aceptar</span></span>
 									<?php
 										}
 									?>
-									<br>
-									<h4 class="text-center">
-										<i class="fas fa-chalkboard-teacher fa-lg icoIni text-info"></i>
-										Tutor : <?php echo $datValAlm -> nombre_c_doc; ?>
-									</h4>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-2"></div>
-				</div>
-				<div class="row pad10 ocult" id="mostJustif">
-					<div class="col-sm-12 text-right">
-						<button class="btn btn-sm btn-outline-danger" onclick="mostJustif(false), mostDatGrp(true)">
-							<i class="fas fa-times fa-2x"></i>
-						</button>
-						<br><br>
-					</div>
-					<?php 
-						$dbc = new Connect();
-						$dbc = $dbc -> getDB();
-						$valAlmDec = base64_decode($valAlm);
-						$stmt = $dbc -> prepare("SELECT COUNT(jus.id_justificante) AS 'Solicitados', jus.cuatrimestre_justif AS 'Cuatrimestre' FROM justificantes jus
-							INNER JOIN alumnos alm ON alm.id_alumno = jus.id_alumno
-							WHERE alm.id_alumno = :valAlm GROUP BY jus.cuatrimestre_justif");
-						$stmt -> bindParam("valAlm", $valAlmDec, PDO::PARAM_INT);
-						$stmt -> execute();
-						$filStmt = $stmt -> rowCount();
-						if ($filStmt >= 1) {
-							while ($res = $stmt -> fetch(PDO::FETCH_OBJ)) {
-					?>
-						<div class="col-sm-4">
-							<div class="card pad10 cardShadow rounded">
-								<div class=" card-body">
-									<div class="card-title mb-4">
-										<h5 class="text-center">
-											Cuatrimestre : 
-											<?php echo $res->Cuatrimestre; ?>
-										</h5>
-									</div>
-									<div class="dropdown-divider"></div>
-									<div class="card-text mt-4">
-										<h5 class="text-center">
-											<i class="fas fa-file-alt fa-lg icoIni text-info"></i>
-											Justificantes : 
-											<span class="font-weight-normal badge badge-pill badge-info">
-												<?php echo $res->Solicitados; ?>	
-											</span>	
-										</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-					<?php		
-						}
-					} else {
-					?>
-						<div class="col-sm-12">
-							<h2 class="text-center text-info">
-								<i class="fas fa-file-excel fa-2x"></i>
-									<br><br>
-									Aún no se han generado registros...
-							</h2>
-						</div>
-					<?php 
-						}
-					?>
-				</div>
-				<div class="row pad10 ocult" id="mostDatPer">
-					<div class="col-sm-12 text-right">
-						<button class="btn btn-outline-danger btn-sm" onclick="mostDatPer(false), mostDatGrp(true)">
-							<i class="fas fa-times fa-2x"></i>
-						</button>
-						<br><br>
-					</div>
-					<?php 
-						if ($datPer) {
-							include 'archExt/datPerAlm.php';
-						} else {
-					?>
-						<div class="col-sm-12">
-							<h2 class="text-center text-info">
-								<i class="fas fa-file-excel fa-2x"></i>
-								<br><br>
-								Aún no se han generado registros...
-							</h2>
-						</div>
-					<?php		
-						}
-					?>
-				</div>
-				<div class="row pad10 ocult" id="mostDatHist">
-					<div class="col-sm-12 text-right">
-						<button class="btn btn-outline-danger btn-sm" onclick="mostDatHist(false), mostDatGrp(true)">
-							<i class="fas fa-times fa-2x"></i>
-						</button>
-						<br><br>
-					</div>
-					<?php 
-						$dbc = new Connect();
-						$dbc = $dbc -> getDB();
-						$valid = 1;
-						$valAlmDec = base64_decode($valAlm);
-						$stmt = $dbc -> prepare("SELECT * FROM historial_academ hist WHERE hist.id_alumno = :valAlmDec && hist.estado_almhist = :valid");
-						$stmt -> bindParam("valAlmDec", $valAlmDec, PDO::PARAM_INT);
-						$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
-						$stmt -> execute();
-						$resStmt = $stmt -> rowCount();
-						if ($resStmt > 0) {
-						 	while ($res = $stmt -> fetch(PDO::FETCH_OBJ)) {
-						?>
-							<div class="col-sm-4">
-								<div class="cardShadow p-4">
-									<div class="card-title mt-3">
-										<h5 class="text-center">Cuatrimestre: <?php echo $res->cuatri_almhist; ?></h5>
-									</div>
-									<h6 class="mt-3 text-center">Tutor: <?php echo $res->tutor_almhist; ?></h6>
-									<div class="text-right mt-3 border-top border-info row">
-										<div class="col-sm-6">
-											<h6 class="mt-3"><?php echo $res->grupo_almhist; ?></h6>
-										</div>
-										<div class="col-sm-6">
-											<h6 class="mt-3"><?php echo $res->periodcuat_almhist; ?></h6>
+								</span>
+	                		</div>
+	                		<div class="col-sm-6 text-center">
+	                			<div class="card border-left-info">
+									<div class="card-body">
+										<div class="card-title text-center">
+											<?php
+												if ($datValAlm->foto_perf_doc != "") {
+											?>
+												<img src="../moddoc/perfilFot/<?php echo $datValAlm->foto_perf_doc; ?>" width="150" class="img-fluid img-thumbnail rounded" alt="">
+											<?php		
+												} else {
+											?>
+												<h5 class="text-center">
+													<i class="fas fa-chalkboard-teacher text-primary fa-2x text-center"></i>
+												</h5>
+											<?php
+												}
+											?>
+											<br>
+											<h4 class="text-center">
+												Tutor: <b><?php echo $datValAlm -> nombre_c_doc; ?></b>.
+											</h4>
 										</div>
 									</div>
 								</div>
+	                		</div>
+	                	</div>
+	                	<br>
+	                	<div class="row mt-2">
+	                		<div class="col-sm-12">
+	                			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+									  <li class="nav-item">
+									    <a class="nav-link active mb-2 ml-3" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+									    	<i class="fas fa-file-alt mr-2"></i>
+									    	Justificantes
+									    </a>
+									  </li>
+									  <li class="nav-item">
+									    <a class="nav-link ml-3 mb-2" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
+									    	<i class="fas fa-book mr-2"></i>
+									    	Datos personales
+									    </a>
+									  </li>
+									  <li class="nav-item">
+									    <a class="nav-link ml-3 mb-2" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">
+									    	<i class="fas fa-book-open mr-2"></i>
+									    	Historial
+									    </a>
+									  </li>
+								</ul>
+								<hr class="sidebar-divider">
+							<div class="tab-content mt-5 mb-4" id="pills-tabContent">
+							  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+							  	<?php 
+									$dbc = new Connect();
+									$dbc = $dbc -> getDB();
+									$valAlmDec = base64_decode($valAlm);
+									$stmt = $dbc -> prepare("SELECT COUNT(jus.id_justificante) AS 'Solicitados', jus.cuatrimestre_justif AS 'Cuatrimestre' FROM justificantes jus
+										INNER JOIN alumnos alm ON alm.id_alumno = jus.id_alumno
+										WHERE alm.id_alumno = :valAlm GROUP BY jus.cuatrimestre_justif");
+									$stmt -> bindParam("valAlm", $valAlmDec, PDO::PARAM_INT);
+									$stmt -> execute();
+									$filStmt = $stmt -> rowCount();
+									if ($filStmt >= 1) {
+										while ($res = $stmt -> fetch(PDO::FETCH_OBJ)) {
+								?>
+									<div class="col-xl-3 col-md-6 mb-4">
+						              <div class="card border-left-info shadow h-100 py-2">
+						                <div class="card-body">
+						                  <div class="row no-gutters align-items-center">
+						                    <div class="col mr-2">
+						                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+						                      	Cuat: 
+												<?php echo $res->Cuatrimestre; ?>
+						                      </div>
+						                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $res->Solicitados; ?> registros</div>
+						                    </div>
+						                    <div class="col-auto">
+						                      <i class="fas fa-file-alt fa-2x text-gray-300"></i>
+						                    </div>
+						                  </div>
+						                </div>
+						              </div>
+						            </div>
+								<?php		
+									}
+								} else {
+								?>
+									<div class="text-center">
+			                    		<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURLCOR; ?>assets/img/notdata.svg" alt="image not register">
+			                    		<h1 class="h3 mb-0 mt-2 text-gray-800 text-center">
+			                    			Aún no se han generado registros...
+							            </h1>
+			                  		</div>
+								<?php 
+									}
+								?>
+							  </div>
+							  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+							  	<?php 
+									if ($datPer) {
+										include 'archExt/datPerAlm.php';
+									} else {
+								?>
+									<div class="text-center">
+			                    		<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURLCOR; ?>assets/img/notdata.svg" alt="image not register">
+			                    		<h1 class="h3 mb-0 mt-2 text-gray-800 text-center">
+			                    			Aún no se han generado registros...
+							            </h1>
+			                  		</div>
+								<?php		
+									}
+								?>
+							  </div>
+							  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+							  	<?php 
+									$dbc = new Connect();
+									$dbc = $dbc -> getDB();
+									$valid = 1;
+									$valAlmDec = base64_decode($valAlm);
+									$stmt = $dbc -> prepare("SELECT * FROM historial_academ hist WHERE hist.id_alumno = :valAlmDec && hist.estado_almhist = :valid");
+									$stmt -> bindParam("valAlmDec", $valAlmDec, PDO::PARAM_INT);
+									$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+									$stmt -> execute();
+									$resStmt = $stmt -> rowCount();
+									if ($resStmt > 0) {
+									 	while ($res = $stmt -> fetch(PDO::FETCH_OBJ)) {
+									?>
+										<div class="col-xl-4 col-md-6 mb-4">
+							              <div class="card border-left-info shadow h-100 py-2">
+							                <div class="card-body">
+							                  <div class="row no-gutters align-items-center">
+							                    <div class="col mr-2">
+							                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+							                      	Cuat: 
+													<?php echo $res->cuatri_almhist; ?>
+							                      </div>
+							                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+							                      	<?php echo $res->grupo_almhist; ?>, <?php echo $res->periodcuat_almhist; ?>.
+							                      </div>
+							                      <hr class="sidevar-divider">
+							                      <div class="h6 mb-0 font-weight-bold text-gray-800">
+							                      	Tutor: <?php echo $res->tutor_almhist; ?>.
+							                      </div>
+							                    </div>
+							                    <div class="col-auto">
+							                      <i class="fas fa-users fa-2x text-gray-300"></i>
+							                    </div>
+							                  </div>
+							                </div>
+							              </div>
+							            </div>
+
+									<?php
+									 	}
+									} else {
+									?>
+										<div class="text-center">
+				                    		<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURLCOR; ?>assets/img/notdata.svg" alt="image not register">
+				                    		<h1 class="h3 mb-0 mt-2 text-gray-800 text-center">
+				                    			Aún no se han generado registros...
+								            </h1>
+				                  		</div>
+									<?php
+									}
+								?>
+							  </div>
 							</div>
-						<?php
-						 	}
-						} else {
-						?>
-							<div class="col-sm-12">
-								<h2 class="text-center text-info">
-									<i class="fas fa-file-excel fa-2x"></i>
-									<br><br>
-									Aún no se han generado registros...
-								</h2>
-							</div>
-						<?php
-						}
-					?>
-				</div>
+	                		</div>
+						</div>
+	                </div>
+	            </div>
 			</div>
 		</div>
 	</div>

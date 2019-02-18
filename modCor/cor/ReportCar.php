@@ -13,102 +13,88 @@ $male = 'Masculino';
 $fema = 'Femenino';
 		
 ?>
-	<div class="container-fluid mt-4">
-		<div class="row">
-			<div class="col-md-4 col-lg-3 animated fadeInLeft delay-1s">
-				<!-- SobreMi -->
-                <div class="container py-5">
-                    <div class="card shDC">
-                        <img class="card-img-top" src="<?php echo SERVERURL; ?>vistas/img/iceland.jpg" alt="Card image cap">
-                        <div class="text-center margen-avatar">
-                        	<?php 
-								if ($datCor -> foto_perf_cor != "") {
-							?>
-								<img src='<?php echo SERVERURLCOR; ?>perfilFot/<?php echo $datCor->foto_perf_cor; ?>' class='rounded-circle' width='100px'>
-							<?php
-								} else {
-							?>
-								<img src='<?php echo SERVERURL; ?>vistas/img/usermal.png' class='rounded-circle' width='100px'>
-							<?php
-								}
-							?>
-                        </div>
-                        <div class="card-body text-center">
-                        <h6 class="card-title font-weight-bold">
-                        	<?php echo $datCor -> nombre_c_cor; ?>
-                        </h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-envelope fa-lg icoIni"></i>
-							<?php echo $datCor -> correo_cor; ?>
-						</h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-phone fa-lg icoIni"></i>
-							<?php echo $datCor -> telefono_cor; ?>
-						</h6>
-						<hr class="bg-info mt-4" style="height: 2px;">
-						<h6 class="text-center text-info">
-							<b>Coordinador</b>
-						</h6>
-                        </div>
-                    </div>
-                </div><!-- SobreMi -->
-                <div class="container">
-                    <!-- Comentarios -->
-                    <div class="card">
-                        <div class="card-header text-center">
-                            Frase Celebre
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                            <p class="font-italic text-info">
-                            	<b>"</b> Todo el mundo tiene talento, solo es cuestión de moverse hasta descubrirlo. <b>"</b>
-                            </p>
-                            <footer class="blockquote-footer"><cite title="Source Title">George Lucas</cite></footer>
-                            </blockquote>
-                        </div>
-                    </div><!-- Comentarios -->
-                </div>
+	<div class="container-fluid animated fadeIn delay-1s">
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800 text-center">
+            	Reportes de la carrera: <?php echo $datCarSel->nombre_car; ?>.
+            </h1>
+            <a href="<?php echo SERVERURLCOR; ?>Report/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+              <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+            </a>
+        </div>
+		<div class="row mt-4">
+			<div class="col-sm-6">
+				<div class="card shadow mb-4">
+	                <div class="card-header py-3">
+	                  <h6 class="m-0 font-weight-bold text-primary">Información</h6>
+	                </div>
+	                <div class="card-body">
+	                  <div class="text-center">
+	                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURLCOR; ?>assets/img/report.svg" alt="">
+	                  </div>
+	                  <p>
+	                  	Las opciones de reportes mostrados en la siguiente tarjeta son los que se encuentran disponibles para esta carrera.
+	                  </p>
+	                  <a target="_blank" rel="nofollow" href="https://cjtony.github.io/marc.github.io/">
+	                    Para mas información consulte al programador...
+	                    &rarr;
+	                  </a>
+	                </div>
+	              </div>
 			</div>
-			<div class="col-md-8 col-lg-9">
-				<div class="text-center bg-primary p-1 animated fadeIn" style="border-radius: 8px;">
-					<h4 class="text-center text-white mt-3">Reportes de la carrera: <?php echo $datCarSel->nombre_car; ?></h4>
-				</div>
-				<div class="row mt-5 animated fadeInUp delay-1s">
-					<div class="col-sm-6">
-						<h5 class="font-weight-bold">Por sexo:</h5>
-						<div class="mt-4 text-center">
-							<a target="_blank" href="<?php echo SERVERURLCOR; ?>cor/ImpReport.php?v=<?php echo $valCar;?>&&vr=<?php echo base64_encode($male); ?>" class="btn btn-primary mr-2">
-								<i class="fas fa-male"></i>
-								Hombres
-							</a>
-							<a target="_blank" href="<?php echo SERVERURLCOR; ?>cor/ImpReport.php?v=<?php echo $valCar;?>&&vr=<?php echo base64_encode($fema); ?>" class="btn btn-primary">
-								<i class="fas fa-female"></i>
-								Mujeres
-							</a>
-						</div>
-					</div>
-				</div>
+			<div class="col-sm-6">
+				<div class="card shadow mb-4">
+	                <!-- Card Header - Accordion -->
+	                <a href="#reportSexUni" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="reportSexUni">
+	                  <h6 class="m-0 font-weight-bold text-primary">
+	                  	Reportes generales por sexo:
+	                  </h6>
+	                </a>
+	                <div class="collapse show" id="reportSexUni">
+	                  <div class="card-body">
+				        <div class="row">
+				        	<div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-info shadow h-100 py-2">
+				                <div class="card-body">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Masculino</div>
+				                      <div class="h5 mb-0 font-weight-bold text-gray-800 mt-3">
+				                      	<a target="_blank" href="<?php echo SERVERURLCOR; ?>cor/ImpReport.php?v=<?php echo $valCar;?>&&vr=<?php echo base64_encode($male); ?>/">
+				                      		Imp. <i class="fas fa-print ml-2"></i>
+				                      	</a>
+				                      </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-male fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				            <div class="col-xl-6 col-md-6 mb-4">
+				              <div class="card border-left-info shadow h-100 py-2">
+				                <div class="card-body">
+				                  <div class="row no-gutters align-items-center">
+				                    <div class="col mr-2">
+				                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Femenino</div>
+				                      <div class="h5 mb-0 font-weight-bold text-gray-800 mt-3">
+				                      	<a target="_blank" href="<?php echo SERVERURLCOR; ?>cor/ImpReport.php?v=<?php echo $valCar;?>&&vr=<?php echo base64_encode($fema); ?>/">
+				                      		Imp. <i class="fas fa-print ml-2"></i>
+				                      	</a>
+				                      </div>
+				                    </div>
+				                    <div class="col-auto">
+				                      <i class="fas fa-female fa-2x text-gray-300"></i>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				        </div>
+	                  </div>
+	                </div>
+	            </div>
 			</div>
 		</div>
 	</div>
-
-    <script type="text/javascript">
-    	$(function(){
-    		$(window).scroll(function() {
-			  if ($("#menu1").offset().top > 56) {
-			      $("#menu1").addClass("bg-info");
-			  } else {
-			      $("#menu1").removeClass("bg-info");
-			  }
-			});
-			$(window).scroll(function(){
-				if ($("#menu2").offset().top > 56) {
-			      $("#menu2").addClass("bg-info");
-			      $("#textLog").text("U T S E M");
-			  } else {
-			      $("#menu2").removeClass("bg-info");
-			      $("#textLog").text("S I T U T");
-			  }
-			});
-    	});
-    </script>

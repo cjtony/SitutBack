@@ -14,180 +14,102 @@ $almBajCar = $cordinador -> cantBajCar(base64_decode($valCar));
 ?>
 
 
-	<div class="container-fluid mt-4">
-		<div class="row">
-			<div class="col-md-4 col-lg-3 animated fadeInLeft delay-1s">
-				<!-- SobreMi -->
-                <div class="container py-5">
-                    <div class="card shDC">
-                        <img class="card-img-top" src="<?php echo SERVERURL; ?>vistas/img/iceland.jpg" alt="Card image cap">
-                        <div class="text-center margen-avatar">
-                        	<?php 
-								if ($datCor -> foto_perf_cor != "") {
-							?>
-								<img src='<?php echo SERVERURLCOR; ?>perfilFot/<?php echo $datCor->foto_perf_cor; ?>' class='rounded-circle' width='100px'>
-							<?php
-								} else {
-							?>
-								<img src='<?php echo SERVERURL; ?>vistas/img/usermal.png' class='rounded-circle' width='100px'>
-							<?php
-								}
-							?>
-                        </div>
-                        <div class="card-body text-center">
-                        <h6 class="card-title font-weight-bold">
-                        	<?php echo $datCor -> nombre_c_cor; ?>
-                        </h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-envelope fa-lg icoIni"></i>
-							<?php echo $datCor -> correo_cor; ?>
-						</h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-phone fa-lg icoIni"></i>
-							<?php echo $datCor -> telefono_cor; ?>
-						</h6>
-						<hr class="bg-info mt-4" style="height: 2px;">
-						<h6 class="text-center text-info">
-							<b>Coordinador</b>
-						</h6>
-                        </div>
+	<div class="container-fluid animated fadeIn delay-1s">
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800 text-center"><?php echo $datCD->nombre_car; ?>.</h1>
+            <a href="<?php echo SERVERURLCOR; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+              <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+            </a>
+          </div>
+		<div class="row mt-5">
+			<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Alumnos</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $almCar->CantAlm; ?> registros</div>
                     </div>
-                </div><!-- SobreMi -->
-                <div class="container">
-                    <!-- Comentarios -->
-                    <div class="card">
-                        <div class="card-header text-center">
-                            Frase Celebre
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                            <p class="font-italic text-info">
-                            	<b>"</b> Todo el mundo tiene talento, solo es cuestión de moverse hasta descubrirlo. <b>"</b>
-                            </p>
-                            <footer class="blockquote-footer"><cite title="Source Title">George Lucas</cite></footer>
-                            </blockquote>
-                        </div>
-                    </div><!-- Comentarios -->
+                    <div class="col-auto">
+                      <i class="fas fa-users fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
                 </div>
-			</div>
-			<div class="col-md-8 col-lg-9 mt-4">
-				<div class="text-center bg-primary p-1 animated fadeIn" style="border-radius: 8px;">
-					<h4 class="text-center text-white mt-3">
-						<?php echo $datCD->nombre_car; ?>
-					</h4>
-				</div>
-				<div class="row mt-5 animated fadeInUp delay-1s">
-					<div class="col-sm-12 col-md-12 col-lg-12">
-						<div class="row">
-							<div class="col-sm-6 col-md-6 col-lg-6">
-								<div class="card pad10 cardShadow rounded">
-									<div class="card-body">
-										<div class="card-text mt-4">
-											<h5 class="text-center">
-												<i class="fas fa-users fa-lg icoIni text-info"></i>
-												Alumnos : 
-												<span class="font-weight-normal badge badge-pill badge-info">
-													<?php echo $almCar->CantAlm; ?>	
-												</span>	
-											</h5>
-											<hr style="height: 2px !important;" class="bg-info">
-											<div class="card-text text-left text-info text-justify">
-												Cantidad de Alumnos aceptados en grupos y cuentas activas.
-											</div>
-										</div>
-									</div>
-								</div>
-								<br>
-							</div>
-							<div class="col-sm-6 col-md-6 col-lg-6">
-								<div class="card pad10 cardShadow rounded">
-									<div class=" card-body">
-										<div class="card-text mt-4">
-											<h5 class="text-center">
-												<i class="fas fa-user-times fa-lg icoIni text-info"></i>
-												Alumnos Inactivos : 
-												<span class="font-weight-normal badge badge-pill badge-info">
-													<?php echo $almInact->CantAlm; ?>	
-												</span>	
-											</h5>
-											<hr style="height: 2px !important;" class="bg-info">
-											<div class="card-text text-left text-info text-justify">
-												Cantidad de Alumnos con cuentas inactivas dentro del sistema.
-											</div>
-										</div>
-									</div>
-								</div>
-								<br>
-							</div>
-							<div class="col-sm-6 col-md-6 col-lg-6">
-								<div class="card pad10 cardShadow rounded">
-									<div class=" card-body">
-										<div class="card-text mt-4">
-											<h5 class="text-center">
-												<i class="fas fa-user-clock fa-lg icoIni text-info"></i>
-												 Sin Aceptar : 
-												<span class="font-weight-normal badge badge-pill badge-info">
-													<?php echo $almSAcept->CantAlm; ?>	
-												</span>	
-											</h5>
-											<hr style="height: 1px !important;" class="bg-info">
-											<div class="card-text text-left text-info text-justify">
-												Cantidad de Alumnos sin ser aceptados en un grupo
-											</div>
-										</div>
-									</div>
-								</div>
-								<br>
-							</div>
-							<div class="col-sm-6 col-md-6 col-lg-6">
-								<div class="card pad10 cardShadow rounded">
-									<div class=" card-body">
-										<div class="card-text mt-4">
-											<h5 class="text-center">
-												<i class="fas fa-user-slash fa-lg icoIni text-info"></i>
-												Bajas : 
-												<span class="font-weight-normal badge badge-pill badge-info">
-													<?php echo $almBajCar->CantAlm; ?>	
-												</span>	
-											</h5>
-											<hr style="height: 2px !important;" class="bg-info">
-											<div class="card-text text-info text-left text-justify">
-												Cantidad de Alumnos dados de baja de la carrera
-											</div>
-										</div>
-									</div>
-								</div>
-								<br>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-12 mt-3">
-					<div class="text-center bg-primary p-1 animated fadeIn" style="border-radius: 8px;">
-						<h4 class="text-center text-white mt-3">
-							Grupos de la carrera
-						</h4>
-					</div>
-					<div class="row mt-5 animated fadeInUp delay-1s">
-						<div class="col-sm-12">
-							<div class="table-responsive">
-								<table class="table bg-white rounded table-bordered table-hover" id="tbListadoGrpCar">
-									<thead class="text-primary font-weight-normal">
-										<th>Grupo:</th>
-										<th>Alumnos:</th>
-										<th>Acciones:</th>
-									</thead>
-									<tbody class="text-dark"></tbody>
-									<tfoot class="text-primary">
-										<th>Grupo:</th>
-										<th>Alumnos:</th>
-										<th>Acciones:</th>
-									</tfoot>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Alumnos inactivos</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $almInact->CantAlm; ?> registros</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-user-times fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Alumnos sin aceptar</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $almSAcept->CantAlm; ?> registros</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-user-clock fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Alumnos dados de baja</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $almBajCar->CantAlm; ?> registros</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-user-slash fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+			<div class="col-sm-12 mt-4">
+				<div class="card shadow mb-4">
+			            <div class="card-header py-3">
+			              <h6 class="m-0 font-weight-bold text-primary">Grupos de la carrera</h6>
+			            </div>
+			            <div class="card-body">
+			              <div class="table-responsive">
+			                <table class="table table-bordered table-hover" id="tbListadoGrpCar" width="100%" cellspacing="0">
+			                  <thead>
+			                    <tr>
+			                      	<th>Grupo:</th>
+									<th>Alumnos:</th>
+									<th>Acciones:</th>
+			                    </tr>
+			                  </thead>
+			                  <tfoot>
+			                    <tr>
+			                     	<th>Grupo:</th>
+									<th>Alumnos:</th>
+									<th>Acciones:</th>
+			                    </tr>
+			                  </tfoot>
+			                  <tbody>
+			                  </tbody>
+			                </table>
+			              </div>
+			            </div>
+			         </div>
 			</div>
 		</div>
 	</div>

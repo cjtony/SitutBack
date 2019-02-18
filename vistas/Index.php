@@ -56,72 +56,51 @@
             </div>
             
             <div class="col-lg-6 mt-5 animated fadeInDown delay-2s">
-                <h1 class="text-center text-primary mt-5 tit">
-                    Acerca de
+                <h1 class="text-center text-primary mt-5 tit" style="letter-spacing:10px; text-shadow: 4px 4px #ddd;">
+                    El proyecto...
                 </h1>
-                <p class="lead text-justify mt-3">
+                <p class="lead text-justify mt-5">
                     S I T U T es una Aplicación web que se enfoca a el tutoriado de los alumnos conforme al grupo correspondiente, promoviendo en si la mejor comunicación entre el tutor y sus alumnos.
                 </p>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h4 class="text-primary mt-2 tit">
+                <div class="row mt-4">
+                    <div class="col-sm-12 mb-4">
+                        <h4 class="text-info text-center ml-2 mt-2 tit">
+                            <span class="badge badge-pill badge-info p-2 mr-2">
+                                <i class="fas fa-code ml-1 mr-1"></i>
+                            </span>
                             Equipo de desarrollo
                         </h4>
                     </div>
                     <div class="col-sm-4 text-center mt-4">
-                        <a data-target="#devop1" data-toggle="modal" href="#">
+                        <a data-target="#devop1" data-toggle="modal" href="#" class="font-weight-bold">
                             <!-- <i class="fas fa-user-astronaut"></i> -->
                             <i class="fas fa-code mr-2"></i>
                             Marco Aguilar</a>
                     </div>
                     <div class="col-sm-4 text-center mt-4">
-                        <a href="">
+                        <a href="#" class="font-weight-bold">
                             <i class="fas fa-laptop mr-2"></i>
                             Mario Jaimes</a>
                     </div>
                     <div class="col-sm-4 text-center mt-4">
-                        <a href="">
-                            <i class="fas fa-file-code mr-2"></i>
+                        <a href="#" class="font-weight-bold">
+                            <i class="fas fa-code mr-2"></i>
                             Alejandro Solis</a>
                     </div>
                     <div class="col-sm-2 mt-4"></div>
                     <div class="col-sm-4 mt-4 text-center">
-                        <a href="">
+                        <a href="#" class="font-weight-bold">
                             <i class="fas fa-laptop mr-2"></i>
                             Brayan Vidal</a>
                     </div>
                     <div class="col-sm-4 mt-4 text-center">
-                        <a href="">
+                        <a href="#" class="font-weight-bold">
                             <i class="fas fa-laptop mr-2"></i>
                             Guillermo Lopez</a>
                     </div>
                 </div>
-                <hr class="bg-primary mt-5" style="height: 2px;">
-                <div class="row mt-3">
-                    <div class="text-center col-sm-12">
-                        <h5 class="text-primary tit">Redes Sociales</h5>
-                    </div>
-                    <div class="col-sm-4 text-center mt-4">
-                        <a href="#" class="text-primary">
-                            <i class="fab fa-facebook fa-2x"></i>
-                            <br>
-                            Facebook
-                        </a>
-                    </div>
-                    <div class="col-sm-4 text-center mt-4">
-                        <a href="#" class="text-primary">
-                            <i class="fab fa-instagram fa-2x"></i>
-                            <br>
-                            Instagram
-                        </a>
-                    </div>
-                    <div class="col-sm-4 text-center mt-4">
-                        <a href="#" class="text-primary">
-                            <i class="fab fa-twitter fa-2x"></i>
-                            <br>
-                            Twitter
-                        </a>
-                    </div>
+                <hr class="bg-info mt-5" style="height: 2px;">
+                <div class="row mt-4">
                     <div class="col-sm-12 mt-4">
                         <h6 class="text-center text-muted">
                             <i class="fas fa-copyright mr-2"></i>
@@ -358,7 +337,7 @@
             <div class="pad10">
                 <div class="row">
                     <div class="col-sm-4">
-                        <div class="card border-info animated fadeInLeft" style="width: 16rem;">
+                        <div class="card shadowCard animated fadeInLeft" style="width: 16rem;">
                             <img class="card-img-top img-thumbnail rounded img-fluid" src="<?php echo SERVERURL; ?>vistas/img/devop1.jpeg" alt="Card image cap">
                         </div>
                     </div>
@@ -375,24 +354,18 @@
                             Contactame... <i class="fas fa-laptop"></i>
                         </h5>
                         <hr class="ml-2">
-                        <div class="ml-2 mt-4 text-center">
-                            <a href="https://web.facebook.com/MarcCJm" target="_blank">
-                                <i class="fab fa-lg fa-facebook-square" title="facebook"></i>
+                        <div class="ml-2 mt-5 text-center">
+                            <a href="https://web.facebook.com/MarcCJm" target="_blank" title="Facebook">
+                                <i class="fab fa-lg fa-facebook-square ico-fb ico-tr ico-font"></i>
                             </a>
-                            <a href="" target="_blank" class="ml-5" title="instagram">
-                                <i class="fab fa-lg fa-instagram"></i>
+                            <a href="https://www.linkedin.com/in/marco-antonio-carranza-aguilar-50759a176/" target="_blank" class="ml-5" title="Linkedin">
+                                <i class="fab fa-lg fa-linkedin ico-lk ico-tr ico-font"></i>
                             </a>
-                            <a href="https://www.linkedin.com/in/marco-antonio-carranza-aguilar-50759a176/" target="_blank" class="ml-5" title="linkedin">
-                                <i class="fab fa-lg fa-linkedin"></i>
+                            <a href="https://github.com/cjtony" target="_blank" class="ml-5" title="GitHub">
+                                <i class="fab fa-lg fa-github ico-gt ico-tr ico-font"></i>
                             </a>
-                            <a href="https://github.com/cjtony" target="_blank" class="ml-5" title="github">
-                                <i class="fab fa-lg fa-github"></i>
-                            </a>
-                            <a href="" target="_blank" class="ml-5" title="stackoverflow">
-                                <i class="fab fa-lg fa-stack-overflow"></i>
-                            </a>
-                            <a href="mailto:marcocaaguilar@gmail.com" target="_blank" class="ml-5" title="gmail">
-                                <i class="fas fa-lg fa-envelope"></i>
+                            <a href="mailto:marcocaaguilar@gmail.com" target="_blank" class="ml-5" title="Gmail">
+                                <i class="fas fa-lg fa-envelope ico-gm ico-tr ico-font"></i>
                             </a>
                         </div>
                     </div>

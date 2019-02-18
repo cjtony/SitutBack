@@ -1,5 +1,29 @@
 let tableGrpCar;
 let tableAlmGrC;
+const lenguaje = {
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+        "sFirst":    "Primero",
+        "sLast":     "Último",
+        "sNext":     "Siguiente",
+        "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+};
 function init () {
 	listGrpCar();
 	listAlmGrpCar();
@@ -29,7 +53,7 @@ function listGrpCar() {
 		buttons: [
 		],
 		"ajax" : {
-			url : "../../ajax/cor/petCor.php?oper=listGrpCar",
+			url : "../../../ajax/cor/petCor.php?oper=listGrpCar",
 			type : "GET",
 			dataType : "json",
 			error : function(e) {
@@ -38,7 +62,8 @@ function listGrpCar() {
 		},
 		"bDestroy" : true,
 		"iDisplayLength" : 5,
-		"order" : [[0, "desc"]]
+		"order" : [[0, "asc"]],
+		"language" : lenguaje
 	}).DataTable();
 }
 
@@ -50,7 +75,7 @@ function listAlmGrpCar() {
 		buttons: [
 		],
 		"ajax" : {
-			url : "../../../ajax/cor/petCor.php?oper=listAlmGrpCar",
+			url : "../../../../ajax/cor/petCor.php?oper=listAlmGrpCar",
 			type : "GET",
 			dataType : "json",
 			error : function(e) {
@@ -59,7 +84,8 @@ function listAlmGrpCar() {
 		},
 		"bDestroy" : true,
 		"iDisplayLength" : 5,
-		"order" : [[0, "desc"]]
+		"order" : [[0, "asc"]],
+		"language" : lenguaje
 	}).DataTable();
 }
 

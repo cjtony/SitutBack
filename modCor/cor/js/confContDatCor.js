@@ -1,31 +1,38 @@
-function init() {
-	$("#formConfContCor").on("submit", function(e) {
+init = () => {
+
+	$("#formConfContCor").on("submit", (e) => {
 		confContCor(e);
 	});
-	$("#formConfDatCor").on("submit", function(e) {
+
+	$("#formConfDatCor").on("submit", (e) => {
 		confDatCor(e);
 	});
-	$("#formConfFotPerf").on("submit", function(e) {
+
+	$("#formConfFotPerf").on("submit", (e) => {
 		confFotCor(e);
 	});
-	$("#newContCor").on("keyup", function() {
+
+	$("#newContCor").on("keyup", () => {
 		segCont(); contIgul();
 	});
-	$("#repContCor").on("keyup", function() {
-		contIgul();
-	}); 
-	$("#corCor").on("change", function(){
-		validEmail();
-	});
-	$("#btnCloseConfContCor").on("click", function(){
-		limpCampCont();
-	});
-	$("#btnCloseConfFotPerf").on("click", function() {
+
+	$("#repContCor").on('keyup', contIgul); 
+
+	$("#corCor").on('change', validEmail);
+
+	$("#btnCloseConfContCor, #icoCloConfCont").on('click', limpCampCont);
+
+	$("#btnCloseConfFotPerf, #icoCloConfFot").on("click", () => {
 		$("#newFotPerf").val("");
 	});
+
+	$("#btnCloDatCor, #icoCloDatCor").on("click", () => {
+		$("#passConfCor").val("");
+	});
+
 }
 
-function limpCampCont () {
+limpCampCont = () => {
 	$("#contActCor").val(""); $("#newContCor").val("");
 	$("#repContCor").val(""); $("#mensaje").text("").hide();
 	$("#mensaje2").text("").hide();
@@ -59,18 +66,22 @@ function segCont() {
 }
 
 function contIgul() {
+
+	const btnGConfContCor = document.getElementById('btnGConfContCor');
+
 	let newCont = $("#newContCor").val();
 	let repCont = $("#repContCor").val();
 	if (repCont.length > 0) {
 		if (repCont === newCont) {
 			$("#mensaje2").text("Las contraseñas coinciden").css({"color":"green"}).show();
-			$("#btnGConfContCor").prop("disabled",false);
+			btnGConfContCor.disabled = false;
 		} else {
 			$("#mensaje2").text("Las contraseñas no coinciden").css({"color":"red"}).show();
-			$("#btnGConfContCor").prop("disabled",true);
+			btnGConfContCor.disabled = true;
 		}
 	} else {
 		$("#mensaje2").text("").hide();
+		btnGConfContCor.disabled = false;
 	}
 }
 

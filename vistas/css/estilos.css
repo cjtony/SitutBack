@@ -23,6 +23,16 @@ body {
 	background-color: white;
 	box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);
 }
+.shadowCard {
+	box-shadow: 4px 4px #ddd;
+	transition: .07s;
+}
+
+.shadowCard:hover {
+	transform: scale(1.05,1.05);
+	box-shadow: 4px 4px #eee;
+	/*transform: rotate(-5deg);*/
+}
 .threeD {
 	text-shadow: 1px 3px 0px #000, 1px 13px 5px rgb(171, 168, 168);
 }
@@ -88,6 +98,41 @@ body {
 
 .tit {
 	font-family: 'Open Sans', sans-serif;
+}
+
+.ico-font {
+	font-size: 24px !important;
+}
+
+.ico-tr {
+    transition: 0.3s;
+}
+
+.ico-fb {
+    color: #3b5998 !important;
+    animation: floatico 2s ease-out infinite;
+}
+
+.ico-lk {
+	color: #313335 !important;
+	animation: floatico 3s ease-out infinite;
+}
+
+.ico-gt {
+    color: #6e5494 !important;
+    animation: floatico 2s ease-out infinite;
+}
+
+.ico-gm {
+	color: #ea4335 !important;
+	animation: floatico 3s ease-out infinite;
+}
+
+
+@keyframes floatico {
+    50% {
+        transform: translate(0, 3px);
+    }
 }
 
 @media (min-width: 992px){
