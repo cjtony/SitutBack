@@ -3,23 +3,32 @@ let tabladesc;
 
 let actRegAct, actRegDes;
 
+const lenguaje = {
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+        "sFirst":    "Primero",
+        "sLast":     "Último",
+        "sNext":     "Siguiente",
+        "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+};
+
 function init() {
-	$(window).scroll(function() {
-	  if ($("#menu1").offset().top > 56) {
-	      $("#menu1").addClass("bg-info");
-	  } else {
-	      $("#menu1").removeClass("bg-info");
-	  }
-	});
-	$(window).scroll(function(){
-		if ($("#menu2").offset().top > 56) {
-	      $("#menu2").addClass("bg-info");
-	      $("#textLog").text("U T S E M");
-	  } else {
-	      $("#menu2").removeClass("bg-info");
-	      $("#textLog").text("S I T U T");
-	  }
-	});
 	$("#contDir, #repContDir").on("keyup", function(){
 		contIgul();
 	});
@@ -43,15 +52,9 @@ function init() {
 	});
 	listarDirectores();
 	listarDirectoresDesc();
-	mostListDirAct(true);
 
-	actRegAct = setInterval(dirAct, 10000);
-	actRegDes = setInterval(dirInc, 10000);
-
-	setTimeout(function() {
-		clearInterval(actRegAct);
-		clearInterval(actRegDes);
-	}, 30000);
+	dirAct();
+	dirInc();
 
 	$("#btnClosePasNewDir, #btnCloseIcoPasDir").on("click", function() {
 		limpCamposNewContDir();
@@ -352,7 +355,8 @@ function listarDirectores(){
 		},
 		"bDestroy" : true,
 		"iDisplayLength" : 5,
-		"order" : [[0, "desc"]]
+		"order" : [[0, "desc"]],
+		"language" : lenguaje
 	}).DataTable();
 }
 
@@ -373,7 +377,8 @@ function listarDirectoresDesc() {
 		},
 		"bDestroy" : true,
 		"iDisplayLength" : 5,
-		"order" : [[0, "desc"]]
+		"order" : [[0, "desc"]],
+		"language" : lenguaje
 	}).DataTable();
 }	
 
@@ -710,25 +715,6 @@ function editNewPasDir(e) {
 	}
 }
 
-function mostListDirAct(flag) {
-	if (flag) {
-		$("#tbListadoDirAct").fadeIn("2000");
-		$("#listDirAct").addClass("active");
-	} else {
-		$("#tbListadoDirAct").slideUp();
-		$("#listDirAct").removeClass("active");
-	}
-}
-
-function mostListDirDes(flag) {
-	if (flag) {
-		$("#tbListadoDirDes").fadeIn("2000");
-		$("#listDirDes").addClass("active");
-	} else {
-		$("#tbListadoDirDes").slideUp();
-		$("#listDirDes").removeClass("active");
-	}
-}
 
 function dirAct () {
 	$.ajax({
@@ -750,15 +736,15 @@ function dirInc () {
 		type : "POST",
 		success:function (data) {
 			if (data > 1 || data == 0) {
-				$('#dirInc').html(data + " Registros");	
+				$('#dirInc').html(data + " registros.");	
 			} else {
-				$('#dirInc').html(data + " Registro");	
+				$('#dirInc').html(data + " registro.");	
 			}
 		}
 	});
 }
 
-function dirTot () {
+/*function dirTot () {
 	$.ajax({
 		url:'../../ajax/adm/functionsAdm.php?oper=dirTot',
 		type : "POST",
@@ -770,6 +756,6 @@ function dirTot () {
 			}
 		}
 	});
-}
+}*/
 
 init();

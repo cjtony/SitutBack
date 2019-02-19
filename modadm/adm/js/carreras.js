@@ -1,23 +1,31 @@
 let actRegAct, actRegDes;
 let tabla;
 let tabladesc;
+const lenguaje = {
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+        "sFirst":    "Primero",
+        "sLast":     "Último",
+        "sNext":     "Siguiente",
+        "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+};
 function init() {
-	$(window).scroll(function() {
-	  if ($("#menu1").offset().top > 56) {
-	      $("#menu1").addClass("bg-info");
-	  } else {
-	      $("#menu1").removeClass("bg-info");
-	  }
-	});
-	$(window).scroll(function(){
-		if ($("#menu2").offset().top > 56) {
-	      $("#menu2").addClass("bg-info");
-	      $("#textLog").text("U T S E M");
-	  } else {
-	      $("#menu2").removeClass("bg-info");
-	      $("#textLog").text("S I T U T");
-	  }
-	});
 	$("#formGCarr").on("submit",function(e){
 		guardarCarr(e);
 	});
@@ -26,13 +34,8 @@ function init() {
 	});
 	listarCarreras();
 	listarCarrerasDes();
-	mostListCarAct(true);
-	actRegAct = setInterval(carAct, 10000);
-	actRegDes = setInterval(carInc, 10000);
-	setTimeout(function(){
-		clearInterval(actRegAct);
-		clearInterval(actRegDes);
-	}, 30000);
+	carAct();
+	carInc();
 }
 
 function guardarCarr(e) {
@@ -120,7 +123,8 @@ function listarCarreras() {
 		},
 		"bDestroy" : true,
 		"iDisplayLength" : 5,
-		"order" : [[0, "desc"]]
+		"order" : [[0, "desc"]],
+		"language" : lenguaje
 	}).DataTable();
 }
 
@@ -141,7 +145,8 @@ function listarCarrerasDes() {
 		},
 		"bDestroy" : true,
 		"iDisplayLength" : 5,
-		"order" : [[0, "desc"]]
+		"order" : [[0, "desc"]],
+		"language" : lenguaje
 	}).DataTable();
 }
 
@@ -297,35 +302,15 @@ function editCar(e) {
 	}
 }
 
-function mostListCarAct(flag) {
-	if (flag) {
-		$("#tbListadoCarAct").fadeIn("2000");
-		$("#listCarAct").addClass("active");
-	} else {
-		$("#tbListadoCarAct").slideUp();
-		$("#listCarAct").removeClass("active");
-	}
-}
-
-function mostListCarDes(flag) {
-	if (flag) {
-		$("#tbListadoCarDes").fadeIn("2000");
-		$("#listCarDes").addClass("active");
-	} else {
-		$("#tbListadoCarDes").slideUp();
-		$("#listCarDes").removeClass("active");
-	}
-}
-
 function carAct () {
 	$.ajax({
 		url:'../../ajax/adm/functionsAdm.php?oper=carAct',
 		type : "POST",
 		success:function (data) {
 			if (data > 1 || data == 0) {
-				$('#carAct').html(data + " Registros");	
+				$('#carAct').html(data + " registros.");	
 			} else {
-				$('#carAct').html(data + " Registro");	
+				$('#carAct').html(data + " registro.");	
 			}
 		}
 	});
@@ -337,9 +322,9 @@ function carInc () {
 		type : "POST",
 		success:function (data) {
 			if (data > 1 || data == 0) {
-				$('#carInc').html(data + " Registros");	
+				$('#carInc').html(data + " registros.");	
 			} else {
-				$('#carInc').html(data + " Registro");	
+				$('#carInc').html(data + " registro.");	
 			}
 		}
 	});

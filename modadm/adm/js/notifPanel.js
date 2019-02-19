@@ -1,78 +1,20 @@
 function init() {
-	setInterval(function(){
-		//Carreras//
-		cantTotCar();
-		cantTotCarAct();
-		cantTotCarDes();
-		//Docentes//
-		cantTotDoc();
-		cantTotDocAct();
-		cantTotDocDes();
-		//Directores//
-		cantTotDir();
-		cantTotDirAct();
-		cantTotDirDes();
-		//Alumnos//
-		cantTotAlm();
-		cantTotAlmAct();
-		cantTotAlmDes();
-		//Coordinadores//
-		cantTotCor();
-		cantCorAct();
-		cantCorDes();
-		//Justificantes//
-		cantJusTot();
-		cantJusAct();
-		cantJusDes();
-		//Bajas//
-		cantTotBaj();
-		//Encuestas//
-		cantTotTest();
-		//console.log("Hola Mundo!....");
-	}, 10000);
-	$(window).scroll(function() {
-	  if ($("#menu1").offset().top > 56) {
-	      $("#menu1").addClass("bg-info");
-	  } else {
-	      $("#menu1").removeClass("bg-info");
-	  }
-	});
-	$(window).scroll(function(){
-		if ($("#menu2").offset().top > 56) {
-	      $("#menu2").addClass("bg-info");
-	      $("#textLog").text("U T S E M");
-	  } else {
-	      $("#menu2").removeClass("bg-info");
-	      $("#textLog").text("S I T U T");
-	  }
-	});
-	/*setInterval(function(){
-		animIcons();
-	},3000);*/
-	/*setInterval(function(){
-		$("#infoInd").addClass("animated bounce");
-		setTimeout(function(){
-			$("#infoInd").removeClass("animated bounce");
-		}, 2500);
-	},5000);*/
-}
-
-/*----------  Animacion iconos  ----------*/
-function animIcons() {
-	//$("#cantTotCar").addClass("animated bounce");
-	$("#icoCar").addClass("animated jackInTheBox");
-	$("#icoDoc").addClass("animated jackInTheBox");
-	$("#icoDir").addClass("animated jackInTheBox");
-	$("#icoAlm").addClass("animated jackInTheBox");
-	$("#icoCor").addClass("animated jackInTheBox");
-	setTimeout(function() {
-		//$("#cantTotCar").removeClass("animated bounce");
-		$("#icoCar").removeClass("animated jackInTheBox");
-		$("#icoDoc").removeClass("animated jackInTheBox");
-		$("#icoDir").removeClass("animated jackInTheBox");
-		$("#icoAlm").removeClass("animated jackInTheBox");
-		$("#icoCor").removeClass("animated jackInTheBox");
-	}, 2000);
+	//Carreras//
+	cantTotCar();
+	//Docentes//
+	cantTotDoc();
+	//Directores//
+	cantTotDir();
+	//Alumnos//
+	cantTotAlm();
+	//Coordinadores//
+	cantTotCor();
+	//Justificantes//
+	cantJusTot();
+	//Bajas//
+	cantTotBaj();
+	//Encuestas//
+	cantTotTest();
 }
 
 /*----------  Carreras Cantidades  ----------*/
@@ -85,7 +27,7 @@ function cantTotCar() {
 		}
     });
 }
-function cantTotCarAct() {
+/*function cantTotCarAct() {
 	$.ajax({
     	url:'../../ajax/adm/notifPanel.php?oper=cantTotCarAct',
 		type : "POST",
@@ -93,8 +35,8 @@ function cantTotCarAct() {
 			$('#cantTotCarAct').text(data);
 		}
     });
-}
-function cantTotCarDes() {
+}*/
+/*function cantTotCarDes() {
 	$.ajax({
     	url:'../../ajax/adm/notifPanel.php?oper=cantTotCarDes',
 		type : "POST",
@@ -102,7 +44,7 @@ function cantTotCarDes() {
 			$('#cantTotCarDes').text(data);
 		}
     });
-}
+}*/
 
 /*----------  Cantidad Docentes  ----------*/
 function cantTotDoc() {
@@ -114,7 +56,7 @@ function cantTotDoc() {
 		}
     });
 }
-function cantTotDocAct() {
+/*function cantTotDocAct() {
 	$.ajax({
     	url:'../../ajax/adm/notifPanel.php?oper=cantTotDocAct',
 		type : "POST",
@@ -122,8 +64,8 @@ function cantTotDocAct() {
 			$('#cantTotDocAct').text(data);
 		}
     });
-}
-function cantTotDocDes() {
+}*/
+/*function cantTotDocDes() {
 	$.ajax({
     	url:'../../ajax/adm/notifPanel.php?oper=cantTotDocDes',
 		type : "POST",
@@ -131,7 +73,7 @@ function cantTotDocDes() {
 			$('#cantTotDocDes').text(data);
 		}
     });
-}
+}*/
 
 /*----------  Cantidad Directores  ----------*/
 function cantTotDir() {
@@ -143,7 +85,7 @@ function cantTotDir() {
 		}
     });
 }
-function cantTotDirAct() {
+/*function cantTotDirAct() {
 	$.ajax({
     	url:'../../ajax/adm/notifPanel.php?oper=cantTotDirAct',
 		type : "POST",
@@ -151,8 +93,8 @@ function cantTotDirAct() {
 			$('#cantTotDirAct').text(data);
 		}
     });
-}
-function cantTotDirDes() {
+}*/
+/*function cantTotDirDes() {
 	$.ajax({
     	url:'../../ajax/adm/notifPanel.php?oper=cantTotDirDes',
 		type : "POST",
@@ -160,7 +102,7 @@ function cantTotDirDes() {
 			$('#cantTotDirDes').text(data);
 		}
     });
-}
+}*/
 /*----------  Cantidad Alumnos  ----------*/
 function cantTotAlm() {
 	$.ajax({
@@ -171,7 +113,7 @@ function cantTotAlm() {
 		}
     });
 }
-function cantTotAlmAct() {
+/*function cantTotAlmAct() {
 	$.ajax({
     	url:'../../ajax/adm/notifPanel.php?oper=cantTotAlmAct',
 		type : "POST",
@@ -188,7 +130,8 @@ function cantTotAlmDes() {
 			$('#cantTotAlmDes').text(data);
 		}
     });
-}
+}*/
+
 function cantTotCor() {
 	$.ajax({
     	url:'../../ajax/adm/notifPanel.php?oper=cantTotCor',
@@ -199,7 +142,7 @@ function cantTotCor() {
     });
 }
 
-function cantCorAct() {
+/*function cantCorAct() {
 	$.ajax({
     	url:'../../ajax/adm/notifPanel.php?oper=cantCorAct',
 		type : "POST",
@@ -217,7 +160,7 @@ function cantCorDes() {
 			$('#cantCorDes').text(data);
 		}
     });
-}
+}*/
 
 function cantJusTot() {
 	$.ajax({
@@ -229,7 +172,7 @@ function cantJusTot() {
     });
 }
 
-function cantJusAct() {
+/*function cantJusAct() {
 	$.ajax({
     	url:'../../ajax/adm/notifPanel.php?oper=cantJusAct',
 		type : "POST",
@@ -247,7 +190,7 @@ function cantJusDes() {
 			$('#cantJusDes').text(data);
 		}
     });
-}
+}*/
 
 function cantTotBaj() {
 	$.ajax({
