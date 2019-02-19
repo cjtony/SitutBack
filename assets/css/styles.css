@@ -1,3 +1,12 @@
 .bgModal {
 	background-color: rgba(43, 165, 137, 0.45);
 }
+
+.hovAnim {
+	transition: 0.5s;
+}
+
+.hovAnim:hover {
+	transform: scale(1.03,1.03);
+	/*transform: rotate(-5deg);*/
+}

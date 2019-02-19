@@ -4,23 +4,6 @@ let tablaCorInc;
 let actRegAct, actRegDes;
 
 function init() {
-	$(window).scroll(function() {
-	  if ($("#menu1").offset().top > 56) {
-	      $("#menu1").addClass("bg-info");
-	  } else {
-	      $("#menu1").removeClass("bg-info");
-	  }
-	});
-	$(window).scroll(function(){
-		if ($("#menu2").offset().top > 56) {
-	      $("#menu2").addClass("bg-info");
-	      $("#textLog").text("U T S E M");
-	  } else {
-	      $("#menu2").removeClass("bg-info");
-	      $("#textLog").text("S I T U T");
-	  }
-	});
-	mostListCorActiv(true);
 	$("#formGCord").on("submit", function(e) {
 		regCor(e);
 	});
@@ -44,13 +27,8 @@ function init() {
 	});
 	listarCorAct(); listarCorInc();
 
-	actRegAct = setInterval(corAct, 10000);
-	actRegDes = setInterval(corInc, 10000);
-	
-	setTimeout(function(){
-		clearInterval(actRegAct);
-		clearInterval(actRegDes);
-	},30000);
+	corAct();
+	corInc();
 
 	$("#btnClosePasNewCor, #btnCloseIcoPasCor").on("click", function() {
 		limpCamposNewContCor();
@@ -290,26 +268,6 @@ function listarCorInc() {
 		"iDisplayLength" : 5,
 		"order" : [[0, "desc"]]
 	}).DataTable();
-}
-
-function mostListCorActiv(flag) {
-	if (flag) {
-		$("#tablaCorAct").fadeIn("2000");
-		$("#listCorAct").addClass("active");
-	} else {
-		$("#tablaCorAct").slideUp();
-		$("#listCorAct").removeClass("active");
-	}
-}
-
-function mostListCorInact(flag) {
-	if (flag) {
-		$("#tablaCorInc").fadeIn("2000");
-		$("#listCorInc").addClass("active");
-	} else {
-		$("#tablaCorInc").slideUp();
-		$("#listCorInc").removeClass("active");
-	}
 }
 
 function mostrarCor(id_coordinador) {
@@ -712,9 +670,9 @@ function corAct () {
 		type : "POST",
 		success:function (data) {
 			if (data > 1 || data == 0) {
-				$('#corAct').html(data + " Registros");	
+				$('#corAct').html(data + " registros.");	
 			} else {
-				$('#corAct').html(data + " Registro");	
+				$('#corAct').html(data + " registro.");	
 			}
 		}
 	});
@@ -726,9 +684,9 @@ function corInc () {
 		type : "POST",
 		success:function (data) {
 			if (data > 1 || data == 0) {
-				$('#corInc').html(data + " Registros");	
+				$('#corInc').html(data + " registros.");	
 			} else {
-				$('#corInc').html(data + " Registro");	
+				$('#corInc').html(data + " registro.");	
 			}
 		}
 	});

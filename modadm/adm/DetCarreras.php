@@ -1,157 +1,175 @@
+<div class="container-fluid animated fadeIn delay-1s">
+	
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Carreras</h1>
+        <a href="<?php echo SERVERURLADM; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+          <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+        </a>
+    </div>
 
-	<style type="text/css">
-		.ocult{
-			display: none;
-		}
-		tr {
-			font-size: 18px;
-		}
-		tr:hover {
-			color: white !important;
-			font-weight: bolder;
-			transition: 0.5s;
-		}
-	</style>
-	<br><br>
-	<br><br>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-12 col-md-12 col-lg-4 pad30 animated fadeInRight delay-1s">
-				<h4 class="text-center text-info">
-					<i class="fas fa-university fa-lg icoIni"></i>
-					Carreras
-				</h4>
-				<br><br>
-				<div class="cardShadow pad30 text-center cardBg">
-					<h6>Carreras Activas = 
-						<span class="badge badge-pill font-weight-normal text-white bg-primary" id="carAct">		Cargando...
-						</span>
-					</h6>
-					<h6>Carreras Inactivas = 
-						<span class="badge badge-pill font-weight-normal text-white bg-danger" id="carInc">
-							Cargando...
-						</span>
-					</h6>
-				</div>
-				<br>
-				<hr style="height: 2px;" class="bgNav rounded">
-				<br>
-				<div class="text-center">
-					<p class="card-text text-muted">
-						<i class="fas fa-lg text-dark icoIni fa-terminal"></i>
-						SITUT Versión Beta 1.0.2 
-						<i class="fas fa-lg text-dark fa-copyright" style="margin-left: 5px;"></i>
-					</p>
-				</div><br>
-				<div class="text-center">
-					<button class="btn btn-secondary">
-						<i class="fas fa-clipboard-list icoIni"></i>
-						Reportar un problema
-					</button>
-				</div>
-			</div>
-			<div class="col-sm-12 col-md-12 col-lg-8 animated fadeInLeft delay-1s">
-				<h4 class="text-center mt-4 text-info"> <i class="fas fa-plus icoIni"></i> Registrar Carrera</h4>
-				<div class="row">
-					<div class="col-sm-1 col-md-12 col-lg-2"></div>
-					<form class="col-sm-10 col-md-12 col-lg-8" method="POST" id="formGCarr" name="formGCarr">
-						<hr class="bgNav rounded" style="height: 2px;">
-						<br>
-						<div class="form-group">
-							<label for="nomCar">Nombre carrera:</label>
-							<input type="text" id="nomCar" name="nomCar" class="form-control">
+	<div class="row">
+		
+		<div class="col-sm-12">
+			<div class="card shadow mb-4">
+	            <div class="card-header py-3">
+	              <h6 class="m-0 font-weight-bold text-primary">Detalles y opciones</h6>
+	            </div>
+	            <div class="card-body">
+	            	<div class="row">
+	            		<div class="col-sm-4">
+	            			<div class="card shadow mb-4 hovAnim">
+				                <div class="card-header py-3">
+				                  <h6 class="m-0 font-weight-bold text-primary">
+				                  	<i class="fas fa-info-circle mr-2"></i> Información
+				                  </h6>
+				                </div>
+				                <div class="card-body">
+				                	<div class="text-center">
+			            				<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURL; ?>assets/img/questions.svg" alt="info site">
+			            			</div>
+				                  <p>
+				                  	Una carrera inactiva no es visible para los alumnos al momento de registrarse.
+				                  </p>
+				                </div>
+				            </div>
+	            		</div>
+	            		<div class="col-sm-2"></div>
+	            		<div class="col-sm-6">
+	            			<form class="mb-4" method="POST" id="formGCarr" name="formGCarr">
+	            				<h1 class="h5 mb-4 text-gray-500 text-center"><i class="fas fa-plus mr-2"></i> Registrar carrera</h1>
+								<div class="form-group">
+									<label for="nomCar">Nombre carrera:</label>
+									<input type="text" id="nomCar" name="nomCar" class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="estCar">Estado carrera:</label>
+									<select id="estCar" name="estCar" class="form-control">
+										<option disabled="" value="No">Selecciona</option>
+										<option selected="" value="1">Activa</option>
+										<option value="0">Inactiva</option>
+									</select>
+								</div>
+								<div class="form-group text-center mt-4 mb-4">
+									<button id="btnGAdmin" class="btn btn-primary btn-sm" type="submit"> <i class="fas fa-check-circle icoIni mr-2"></i> Aceptar</button>
+								</div>
+							</form>
+	            		</div>
+	            		<div class="col-sm-4">
+	            			<div class="text-center">
+	            				<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURL; ?>assets/img/browstac.svg" alt="info site">
+	            			</div>
+	            		</div>
+
+	            		<div class="col-sm-4">
+	            			<div class="card border-left-info shadow py-2 mb-4 mt-5">
+					            <div class="card-body">
+					              <div class="row no-gutters align-items-center">
+					                <div class="col mr-2">
+					                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Carreras activas.</div>
+					                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+					                  	<span id="carAct"></span>
+					                  </div>
+					                </div>
+					                <div class="col-auto">
+					                  <i class="fas fa-check fa-2x text-gray-300"></i>
+					                </div>
+					              </div>
+					            </div>
+					        </div>
+	            		</div>
+
+						<div class="col-sm-4">
+							<div class="card border-left-danger shadow py-2 mb-4 mt-5">
+					            <div class="card-body">
+					              <div class="row no-gutters align-items-center">
+					                <div class="col mr-2">
+					                  <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Carreras inactivas.</div>
+					                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+					                  	<span id="carInc"></span>
+					                  </div>
+					                </div>
+					                <div class="col-auto">
+					                  <i class="fas fa-times fa-2x text-gray-300"></i>
+					                </div>
+					              </div>
+					            </div>
+					        </div>
 						</div>
-						<div class="form-group">
-							<label for="estCar">Estado carrera:</label>
-							<select id="estCar" name="estCar" class="form-control">
-								<option selected="" disabled="" value="No">Selecciona</option>
-								<option value="1">Activa</option>
-								<option value="0">Inactiva</option>
-							</select>
-						</div>
-						<hr style="height: 2px;" class="bgNav rounded">
-						<div class="form-group text-center">
-							<button class="btn btn-outline-primary btn-md" type="submit"> <i class="fas fa-check-circle icoIni"></i> Aceptar</button>
-						</div>
-					</form>
-					<div class="col-sm-1 col-md-12 col-lg-2"></div>
-				</div>
-			</div>
+
+	            		<div class="col-sm-12 mt-4">
+	            			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+							  <li class="nav-item">
+							    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Activas</a>
+							  </li>
+							  <li class="nav-item">
+							    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Inactivas</a>
+							  </li>
+							</ul>
+							<div class="tab-content" id="pills-tabContent">
+							  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+							  	<div class="table-responsive">
+					                <table class="table table-bordered table-hover" id="tbListadoCarrera" width="100%" cellspacing="0">
+					                  <thead>
+					                    <tr>
+					                      	<th>Carrera:</th>
+											<th>Fecha:</th>
+											<th>Acciones:</th>
+					                    </tr>
+					                  </thead>
+					                  <tfoot>
+					                    <tr>
+					                     	<th>Carrera:</th>
+											<th>Fecha:</th>
+											<th>Acciones:</th>
+					                    </tr>
+					                  </tfoot>
+					                  <tbody>
+					                  </tbody>
+					                </table>
+					            </div>
+							  </div>
+							  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+							  	<div class="table-responsive">
+					                <table class="table table-bordered table-hover" id="tbListadoCarreraDesc" width="100%" cellspacing="0">
+					                  <thead>
+					                    <tr>
+					                      	<th>Carrera:</th>
+											<th>Fecha:</th>
+											<th>Acciones:</th>
+					                    </tr>
+					                  </thead>
+					                  <tfoot>
+					                    <tr>
+					                     	<th>Carrera:</th>
+											<th>Fecha:</th>
+											<th>Acciones:</th>
+					                    </tr>
+					                  </tfoot>
+					                  <tbody>
+					                  </tbody>
+					                </table>
+					            </div>
+							  </div>
+							</div>
+	            		</div>
+	            	</div>
+	            </div>
+	        </div>
 		</div>
+
 	</div>
-	<br><br><br>
-	<div class="container-fluid">
-		<div class="row animated fadeIn delay-1s">
-			<div class="col-sm-12">
-				<h4 class="text-center">
-					<i class="fas fa-list icoIni fa-lg"></i>
-					Listado Carreras
-				</h4>
-				<br>
-				<hr style="height: 2px;" class="bgNav rounded">
-				<br>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row text-center animated fedeIn delay-1s">
-				<div class="col-sm-6">
-					<button onclick="mostListCarAct(true), mostListCarDes(false)" id="listCarAct" class="btn btn-outline-primary btn-md">
-						<i class="fas fa-check fa-lg icoIni"></i>
-					 	Activas
-					</button>
-				</div>
-				<div class="col-sm-6">
-					<button onclick="mostListCarDes(true), mostListCarAct(false)" id="listCarDes" class="btn btn-outline-danger btn-md">
-						<i class="fas fa-times fa-lg icoIni"></i>
-						Inactivas
-					</button>
-				</div>
-			</div>
-		</div>	
-		<div class="row animated fadeInUp delay-1s">
-			<div class="col-sm-12 text-center ocult" id="tbListadoCarAct">
-				<div class="table-responsive pad30">
-					<table width="1200" class="table bg-white rounded table-bordered table-hover" id="tbListadoCarrera">
-						<thead class="text-primary">
-							<th>Carrera:</th>
-							<th>Fecha:</th>
-							<th>Acciones:</th>
-						</thead>
-						<tbody class="text-dark"></tbody>
-						<tfoot class="text-primary">
-							<th>Carrera:</th>
-							<th>Fecha:</th>
-							<th>Acciones:</th>
-						</tfoot>
-					</table>
-				</div>
-			</div>
-			<div class="col-sm-12 text-center ocult" id="tbListadoCarDes">
-				<div class="table-responsive pad30">
-					<table width="1200" class="table bg-white rounded table-bordered table-hover" id="tbListadoCarreraDesc">
-						<thead class="text-primary">
-							<th>Carrera:</th>
-							<th>Fecha:</th>
-							<th>Acciones:</th>
-						</thead>
-						<tbody class="text-dark"></tbody>
-						<tfoot class="text-primary">
-							<th>Carrera:</th>
-							<th>Fecha:</th>
-							<th>Acciones:</th>
-						</tfoot>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
+
+</div>
+
+
+
+	
 	
 	<div class="modal fade bgModal" id="editCar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  	<div class="modal-dialog modal-dialog-centered" role="document">
 	    	<div class="modal-content">
 	      		<div class="modal-header">
-	        		<h5 class="modal-title text-info" id="exampleModalLabel"> <i class="fas fa-edit icoNav"></i> Editar carrera</h5>
+	      			<h6 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-edit fa-lg icoIni mr-2"></i> Editar carrera</h6>
 	        		<button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
 	          		<span aria-hidden="true">&times;</span>
 	        		</button>
@@ -169,10 +187,10 @@
 		       			<div class="col-sm-1"></div>
 		      	</div>
 		      	<div class="modal-footer">
-		        	<button type="button" class="btn btn-outline-danger" data-dismiss="modal">
+		        	<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
 		        		<i class="fas fa-times-circle mr-2"></i>
 		        		Cerrar</button>
-		        	<button type="submit" class="btn btn-outline-primary">
+		        	<button type="submit" class="btn btn-sm btn-outline-primary">
 		        		<i class="fas fa-check-circle mr-2"></i>
 		        		Guardar cambios</button>
 		        	</form>
@@ -180,6 +198,5 @@
 	    	</div>
 	  	</div>
 	</div>
-	<br><br><br>
 
     <script src="<?php echo SERVERURLADM; ?>adm/js/carreras.js"></script>

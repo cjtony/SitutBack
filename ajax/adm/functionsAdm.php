@@ -96,8 +96,8 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
             $data[]=array(
                 "0"=>$reg->nombre_car,
                 "1"=>$reg->fecha_reg_car,
-                "2"=>'<button data-toggle="modal" data-backdrop="false" data-target="#editCar" class="btn btn-warning text-white" onclick="mostrarCarrera('.$reg->id_carrera.')"><i class="fas fa-edit"></i></button>'.
-                    ' <button class="btn btn-danger" onclick="desactivarCarrera('.$reg->id_carrera.')"><i class="fa fa-times"></i></button>'
+                "2"=>'<button data-toggle="modal" data-backdrop="false" data-target="#editCar" class="btn btn-sm btn-outline-warning" onclick="mostrarCarrera('.$reg->id_carrera.')"><i class="fas fa-edit"></i></button>'.
+                    ' <button class="btn btn-sm btn-outline-danger" onclick="desactivarCarrera('.$reg->id_carrera.')"><i class="fa fa-times"></i></button>'
                 );
         	}
         	$results = array(
@@ -119,8 +119,8 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
             $data[]=array(
                 "0"=>$reg->nombre_car,
                 "1"=>$reg->fecha_reg_car,
-                "2"=>'<button data-toggle="modal" data-backdrop="false" data-target="#editCar" class="btn btn-warning text-white" onclick="mostrarCarrera('.$reg->id_carrera.')"><i class="fa fa-edit"></i></button>'.
-                    ' <button class="btn btn-success" onclick="activarCarrera('.$reg->id_carrera.')"><i class="fa fa-check"></i></button>'
+                "2"=>'<button data-toggle="modal" data-backdrop="false" data-target="#editCar" class="btn btn-outline-warning btn-sm" onclick="mostrarCarrera('.$reg->id_carrera.')"><i class="fa fa-edit"></i></button>'.
+                    ' <button class="btn btn-sm btn-outline-primary" onclick="activarCarrera('.$reg->id_carrera.')"><i class="fa fa-check"></i></button>'
                 );
         	}
         	$results = array(
@@ -242,10 +242,10 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
                 "0"=>$reg->nombre_c_dir,
                 "1"=>$reg->correo_dir,
                 "2"=>$reg->nombre_car,
-                "3"=>'<button onclick="newPassDir('.$reg->id_director.')" class="btn btn-outline-primary" data-backdrop="false" data-target="#editNewPassDir" data-toggle="modal">
+                "3"=>'<button onclick="newPassDir('.$reg->id_director.')" class="btn btn-sm btn-outline-primary" data-backdrop="false" data-target="#editNewPassDir" data-toggle="modal">
                 <i class="fas fa-key"></i>
-                </button> '.'<button data-toggle="modal" data-backdrop="false" data-target="#editDirec" class="btn btn-warning text-white" onclick="mostrarDirector('.$reg->id_director.')"><i class="fas fa-edit"></i></button>'.
-                    ' <button class="btn btn-danger" onclick="desactivarDirector('.$reg->id_director.')"><i class="fa fa-times"></i></button>'
+                </button> '.'<button data-toggle="modal" data-backdrop="false" data-target="#editDirec" class="btn btn-outline-warning btn-sm" onclick="mostrarDirector('.$reg->id_director.')"><i class="fas fa-edit"></i></button>'.
+                    ' <button class="btn btn-outline-danger btn-sm" onclick="desactivarDirector('.$reg->id_director.')"><i class="fa fa-times"></i></button>'
                 );
         	}
         	$results = array(
@@ -270,10 +270,10 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
                 "0"=>$reg->nombre_c_dir,
                 "1"=>$reg->correo_dir,
                 "2"=>$reg->nombre_car,
-                "3"=>'<button onclick="newPassDir('.$reg->id_director.')" class="btn btn-outline-primary" data-backdrop="false" data-target="#editNewPassDir" data-toggle="modal">
+                "3"=>'<button onclick="newPassDir('.$reg->id_director.')" class="btn btn-sm btn-outline-primary" data-backdrop="false" data-target="#editNewPassDir" data-toggle="modal">
                 <i class="fas fa-key"></i>
-                </button> '.'<button data-toggle="modal" data-backdrop="false" data-target="#editDirec" class="btn btn-warning text-white" onclick="mostrarDirector('.$reg->id_director.')"><i class="fa fa-edit"></i></button>'.
-                    ' <button class="btn btn-success" onclick="activarDirector('.$reg->id_director.')"><i class="fa fa-check"></i></button>'
+                </button> '.'<button data-toggle="modal" data-backdrop="false" data-target="#editDirec" class="btn btn-outline-warning btn-sm" onclick="mostrarDirector('.$reg->id_director.')"><i class="fa fa-edit"></i></button>'.
+                    ' <button class="btn btn-outline-primary btn-sm" onclick="activarDirector('.$reg->id_director.')"><i class="fa fa-check"></i></button>'
                 );
         	}
         	$results = array(
@@ -468,8 +468,8 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
                 "1"=>$reg->correo,
                 "2"=>$reg->usuario,
                 "3"=>$reg->privileg,
-                "4" => '<button data-toggle="modal" data-backdrop="false" data-target="#editAdm" class="text-white btn btn-warning" onclick="mostrarAdm('.$reg->id_admin.')"><i class="fas fa-edit"></i></button>'.
-                    ' <button class="btn btn-danger" onclick="desactivarAdm('.$reg->id_admin.')"><i class="fa fa-times"></i></button>'
+                "4" => '<button data-toggle="modal" data-backdrop="false" data-target="#editAdm" class="btn btn-outline-warning btn-sm" onclick="mostrarAdm('.$reg->id_admin.')"><i class="fas fa-edit"></i></button>'.
+                    ' <button class="btn btn-outline-danger btn-sm" onclick="desactivarAdm('.$reg->id_admin.')"><i class="fa fa-times"></i></button>'
                 );
         	}
         	$results = array(
@@ -496,8 +496,8 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
                 "1"=>$reg->correo,
                 "2"=>$reg->usuario,
                 "3"=>$reg->privileg,
-                "4" => '<button data-toggle="modal" data-backdrop="false" data-target="#editAdm" class="btn text-white btn-warning" onclick="mostrarAdm('.$reg->id_admin.')"><i class="fa fa-edit"></i></button>'.
-                    ' <button class="btn btn-success" onclick="activarAdm('.$reg->id_admin.')"><i class="fa fa-check"></i></button>'
+                "4" => '<button data-toggle="modal" data-backdrop="false" data-target="#editAdm" class="btn btn-outline-warning btn-sm" onclick="mostrarAdm('.$reg->id_admin.')"><i class="fa fa-edit"></i></button>'.
+                    ' <button class="btn btn-outline-primary btn-sm" onclick="activarAdm('.$reg->id_admin.')"><i class="fa fa-check"></i></button>'
                 );
         	}
         	$results = array(
@@ -736,9 +736,9 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
 						"0" => $res -> nombre_c_cor,
 						"1" => $res -> correo_cor,
 						"2" => $res -> telefono_cor,
-						"3" => '<button data-backdrop="false" data-toggle="modal" data-target="#editNewPasCor" onclick="newPassCor('.$res->id_coordinador.')" class="btn btn-outline-primary"> <i class="fas fa-key"></i> </button> '.
-						'<button data-toggle="modal" data-backdrop="false" data-target="#editCor" class="btn btn-warning text-white" onclick="mostrarCor('.$res->id_coordinador.')"><i class="fas fa-edit"></i></button>'.
-                   		' <button class="btn btn-danger" onclick="desactivarCor('.$res->id_coordinador.')"><i class="fa fa-times"></i></button>'
+						"3" => '<button data-backdrop="false" data-toggle="modal" data-target="#editNewPasCor" onclick="newPassCor('.$res->id_coordinador.')" class="btn btn-sm btn-outline-primary"> <i class="fas fa-key"></i> </button> '.
+						'<button data-toggle="modal" data-backdrop="false" data-target="#editCor" class="btn btn-outline-warning btn-sm" onclick="mostrarCor('.$res->id_coordinador.')"><i class="fas fa-edit"></i></button>'.
+                   		' <button class="btn btn-outline-danger btn-sm" onclick="desactivarCor('.$res->id_coordinador.')"><i class="fa fa-times"></i></button>'
 					);
 				}
 				$results = array(
@@ -761,9 +761,9 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
 					"0" => $res -> nombre_c_cor,
 					"1" => $res -> correo_cor,
 					"2" => $res -> telefono_cor,
-					"3" => '<button data-backdrop="false" data-toggle="modal" data-target="#editNewPasCor" onclick="newPassCor('.$res->id_coordinador.')" class="btn btn-outline-primary"> <i class="fas fa-key"></i> </button> '.
-					'<button data-toggle="modal" data-backdrop="false" data-target="#editCor" class="btn btn-warning text-white" onclick="mostrarCor('.$res->id_coordinador.')"><i class="fas fa-edit"></i></button>'.
-                   	' <button class="btn btn-success" onclick="activarCor('.$res->id_coordinador.')"><i class="fa fa-check"></i></button>'
+					"3" => '<button data-backdrop="false" data-toggle="modal" data-target="#editNewPasCor" onclick="newPassCor('.$res->id_coordinador.')" class="btn btn-sm btn-outline-primary"> <i class="fas fa-key"></i> </button> '.
+					'<button data-toggle="modal" data-backdrop="false" data-target="#editCor" class="btn btn-sm btn-outline-warning" onclick="mostrarCor('.$res->id_coordinador.')"><i class="fas fa-edit"></i></button>'.
+                   	' <button class="btn btn-outline-primary btn-sm" onclick="activarCor('.$res->id_coordinador.')"><i class="fa fa-check"></i></button>'
 				);
 			}
 			$results = array(

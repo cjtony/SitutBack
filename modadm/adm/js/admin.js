@@ -1,23 +1,31 @@
 let tabla;
 let tabladesc;
 let actRegAct, actRegDes;
+const lenguaje = {
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+        "sFirst":    "Primero",
+        "sLast":     "Último",
+        "sNext":     "Siguiente",
+        "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+};
 function init() {
-	$(window).scroll(function() {
-	  if ($("#menu1").offset().top > 56) {
-	      $("#menu1").addClass("bg-info");
-	  } else {
-	      $("#menu1").removeClass("bg-info");
-	  }
-	});
-	$(window).scroll(function(){
-		if ($("#menu2").offset().top > 56) {
-	      $("#menu2").addClass("bg-info");
-	      $("#textLog").text("U T S E M");
-	  } else {
-	      $("#menu2").removeClass("bg-info");
-	      $("#textLog").text("S I T U T");
-	  }
-	});
 	$("#contAdm").on("keyup",function(){
 		segCont();
 	});
@@ -29,13 +37,8 @@ function init() {
 	});
 	listarAdmin();
 	listarAdminDes();
-	mostListAdmAct(true);
-	actRegAct = setInterval(admAct, 10000);
-	actRegDes = setInterval(admInc, 10000);
-	setTimeout(function(){
-		clearInterval(actRegAct);
-		clearInterval(actRegDes);
-	}, 30000);
+	admAct();
+	admInc();
 }
 
 function limpCampos() {
@@ -306,6 +309,7 @@ function listarAdmin(){
 		"bDestroy" : true,
 		"iDisplayLength" : 5,
 		//"order" : [[0, "asc"]]
+		"language" : lenguaje
 	}).DataTable();
 }
 
@@ -326,7 +330,8 @@ function listarAdminDes() {
 		},
 		"bDestroy" : true,
 		"iDisplayLength" : 5,
-		"order" : [[0, "desc"]]
+		"order" : [[0, "desc"]],
+		"language" : lenguaje
 	}).DataTable();
 }
 
@@ -550,35 +555,15 @@ function editAdm(e) {
 
 }
 
-function mostListAdmAct(flag) {
-	if (flag) {
-		$("#tbListadoAdmAct").fadeIn("2000");
-		$("#listAdmAct").addClass("active");
-	} else {
-		$("#tbListadoAdmAct").slideUp();
-		$("#listAdmAct").removeClass("active");
-	}
-}
-
-function mostListAdmDes(flag) {
-	if (flag) {
-		$("#tbListadoAdmDes").fadeIn("2000");
-		$("#listAdmDes").addClass("active");
-	} else {
-		$("#tbListadoAdmDes").slideUp();
-		$("#listAdmDes").removeClass("active")
-	}
-}
-
 function admAct () {
 	$.ajax({
 		url:'../../ajax/adm/functionsAdm.php?oper=admAct',
 		type : "POST",
 		success:function (data) {
 			if (data > 1 || data == 0) {
-				$('#admAct').html(data + " Registros");	
+				$('#admAct').html(data + " registros.");	
 			} else {
-				$('#admAct').html(data + " Registro");	
+				$('#admAct').html(data + " registro.");	
 			}
 		}
 	});
@@ -590,9 +575,9 @@ function admInc () {
 		type : "POST",
 		success:function (data) {
 			if (data > 1 || data == 0) {
-				$('#admInc').html(data + " Registros");	
+				$('#admInc').html(data + " registros.");	
 			} else {
-				$('#admInc').html(data + " Registro");	
+				$('#admInc').html(data + " registro.");	
 			}
 		}
 	});
