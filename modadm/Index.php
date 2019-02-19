@@ -9,6 +9,7 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
   include '../modelos/admin.modelo.php';
   include '../modelos/rutasAmig.php';
   $admin = new Administrador();
+  $keyAdm = $_SESSION['keyAdm'];
   $datAdmin = $admin->userAdminDet($_SESSION['keyAdm']);
   if ($datAdmin) {
     $datCarre = $admin->estadistCarCant();
@@ -86,8 +87,8 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confContCor" href="#">Contraseña</a>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confDatCor" href="#">Datos</a>
+            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confCont" href="#">Contraseña</a>
+            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confDat" href="#">Datos</a>
           </div>
         </div>
       </li>

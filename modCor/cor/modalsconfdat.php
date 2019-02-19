@@ -33,10 +33,10 @@
           <div class="col-sm-1"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnCloseConfContCor" class="btn btn-outline-danger" data-dismiss="modal">
+        <button type="button" id="btnCloseConfContCor" class="btn btn-sm btn-outline-danger" data-dismiss="modal">
           <i class="fas fa-times-circle mr-2"></i>
           Cerrar</button>
-        <button type="submit" class="btn btn-outline-primary" id="btnGConfContCor">
+        <button type="submit" class="btn btn-sm btn-outline-primary" id="btnGConfContCor">
           <i class="fas fa-check-circle mr-2"></i>
           Guardar cambios</button>
         </form>
@@ -113,10 +113,10 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" id="btnCloDatCor">
+        <button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal" id="btnCloDatCor">
           <i class="fas fa-times-circle mr-2"></i>
           Cerrar</button>
-        <button type="submit" class="btn btn-outline-primary" id="btnGDatCor">
+        <button type="submit" class="btn btn-sm btn-outline-primary" id="btnGDatCor">
           <i class="fas fa-check-circle mr-2"></i>
           Guardar cambios</button>
         </form>
@@ -152,10 +152,10 @@
           <div class="col-sm-1"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnCloseConfFotPerf" class="btn btn-outline-danger" data-dismiss="modal">
+        <button type="button" id="btnCloseConfFotPerf" class="btn btn-sm btn-outline-danger" data-dismiss="modal">
           <i class="fas fa-times-circle mr-2"></i>
           Cerrar</button>
-        <button type="submit" class="btn btn-outline-primary" id="btnFotPerf">
+        <button type="submit" class="btn btn-sm btn-outline-primary" id="btnFotPerf">
           <i class="fas fa-check-circle mr-2"></i>
           Guardar cambios</button>
         </form>

@@ -71,7 +71,7 @@
 
         		<div class="col-sm-8 mb-3">
         			<form class="user" method="POST" id="formEnvReport" enctype="multipart/form-data">
-        				<input type="hidden" value="<?php echo base64_encode($keyCor); ?>" name="clv_us">
+        				<input type="hidden" value="<?php echo base64_encode($keyAdm); ?>" name="clv_us">
 		                <div class="form-group">
 		                  <textarea name="descProb" id="descProb" class="form-control" id="exampleInputEmail" placeholder="Descripción..." rows="6"></textarea>
 		                  <div class="text-right">
@@ -201,7 +201,7 @@
 			spinLoad.classList.remove('d-none');
 			setTimeout(() => {
 				$.ajax({
-					url : "../../ajax/reports/recibData.php?tag=Coordinador",
+					url : "../../ajax/reports/recibData.php?tag=Administrador",
 					type : "POST", data : formDat,
 					contentType : false, processData : false,
 					success : (resp) => {

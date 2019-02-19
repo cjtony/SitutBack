@@ -154,6 +154,20 @@ class Administrador
 			echo '{"error":{"text":'. $e->getMessage() .'}}';
 		}
 	}
+
+	public function datMyReportEnv($tag, $clv) {
+    	try {
+    		$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+    		$stmt = $dbc -> prepare("SELECT * FROM reportsprob WHERE tag_user = :tag AND id_user = :clv");
+    		$stmt -> bindParam("tag", $tag, PDO::PARAM_STR);
+    		$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+    		$stmt -> execute();
+    		return $stmt;
+    	} catch (PDOException $e) {
+    		echo '{"error":{"text":'.$e->getMessage().'}}';
+    	}
+    }
 	
 	/*=====  End of Cantidad docentes(tutores) A/I  ======*/
 	public function mostrarCarrera($id_carrera)

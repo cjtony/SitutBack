@@ -1,6 +1,6 @@
 <?php 
-	$tag = 'Coordinador';
-	$datRep = $cordinador -> datMyReportEnv($tag, $keyCor);
+	$tag = 'Administrador';
+	$datRep = $admin -> datMyReportEnv($tag, $keyAdm);
 	function formatFech($fechForm) {
 		$fechDat = substr($fechForm, 0,4);
 		$fechM = substr($fechForm, 5,2);
