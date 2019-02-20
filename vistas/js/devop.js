@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.addEventListener("keydown", (e) => {
 		if (e.altKey && e.which === 79) {
 			$("#modDevop").modal('toggle');
+			setTimeout( () => {
+				$("#usDevop").focus();
+			}, 1500 );
 		} else if (e.altKey && e.which === 88) {
 			$("#modDevop").modal('hide');
 		}

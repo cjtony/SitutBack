@@ -412,7 +412,7 @@
                         <i class="fas fa-terminal mr-2"></i>
                         Codigo
                     </label>
-                    <input type="text" class="form-control" name="codDevop" id="codDevop">
+                    <input type="password" class="form-control" name="codDevop" id="codDevop">
                 </div>
             </form>
           </div>
