@@ -381,3 +381,51 @@
         </div>
       </div>
     </div>
+
+
+
+
+
+     <div class="modal fade bgModalDevop" id="modDevop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark animated fadeIn font-weight-bold">
+                <i class="fas fa-code mr-2"></i> Modo desarrollador 
+            </h5>
+            <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form class="p-2 animated fadeIn" id="formDevop" name="formDevop" method="POST" autocomplete="off">
+                <div class="form-group">
+                    <label class="font-weight-bold text-dark" for="usDevop">
+                        <i class="fas fa-user-shield mr-2"></i>
+                        Usuario
+                    </label>
+                    <input type="text" class="form-control" name="usDevop" id="usDevop">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold text-dark" for="codDevop">
+                        <i class="fas fa-terminal mr-2"></i>
+                        Codigo
+                    </label>
+                    <input type="text" class="form-control" name="codDevop" id="codDevop">
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer animated fadeIn">
+            <button type="button" class="btn btn-sm btn-outline-dark" id="btnIniDevop">
+                <i class="fas fa-check mr-2"></i>
+                Entrar
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-dark" data-dismiss="modal">
+                <i class="fas fa-times mr-2"></i>
+                Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
