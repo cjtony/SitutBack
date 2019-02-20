@@ -112,6 +112,34 @@ if ($_GET["oper"] != "") {
 				unset($correoDoc); unset($passDoc); unset($passDocEnc);
 			}
 			break;
+		case 'verificarLogDevop':
+			try {
+				$usDevop = isset($_POST['usDevop']) ? trim($_POST['usDevop']) : "";
+				$codDevop = isset($_POST['codDevop']) ? trim($_POST['codDevop']) : "";
+				//$codEnc = sha1($codDevop); 
+				$valid = 1;
+				$stmt = $dbc -> prepare("SELECT * FROM devop WHERE user_devop = :usDevop && pass_devop = :codDevop && estado_devop = :valid");
+				$stmt -> bindParam("usDevop", $usDevop, PDO::PARAM_STR);
+				$stmt -> bindParam("codDevop", $codDevop, PDO::PARAM_STR);
+				$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+				$stmt -> execute(); $filStmt = $stmt -> rowCount();
+				if ($filStmt === 1) {
+					$row = $stmt -> fetch(PDO::FETCH_OBJ);
+					if (isset($row)) {
+						$_SESSION['keyDevop'] = $row->id_devop;
+						$_SESSION['tokSeg'] = $row -> token_seg;
+					}
+					echo 1;
+				} else {
+					echo "mal";
+				}
+			} catch (PDOException $e) {
+				echo $e->getMessage();
+			} finally {
+				$dbc = null; $stmt = null;
+				unset($correoDoc); unset($passDoc); unset($passDocEnc);
+			}
+			break;
 		default:
 			//header("Location:../Index.php");
 			$dbc = null;

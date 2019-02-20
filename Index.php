@@ -44,5 +44,6 @@
     <!--- Personalizados -->
     <script src="<?php echo SERVERURL; ?>vistas/js/mainlog.js"></script>
     <script src="<?php echo SERVERURL; ?>vistas/js/limCamp.js"></script>
+    <script src="<?php echo SERVERURL; ?>vistas/js/devop.js"></script>
 </body>
 </html>
