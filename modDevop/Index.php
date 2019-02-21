@@ -10,12 +10,24 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
   $devop = new Developer();
   $keyDevop = $_SESSION['keyDevop'];
   $tkseg = $_SESSION['tokSeg'];
+  function formatFech($fechForm) {
+    $fechDat = substr($fechForm, 0,4);
+    $fechM = substr($fechForm, 5,2);
+    $fechD = substr($fechForm, 8,2);
+    $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+    $Fecha = date($fechD)." de ".$meses[date($fechM)-1]. " del ".date($fechDat);
+    return $Fecha;
+  }
   $dataSis = $devop -> datSistem();
   $datDev = $devop -> devDet(base64_encode($keyDevop));
   $dataDir = $devop -> directRegister();
   $dataDoc = $devop -> docentRegister();
   $dataAdm = $devop -> adminsRegister();
   $dataCor = $devop -> cordinRegister();
+
+  $cantNotRep = $devop -> cantRepNotif();
+  $dataNotRep = $devop -> dataNotifRep();
     
 ?>
 <!DOCTYPE html>
@@ -92,8 +104,8 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Soporte</span>
+          <i class="fas fa-fw fa-file-alt"></i>
+          <span>Reportes</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -232,13 +244,37 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
             <i class="fa fa-bars"></i>
           </button>
 
-          <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <h4>
-              Bienvenido desarrollador.
-            </h4>
-          </div>
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar reporte..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
 
           <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar reporte..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
 
             <li class="nav-item dropdown no-arrow d-sm-none">
               <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
@@ -258,46 +294,83 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="badge badge-danger badge-counter">
+                  <?php
+                    if ($cantNotRep -> CantidadRep > 5) {
+                  ?>
+                    5+
+                  <?php
+                    } else {
+                  ?>
+                    <?php echo $cantNotRep -> CantidadRep; ?>
+                  <?php
+                    }
+                  ?>
+                </span>
               </a>
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Alerts Center
+                  Notificaciones
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
+                <?php 
+                  if ($cantNotRep->CantidadRep > 0) {
+                    while ($dnr = $dataNotRep -> fetch(PDO::FETCH_OBJ)) {
+                ?>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
+                    <div>
+                      <div class="small text-gray-500">
+                        <?php echo formatFech($dnr->fecha_reg_rep); ?>
+                      </div>
+                      <span class="font-weight-bold">
+                        <b>Cod: </b>
+                        <?php echo $dnr->num_serie_rep; ?>
+                      </span>
+                      <div class="text-left">
+                        <span class="small text-white-500 badge badge-primary">
+                          Tag:
+                          <?php echo $dnr->tag_user; ?>
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
+                  </a>
+
+                <?php
+                    }
+                ?>
+
+                  <a class="dropdown-item text-center small text-gray-500" href="#">
+                    Mostrar todos los reportes
+                  </a>
+
+                  
+                <?php  
+                  } else {
+                ?>
+                   <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-success">
+                        <i class="fas fa-check-circle text-white"></i>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                    <div>
+                      <div class="small text-gray-500">
+                        
+                      </div>
+                      <span class="font-weight-bold">Ninguna notificación de reporte</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item text-center small text-gray-500" href="#">
+                    Sin ninguna incidencia...
+                  </a>
+                <?php
+                  }
+                ?>
+                
               </div>
             </li>
 

@@ -182,6 +182,8 @@ class Developer {
 			return $stmt;
 		} catch(PDOException $e) {
 			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null;
 		}
 	}
 
@@ -194,6 +196,43 @@ class Developer {
 			return $stmt;
 		} catch(PDOException $e) {
 			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null;
+		}
+	}
+
+	/*----------  Notificaciones  ----------*/
+	
+	public function cantRepNotif() {
+		try {
+			$pending = 1;
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT COUNT(id_report) AS 'CantidadRep' FROM reportsprob WHERE estado_rep = :pending"); 
+			$stmt -> bindParam("pending", $pending, PDO::PARAM_INT);
+			$stmt->execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null;
+		}
+	}
+
+	public function dataNotifRep() {
+		try {
+			$pending = 1;
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM reportsprob WHERE estado_rep = :pending ORDER BY fecha_reg_rep DESC LIMIT 5"); 
+			$stmt -> bindParam("pending", $pending, PDO::PARAM_INT);
+			$stmt->execute();
+			return $stmt;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null;
 		}
 	}
 

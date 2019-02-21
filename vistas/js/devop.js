@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			$("#modDevop").modal('toggle');
 			setTimeout( () => {
 				$("#usDevop").focus();
-			}, 1500 );
+			}, 1000 );
 		} else if (e.altKey && e.which === 88) {
 			$("#modDevop").modal('hide');
 		}
