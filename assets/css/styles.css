@@ -20,8 +20,7 @@ a {
 }
 
 .hovTar:hover {
-	/*transform: scale(1.03,1.03);*/
-	transform: rotate(-5deg);
+	transform: scale(1.03,1.03);
 }
 
 .icoRes:hover {

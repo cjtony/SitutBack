@@ -317,7 +317,7 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
                   if ($cantNotRep->CantidadRep > 0) {
                     while ($dnr = $dataNotRep -> fetch(PDO::FETCH_OBJ)) {
                 ?>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
+                  <a class="dropdown-item d-flex align-items-center" href="<?php echo SERVERURLDEV; ?>DetRep/not/<?php echo base64_encode($dnr->id_report); ?>/">
                     <div class="mr-3">
                       <div class="icon-circle bg-primary">
                         <i class="fas fa-file-alt text-white"></i>

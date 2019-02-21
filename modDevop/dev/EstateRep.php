@@ -101,7 +101,7 @@ $param2 = base64_encode(1);
 			
 			<?php 
 
-				if ($dataRepOpc -> rowCount() > 10) {
+				if ($dataRepOpc -> rowCount() > 0) {
 					while ($dr = $dataRepOpc -> fetch(PDO::FETCH_OBJ)) {
 			?>
 

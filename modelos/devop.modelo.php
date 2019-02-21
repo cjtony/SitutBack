@@ -252,4 +252,116 @@ class Developer {
 		}
 	}
 
+	public function dataRepSel($param) {
+		try {
+			$param = base64_decode($param);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM reportsprob WHERE id_report = :param");
+			$stmt -> bindParam("param", $param, PDO::PARAM_INT);
+			$stmt -> execute();
+			return $stmt;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null;
+		}
+	}
+
+	public function datTagRepCor($clv, $tag) {
+		try {
+			$clv = base64_decode($clv);
+			$tag = base64_decode($tag);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM reportsprob rep INNER JOIN coordinadores dat ON dat.id_coordinador = rep.id_user WHERE id_report = :clv && tag_user = :tag");
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt -> bindParam("tag", $tag, PDO::PARAM_STR);
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null;
+		}
+	}
+
+	public function datTagRepAdm($clv, $tag) {
+		try {
+			$clv = base64_decode($clv);
+			$tag = base64_decode($tag);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM reportsprob rep INNER JOIN administradores dat ON dat.id_admin = rep.id_user WHERE id_report = :clv && tag_user = :tag");
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt -> bindParam("tag", $tag, PDO::PARAM_STR);
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null;
+		}
+	}
+
+	public function datTagRepDir($clv, $tag) {
+		try {
+			$clv = base64_decode($clv);
+			$tag = base64_decode($tag);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM reportsprob rep INNER JOIN directores dat ON dat.id_director = rep.id_user WHERE id_report = :clv && tag_user = :tag");
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt -> bindParam("tag", $tag, PDO::PARAM_STR);
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null;
+		}
+	}
+
+	public function datTagRepDoc($clv, $tag) {
+		try {
+			$clv = base64_decode($clv);
+			$tag = base64_decode($tag);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM reportsprob rep INNER JOIN docentes dat ON dat.id_docente = rep.id_user WHERE id_report = :clv && tag_user = :tag");
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt -> bindParam("tag", $tag, PDO::PARAM_STR);
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null;
+		}
+	}
+
+	public function datTagRepAlm($clv, $tag) {
+		try {
+			$clv = base64_decode($clv);
+			$tag = base64_decode($tag);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM reportsprob rep INNER JOIN alumnos dat ON dat.id_alumno = rep.id_user WHERE id_report = :clv && tag_user = :tag");
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt -> bindParam("tag", $tag, PDO::PARAM_STR);
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null;
+		}
+	}
+
+
 }
