@@ -30,6 +30,7 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
   $dataNotRep = $devop -> dataNotifRep();
     
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -66,7 +67,7 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
 
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo SERVERURLCOR; ?>Home/">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo SERVERURLDEV; ?>Home/">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-user-graduate"></i>
         </div>
@@ -76,7 +77,7 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item active text-center">
-        <a class="nav-link text-center" href="<?php echo SERVERURLCOR; ?>Home/">
+        <a class="nav-link text-center" href="<?php echo SERVERURLDEV; ?>Home/">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Panel de control</span></a>
       </li>
@@ -110,8 +111,8 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <!-- <a class="collapse-item" href="<?php echo SERVERURLCOR; ?>RepProblem/">Reportar un problema</a>
-            <a class="collapse-item" href="<?php echo SERVERURLCOR; ?>MyReports/">Reportes enviados</a> -->
+            <a class="collapse-item" href="<?php echo SERVERURLDEV; ?>EstateRep/res/">Resueltos</a>
+            <a class="collapse-item" href="<?php echo SERVERURLDEV; ?>EstateRep/not/">Sin resolver</a>
           </div>
         </div>
       </li>

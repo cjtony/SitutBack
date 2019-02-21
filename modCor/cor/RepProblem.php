@@ -67,6 +67,14 @@
 		                  </div>
 		                </div>
 	              	</div>
+	              	<div class="border-left-primary shadow card">
+	              		<div class="card-body">
+	              			<b class="text-primary">*Nota*</b>
+	              			<p class="text-justify">
+	              				Cualquier abuso al enviar reportes sera sancionado...
+	              			</p>
+	              		</div>
+	              	</div>
         		</div>
 
         		<div class="col-sm-8 mb-3">

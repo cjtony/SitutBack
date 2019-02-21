@@ -1,3 +1,7 @@
+a {
+	text-decoration: none !important;
+}
+
 .bgModal {
 	background-color: rgba(43, 165, 137, 0.45);
 }
@@ -9,4 +13,17 @@
 .hovAnim:hover {
 	transform: scale(1.03,1.03);
 	/*transform: rotate(-5deg);*/
+}
+
+.tra5 {
+	transition: 0.5s;
+}
+
+.hovTar:hover {
+	/*transform: scale(1.03,1.03);*/
+	transform: rotate(-5deg);
+}
+
+.icoRes:hover {
+	color: #1cc88a !important;
 }

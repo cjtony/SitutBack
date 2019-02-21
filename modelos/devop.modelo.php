@@ -236,4 +236,20 @@ class Developer {
 		}
 	}
 
+	public function dataRepOpc($param) {
+		try {
+			$param = base64_decode($param);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM reportsprob WHERE estado_rep = :param ORDER BY fecha_reg_rep");
+			$stmt -> bindParam("param", $param, PDO::PARAM_INT);
+			$stmt -> execute();
+			return $stmt;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null;
+		}
+	}
+
 }
