@@ -363,5 +363,22 @@ class Developer {
 		}
 	}
 
+	public function dataResultRep($clv) {
+		try {
+			$clv = base64_decode($clv);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM represult rp INNER JOIN reportsprob re ON re.id_report = rp.id_reportprob WHERE rp.id_reportprob = :clv");
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (Exception $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null;
+		}
+	}
+
 
 }

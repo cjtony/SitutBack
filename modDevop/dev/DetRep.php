@@ -72,35 +72,46 @@ $datRep = $devop -> dataRepSel($cod[2]);
 	                  	<div class="text-center">
 	                    	<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="<?php echo SERVERURL; ?>assets/img/browstac.svg" alt="info site">
 	                  	</div>
+	                  	<?php 
+	                  		if ($dr->estado_rep == 1) {
+	                  	?>
+							<div class="text-center mb-3">
+	                  			<span class="badge badge-pill badge-primary">
+	                    			Solicitud el <?php echo formatFech($dr->fecha_reg_rep); ?>.
+	                    		</span>
+	                  		</div>
+	                  	<?php
+	                  		}
+	                  	?>		
 	                  	<p class="p-2">
 	                  		<b class="mr-2">Descripción:</b>
 	                  		<?php echo $dr->describ_prob; ?>.
 	                  	</p>
 	                  	<div class="row mt-4 p-2 text-center">
-		                  	<div class="col-sm-4 mb-3">
+		                  	<div class="col-sm-4 mb-4">
 		                  		<b>Reporto:</b>
 		                  		<span class="ml-2 badge badge-primary">
 									<i class="fas fa-user mr-2"></i>
 									<?php 
 										echo $nomUs;
-									?>
+									?>.
 								</span>
 		                  	</div>
-		                  	<div class="col-sm-4 mb-3">
+		                  	<div class="col-sm-4 mb-4">
 		                  		<b>Tag:</b>
 		                  		<span class="ml-2 badge badge-primary">
 									<i class="fas fa-tag mr-2"></i>
-									<?php echo $dr->tag_user; ?>
+									<?php echo $dr->tag_user; ?>.
 								</span>
 		                  	</div>
-		                  	<div class="col-sm-4 mb-3">
+		                  	<div class="col-sm-4 mb-4">
 		                  		<b>Imagen:</b>
 		                  		<?php 
 		                  			if ($dr->arch_prob != "Sin imagen") {
 		                  		?>
 									<span class="ml-2 badge badge-success">
 										<i class="fas fa-image mr-2"></i>
-										Imagen
+										Imagen.
 									</span>
 		                  		<?php
 		                  				
@@ -115,36 +126,78 @@ $datRep = $devop -> dataRepSel($cod[2]);
 		                  		?>
 		                  	</div>
 	                  	</div>
-	                  	<hr class="sidevar-divider">
-	                  	<div class="text-center">
-                  			<h5 class="text-primary">
-	                  			<b>Nota: *</b>
-	                  			Si el problema esta resuelto completa el siguiente formulario
-	                  			<b>*</b>
-	                  		</h5>
-                  		</div>
-	                  	<form class="row mt-4 p-2 mb-4">
-	                  		<div class="col-sm-6 mb-3">
-	                  			<div class="form-group">
-	                  				<label>Agregar:</label>
-	                  				<textarea class="form-control" rows="3" placeholder="Mensaje..."></textarea>
-	                  			</div>
+	                  	<?php 
+	                  		if ($dr -> estado_rep == 1) {
+	                  	?>
+							<hr class="sidevar-divider">
+		                  	<div class="text-center">
+	                  			<h5 class="text-primary">
+		                  			<b>Nota: *</b>
+		                  			Si el problema esta resuelto completa el siguiente formulario
+		                  			<b>*</b>
+		                  		</h5>
 	                  		</div>
-	                  		<div class="col-sm-6 mb-3">
-	                  			<div class="form-group">
-	                  				<label>Estado:</label>
-	                  				<select class="form-control">
-	                  					<option value="SV" disabled="" selected="">Selecciona</option>
-	                  					<option value="0">Resuelto</option>
-	                  				</select>
-	                  			</div>
-	                  			<div class="text-center mt-4">
-		                  			<button class="btn btn-sm btn-primary">
-		                  				<i class="fas fa-check mr-2"></i> Registrar
-		                  			</button>
+		                  	<form class="row mt-4 p-2 mb-4">
+		                  		<div class="col-sm-6 mb-3">
+		                  			<div class="form-group">
+		                  				<label for="notaAg">Agregar:</label>
+		                  				<textarea class="form-control" rows="5" placeholder="Mensaje..." name="notaAg" id="notaAg"></textarea>
+		                  			</div>
+		                  		</div>
+		                  		<div class="col-sm-6 mb-3">
+		                  			<div class="form-group">
+		                  				<label for="selectEst">Estado:</label>
+		                  				<select class="form-control" name="selectEst" id="selectEst">
+		                  					<option value="SV" disabled="" selected="">Selecciona</option>
+		                  					<option value="0">Resuelto</option>
+		                  				</select>
+		                  			</div>
+		                  			<div class="form-group">
+		                  				<label for="confirmPs" class="font-weight-bold text-primary">Introduce tu contraseña para confirmar:</label>
+		                  				<input type="password" name="confirmPs" id="confirmPs" class="form-control">
+		                  			</div>
+		                  			<div class="text-center mt-4">
+			                  			<button class="btn btn-sm btn-primary">
+			                  				<i class="fas fa-check mr-2"></i> Registrar
+			                  			</button>
+			                  		</div>
+		                  		</div>
+		                  	</form>
+	                  	<?php
+	                  		} else {
+	                  			$drRes = $devop -> dataResultRep(base64_encode($dr->id_report));
+	                  	?>
+
+	                  		<div class="row">
+	                  			<div class="col-sm-6 text-center mb-4">
+		                  			<b>Fecha de resolución:</b>
+			                  		<span class="ml-2 badge badge-primary">
+										<i class="fas fa-calendar mr-2"></i>
+										<?php 
+											echo formatFech($drRes->fecha_result);
+										?>.
+									</span>
+		                  		</div>
+		                  		<div class="col-sm-6 text-center mb-4">
+		                  			<b>Fecha de solicitud:</b>
+			                  		<span class="ml-2 badge badge-primary">
+										<i class="fas fa-calendar mr-2"></i>
+										<?php 
+											echo formatFech($drRes->fecha_reg_rep);
+										?>.
+									</span>
+		                  		</div>
+		                  		<div class="col-sm-12 mt-4 text-center mb-4">
+									<p>
+										<b class="mr-2"><i class="fas fa-comment mr-2 text-primary"></i>Nota agregada:</b>
+										<?php echo $drRes->nota_result; ?>.
+									</p>
 		                  		</div>
 	                  		</div>
-	                  	</form>
+
+	                  	<?php
+	                  		}
+	                  	?>
 	                </div>
 	            </div>
 			</div>

@@ -155,6 +155,12 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
           <div id="dataCord" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Selecciona</h6>
+              <h6 class="collapse-header">
+                <a href="<?php echo SERVERURLDEV; ?>ConfigFunc/cor/">
+                  <i class="fas fa-table mr-1"></i>
+                  Configuraciones
+                </a>
+              </h6>
                 <?php 
                   while ($datCor = $dataCor -> fetch(PDO::FETCH_OBJ)) {
                 ?>
