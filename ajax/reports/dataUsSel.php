@@ -20,8 +20,11 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
 			while ($res = $stmt -> fetch(PDO::FETCH_OBJ)) {
 				$data[] = array(
 					"0" => $res -> nombre_c_cor,
-					"1" => $res -> correo_cor,
-					"2" => $res -> telefono_cor
+					"1" => ($res->estado_cor)?'<span class="badge badge-primary mr-3 badge-pill">Habilitada</span>'.'<button class="btn btn-sm btn-outline-danger" onclick="desactCuent('.$res->id_coordinador.')"><i class="fas fa-times mr-2"></i>Deshabilitar</button>':
+                    '<span class="badge badge-danger mr-3 badge-pill">Deshabilitada</span>'.'<button class="btn btn-sm btn-outline-primary" onclick="activaCuent('.$res->id_coordinador.')"><i class="fas fa-check mr-2"></i>Habilitar</button>',
+					"2" => ($res->us_mod_rep)?'<span class="badge badge-primary mr-3 badge-pill">Habilitados</span>'.'<button class="btn btn-sm btn-outline-danger" onclick="desactRep('.$res->id_coordinador.')"><i class="fas fa-times mr-2"></i>Deshabilitar</button>':
+                    '<span class="badge badge-danger mr-3 badge-pill">Deshabilitados</span>'.'<button class="btn btn-sm btn-outline-primary" onclick="activaRep('.$res->id_coordinador.')"><i class="fas fa-check mr-2"></i>Habilitar</button>',
+
 				);
 			}
 			$results = array(
@@ -33,7 +36,30 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
         	$stmt = null;
         	$dbConexion = null;
 			break;
+		case 'listAdm':
+			$stmt = $dbConexion -> prepare("SELECT * FROM administradores");
+			$stmt -> execute();
+			$data = Array();
+			while ($res = $stmt -> fetch(PDO::FETCH_OBJ)) {
+				$data[] = array(
+					"0" => $res -> nombre_c,
+					"1" => $res -> privileg,
+					"2" => ($res->condicion)?'<span class="badge badge-primary mr-3 badge-pill">Habilitada</span>'.'<button class="btn btn-sm btn-outline-danger" onclick="desactCuent('.$res->id_admin.')"><i class="fas fa-times mr-2"></i>Deshabilitar</button>':
+                    '<span class="badge badge-danger mr-3 badge-pill">Deshabilitada</span>'.'<button class="btn btn-sm btn-outline-primary" onclick="activaCuent('.$res->id_admin.')"><i class="fas fa-check mr-2"></i>Habilitar</button>',
+					"3" => ($res->us_mod_rep)?'<span class="badge badge-primary mr-3 badge-pill">Habilitados</span>'.'<button class="btn btn-sm btn-outline-danger" onclick="desactRep('.$res->id_admin.')"><i class="fas fa-times mr-2"></i>Deshabilitar</button>':
+                    '<span class="badge badge-danger mr-3 badge-pill">Deshabilitados</span>'.'<button class="btn btn-sm btn-outline-primary" onclick="activaRep('.$res->id_admin.')"><i class="fas fa-check mr-2"></i>Habilitar</button>',
 
+				);
+			}
+			$results = array(
+        	"sEcho"=>1,
+        	"iTotalRecords"=>count($data),
+        	"iTotalDisplayRecords"=>count($data),
+        	"aaData"=>$data);
+        	echo json_encode($results);
+        	$stmt = null;
+        	$dbConexion = null;
+			break;
 	default:
 		$dbConexion = null;
 		break;
