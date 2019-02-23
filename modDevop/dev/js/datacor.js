@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			},
 			"bDestroy" : true,
 			"iDisplayLength" : 10,
-			"order" : [[0, "desc"]],
 			"language" : lenguaje
 		}).DataTable();
 	}

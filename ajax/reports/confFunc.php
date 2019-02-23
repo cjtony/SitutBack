@@ -93,6 +93,86 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
 			}
 			$stmt = null; $dbConexion = null;
 			break;
+		case 'cuentDir':
+			$inval = 0; $valid = 1;
+			$param = isset($_POST['param']) ? trim($_POST['param']) : "";
+			$opc = isset($_POST['opc']) ? trim($_POST['opc']) : "";
+			if ($opc == 'desc') {
+				$stmt = $dbConexion -> prepare("UPDATE directores SET estado_dir = :inval WHERE id_director = :param");
+				$stmt -> bindParam("inval", $inval, PDO::PARAM_INT);
+			} else if ($opc == 'acti') {
+				$stmt = $dbConexion -> prepare("UPDATE directores SET estado_dir = :valid WHERE id_director = :param");
+				$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+			}
+			$stmt -> bindParam("param", $param, PDO::PARAM_INT);
+			$resstmt = $stmt -> execute();
+			if ($resstmt) {
+				echo 1;
+			} else {
+				echo 0;
+			}
+			$stmt = null; $dbConexion = null;
+			break;
+		case 'reporDir':
+			$inval = 0; $valid = 1;
+			$param = isset($_POST['param']) ? trim($_POST['param']) : "";
+			$opc = isset($_POST['opc']) ? trim($_POST['opc']) : "";
+			if ($opc == 'desc') {
+				$stmt = $dbConexion -> prepare("UPDATE directores SET us_mod_rep = :inval WHERE id_director = :param");
+				$stmt -> bindParam("inval", $inval, PDO::PARAM_INT);
+			} else if ($opc == 'acti') {
+				$stmt = $dbConexion -> prepare("UPDATE directores SET us_mod_rep = :valid WHERE id_director = :param");
+				$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+			}
+			$stmt -> bindParam("param", $param, PDO::PARAM_INT);
+			$resstmt = $stmt -> execute();
+			if ($resstmt) {
+				echo 1;
+			} else {
+				echo 0;
+			}
+			$stmt = null; $dbConexion = null;
+			break;
+		case 'cuentDoc':
+			$inval = 0; $valid = 1;
+			$param = isset($_POST['param']) ? trim($_POST['param']) : "";
+			$opc = isset($_POST['opc']) ? trim($_POST['opc']) : "";
+			if ($opc == 'desc') {
+				$stmt = $dbConexion -> prepare("UPDATE docentes SET condicion_doc = :inval WHERE id_docente = :param");
+				$stmt -> bindParam("inval", $inval, PDO::PARAM_INT);
+			} else if ($opc == 'acti') {
+				$stmt = $dbConexion -> prepare("UPDATE docentes SET condicion_doc = :valid WHERE id_docente = :param");
+				$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+			}
+			$stmt -> bindParam("param", $param, PDO::PARAM_INT);
+			$resstmt = $stmt -> execute();
+			if ($resstmt) {
+				echo 1;
+			} else {
+				echo 0;
+			}
+			$stmt = null; $dbConexion = null;
+			break;
+		case 'reporDoc':
+			$inval = 0; $valid = 1;
+			$param = isset($_POST['param']) ? trim($_POST['param']) : "";
+			$opc = isset($_POST['opc']) ? trim($_POST['opc']) : "";
+			if ($opc == 'desc') {
+				$stmt = $dbConexion -> prepare("UPDATE docentes SET us_mod_rep = :inval WHERE id_docente = :param");
+				$stmt -> bindParam("inval", $inval, PDO::PARAM_INT);
+			} else if ($opc == 'acti') {
+				$stmt = $dbConexion -> prepare("UPDATE docentes SET us_mod_rep = :valid WHERE id_docente = :param");
+				$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+			}
+			$stmt -> bindParam("param", $param, PDO::PARAM_INT);
+			$resstmt = $stmt -> execute();
+			if ($resstmt) {
+				echo 1;
+			} else {
+				echo 0;
+			}
+			$stmt = null; $dbConexion = null;
+			break;
 	default:
 		$dbConexion = null;
 		break;

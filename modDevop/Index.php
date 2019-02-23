@@ -189,6 +189,12 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
           <div id="dataDirect" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Selecciona</h6>
+              <h6 class="collapse-header">
+                <a href="<?php echo SERVERURLDEV; ?>ConfigFunc/dir/">
+                  <i class="fas fa-table mr-1"></i>
+                  Configuraciones
+                </a>
+              </h6>
               <?php 
                 while ($datDir = $dataDir -> fetch(PDO::FETCH_OBJ)) {
               ?>
@@ -210,6 +216,12 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
           <div id="dataDocentes" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Selecciona</h6>
+              <h6 class="collapse-header">
+                <a href="<?php echo SERVERURLDEV; ?>ConfigFunc/doc/">
+                  <i class="fas fa-table mr-1"></i>
+                  Configuraciones
+                </a>
+              </h6>
                 <?php 
                   while ($datDoc = $dataDoc -> fetch(PDO::FETCH_OBJ)) {
                 ?>

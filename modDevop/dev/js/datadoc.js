@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-	let tableAdm;
+	let tableDoc;
 	
 	const lenguaje = {
 	    "sProcessing":     "Procesando...",
@@ -27,15 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	    }
 	};
 
-	datatableAdm = () => {
-		tableAdm = $("#tbListAdm").dataTable({
+	datatableDoc = () => {
+		tableDoc = $("#tbListDoc").dataTable({
 			"aProcessing" : true,
 			"aServerSide" : true,
 			dom : 'Bftrip',
 			buttons: [
 			],
 			"ajax" : {
-				url : "../../../ajax/reports/dataUsSel.php?oper=listAdm",
+				url : "../../../ajax/reports/dataUsSel.php?oper=listDoc",
 				type : "GET",
 				dataType : "json",
 				error : function(e) {
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			closeOnClickOutside : false
 		}).then((acepta)=>{
 			if (acepta) {
-				$.post("../../../ajax/reports/confFunc.php?oper=cuentAdm",
+				$.post("../../../ajax/reports/confFunc.php?oper=cuentDoc",
 					{param : param, opc : opc},
 					( resp ) => {
 						if ( resp == 1) {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								button : "Aceptar",
 								closeOnClickOutside : false
 							}).then( ( acepta ) => {
-								tableAdm.ajax.reload();
+								tableDoc.ajax.reload();
 							});
 						} else if ( resp == 0 ) {
 							swal({
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			closeOnClickOutside : false
 		}).then((acepta)=>{
 			if (acepta) {
-				$.post("../../../ajax/reports/confFunc.php?oper=cuentAdm",
+				$.post("../../../ajax/reports/confFunc.php?oper=cuentDoc",
 					{param : param, opc : opc},
 					( resp ) => {
 						if ( resp == 1) {
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								button : "Aceptar",
 								closeOnClickOutside : false
 							}).then( ( acepta ) => {
-								tableAdm.ajax.reload();
+								tableDoc.ajax.reload();
 							});
 						} else if ( resp == 0 ) {
 							swal({
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			closeOnClickOutside : false
 		}).then((acepta)=>{
 			if (acepta) {
-				$.post("../../../ajax/reports/confFunc.php?oper=reporAdm",
+				$.post("../../../ajax/reports/confFunc.php?oper=reporDoc",
 					{param : param, opc : opc},
 					( resp ) => {
 						if ( resp == 1) {
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								button : "Aceptar",
 								closeOnClickOutside : false
 							}).then( ( acepta ) => {
-								tableAdm.ajax.reload();
+								tableDoc.ajax.reload();
 							});
 						} else if ( resp == 0 ) {
 							swal({
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			closeOnClickOutside : false
 		}).then((acepta)=>{
 			if (acepta) {
-				$.post("../../../ajax/reports/confFunc.php?oper=reporAdm",
+				$.post("../../../ajax/reports/confFunc.php?oper=reporDoc",
 					{param : param, opc : opc},
 					( resp ) => {
 						if ( resp == 1) {
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								button : "Aceptar",
 								closeOnClickOutside : false
 							}).then( ( acepta ) => {
-								tableAdm.ajax.reload();
+								tableDoc.ajax.reload();
 							});
 						} else if ( resp == 0 ) {
 							swal({
@@ -208,6 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	datatableAdm();
+	datatableDoc();
 
 });
