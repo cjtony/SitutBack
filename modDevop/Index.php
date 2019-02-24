@@ -140,7 +140,7 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
                 <?php 
                   while ($datAdm = $dataAdm -> fetch(PDO::FETCH_OBJ)) {
                 ?>
-                  <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datAdm->id_administrador); ?>/adm/">
+                  <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datAdm->id_admin); ?>/adm/">
                     <?php echo $datAdm -> nombre_c; ?>
                   </a>
                   <div class="collapse-divider"></div>

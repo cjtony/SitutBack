@@ -173,6 +173,38 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
 			}
 			$stmt = null; $dbConexion = null;
 			break;
+		case 'contAdm':
+			$clv_adm = isset($_POST['clv_adm']) ? trim($_POST['clv_adm']) : "";
+			$nuevpas = isset($_POST['nuevpas']) ? trim($_POST['nuevpas']) : "";
+			$nuevpasEnc = sha1($nuevpas);
+			$passact = isset($_POST['passact']) ? trim($_POST['passact']) : "";
+			$passact = sha1($passact);
+			try {
+				$stmt = $dbConexion -> prepare("SELECT nombre_devop FROM devop WHERE id_devop = :keyDevop && pass_devop = :passact");
+				$stmt -> bindParam("keyDevop", $keyDevop, PDO::PARAM_INT);
+				$stmt -> bindParam("passact", $passact, PDO::PARAM_STR);
+				$stmt -> execute(); 
+				$filStmt = $stmt -> rowCount();
+				if ($filStmt == 1) {
+					$stmt2 = $dbConexion -> prepare("UPDATE administradores SET contrasena = :nuevpasEnc, contdesc = :nuevpas WHERE id_admin = :clv_adm");
+					$stmt2 -> bindParam("nuevpasEnc", $nuevpasEnc, PDO::PARAM_STR);
+					$stmt2 -> bindParam("nuevpas", $nuevpas, PDO::PARAM_STR);
+					$stmt2 -> bindParam("clv_adm", $clv_adm, PDO::PARAM_INT);
+					$resUpd = $stmt2 -> execute();
+					if ($resUpd) {
+						echo 1;
+					} else {
+						echo 0;
+					}
+				} else {
+					echo 2;
+				}
+			} catch (PDOException $e) {
+				echo $e->getMessage();
+			} finally {
+				$dbConexion = null; $stmt = null;
+			}
+			break;
 	default:
 		$dbConexion = null;
 		break;

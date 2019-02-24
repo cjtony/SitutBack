@@ -380,5 +380,22 @@ class Developer {
 		}
 	}
 
+	public function obtDataAdm($param) {
+		try {
+			$param = base64_decode($param);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM administradores WHERE id_admin = :param");
+			$stmt -> bindParam("param", $param, PDO::PARAM_INT);
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null;
+		}
+	}
+
 
 }
