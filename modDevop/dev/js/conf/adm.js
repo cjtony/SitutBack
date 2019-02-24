@@ -18,12 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	btnMost.addEventListener('click', () => {
 		formAdm.classList.remove('d-none','fadeOut');
 		formAdm.classList.add('fadeIn');
+		btnMost.disabled = true;
 	});
 	
 	ocultForm = () => {
 		formAdm.className = 'mt-4 mb-4 animated fadeOut';
 		setTimeout(() => {
 			formAdm.classList.add('d-none');
+			btnMost.disabled = false;
 		}, 1000);
 	}
 

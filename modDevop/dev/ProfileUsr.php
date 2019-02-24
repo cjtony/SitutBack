@@ -95,7 +95,7 @@ $param2 = $cod[2];
               				</button>
               			</li>
               		</div>
-              		<form class="mt-4 mb-4 animated fadeOut d-none" id="formAdm">
+              		<form class="mt-4 mb-4 animated shadow rounded p-2 fadeOut d-none" id="formAdm">
               			<input type="hidden" value="<?php echo $dataAdm->id_admin; ?>" name="clv_adm">
               			<div class="text-right">
               				<i id="btnClos" style="cursor: pointer;" class="fas fa-times-circle text-danger fa-lg"></i>
