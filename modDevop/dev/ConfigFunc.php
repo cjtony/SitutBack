@@ -266,6 +266,22 @@ $param1 = $cod[1];
 		<script src="<?php echo SERVERURLDEV; ?>dev/js/datadoc.js"></script>
 
 	<?php
+		} else {
+	?>
+		<div class="row">
+			<div class="col-sm-12 mt-5">
+		      <div class="text-center">
+		        <div class="error mx-auto" data-text="404">404</div>
+		        <p class="lead text-gray-800 mb-5">Página no encontrada...</p>
+		        <p class="text-gray-500 mb-0">
+		          Al parecer hubo un problema al momento de buscar un dato erroneo...
+		        </p>
+		        <a href="<?php echo SERVERURLDEV; ?>Home/">&larr; Volver al inicio</a>
+		      </div>
+		    </div>
+
+		</div>
+	<?php
 		}
 	?>
 	
