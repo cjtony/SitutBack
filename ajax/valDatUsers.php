@@ -5,6 +5,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 require_once '../modelos/conect.php';
 $dbc = new Connect();
 $dbc = $dbc -> getDB();
+$fechAct = date("Y-m-d");
 
 if ($_GET["oper"] != "") {
 	switch ($_GET["oper"]) {
@@ -20,6 +21,11 @@ if ($_GET["oper"] != "") {
 				$stmt -> execute(); $filStmt = $stmt -> rowCount();
 				if ($filStmt === 1) {
 					$row = $stmt -> fetch(PDO::FETCH_OBJ);
+					$keyAdm = $row->id_admin;
+					$stmtSes = $dbc -> prepare("UPDATE administradores SET fecha_ult_ses_adm = :fechAct WHERE id_admin = :keyAdm");
+					$stmtSes -> bindParam("fechAct", $fechAct, PDO::PARAM_STR);
+					$stmtSes -> bindParam("keyAdm", $keyAdm, PDO::PARAM_INT);
+					$stmtSes -> execute();
 					if (isset($row)) {
 						$_SESSION['keyAdm'] = $row->id_admin;
 					}
@@ -30,7 +36,7 @@ if ($_GET["oper"] != "") {
 			} catch (PDOException $e) {
 				echo $e->getMessage();
 			} finally {
-				$stmt = null; $dbc = null;
+				$stmt = null; $stmtSes = null; $dbc = null;
 				unset($correoAdm); unset($passAdm); unset($passEncript);
 			}
 			break;
@@ -46,6 +52,11 @@ if ($_GET["oper"] != "") {
 				$stmt -> execute(); $filStmt = $stmt -> rowCount();
 				if ($filStmt === 1) {
 					$row = $stmt -> fetch(PDO::FETCH_OBJ);
+					$keyCor = $row->id_coordinador;
+					$stmtSes = $dbc -> prepare("UPDATE coordinadores SET fecha_ult_ses_cor = :fechAct WHERE id_coordinador = :keyCor");
+					$stmtSes -> bindParam("fechAct", $fechAct, PDO::PARAM_STR);
+					$stmtSes -> bindParam("keyCor", $keyCor, PDO::PARAM_INT);
+					$stmtSes -> execute();
 					if (isset($row)) {
 						$_SESSION['keyCor'] = $row->id_coordinador;
 					}
@@ -56,7 +67,7 @@ if ($_GET["oper"] != "") {
 			} catch (PDOException $e) {
 				echo $e->getMessage();
 			} finally {
-				$stmt = null; $dbc = null;
+				$stmt = null; $stmtSes = null; $dbc = null;
 				unset($correoCor); unset($passCor); unset($passEncript);
 			}
 			break;	
@@ -72,6 +83,11 @@ if ($_GET["oper"] != "") {
 				$stmt -> execute(); $filStmt = $stmt -> rowCount();
 				if ($filStmt === 1) {
 					$row = $stmt -> fetch(PDO::FETCH_OBJ);
+					$keyDir = $row->id_director;
+					$stmtSes = $dbc -> prepare("UPDATE directores SET fecha_ult_ses_dir = :fechAct WHERE id_director = :keyDir");
+					$stmtSes -> bindParam("fechAct", $fechAct, PDO::PARAM_STR);
+					$stmtSes -> bindParam("keyDir", $keyDir, PDO::PARAM_INT);
+					$stmtSes -> execute();
 					if (isset($row)) {
 						$_SESSION['keyDir'] = $row->id_director;
 					}
@@ -82,7 +98,7 @@ if ($_GET["oper"] != "") {
 			} catch (PDOException $e) {
 				echo $e->getMessage();
 			} finally {
-				$stmt = null; $dbc = null;
+				$stmt = null; $stmtSes = null; $dbc = null;
 				unset($correoDir); unset($passDir); unset($passDirEnc);
 			}
 			break;	
@@ -98,6 +114,11 @@ if ($_GET["oper"] != "") {
 				$stmt -> execute(); $filStmt = $stmt -> rowCount();
 				if ($filStmt === 1) {
 					$row = $stmt -> fetch(PDO::FETCH_OBJ);
+					$keyDoc = $row->id_docente;
+					$stmtSes = $dbc -> prepare("UPDATE docentes SET fecha_ult_ses_doc = :fechAct WHERE id_docente = :keyDoc");
+					$stmtSes -> bindParam("fechAct", $fechAct, PDO::PARAM_STR);
+					$stmtSes -> bindParam("keyDoc", $keyDoc, PDO::PARAM_INT);
+					$stmtSes -> execute();
 					if (isset($row)) {
 						$_SESSION['keyDoc'] = $row->id_docente;
 					}
@@ -108,7 +129,7 @@ if ($_GET["oper"] != "") {
 			} catch (PDOException $e) {
 				echo $e->getMessage();
 			} finally {
-				$dbc = null; $stmt = null;
+				$dbc = null; $stmtSes = null; $stmt = null;
 				unset($correoDoc); unset($passDoc); unset($passDocEnc);
 			}
 			break;
@@ -116,11 +137,11 @@ if ($_GET["oper"] != "") {
 			try {
 				$usDevop = isset($_POST['usDevop']) ? trim($_POST['usDevop']) : "";
 				$codDevop = isset($_POST['codDevop']) ? trim($_POST['codDevop']) : "";
-				//$codEnc = sha1($codDevop); 
+				$codEnc = sha1($codDevop); 
 				$valid = 1;
-				$stmt = $dbc -> prepare("SELECT * FROM devop WHERE user_devop = :usDevop && pass_devop = :codDevop && estado_devop = :valid");
+				$stmt = $dbc -> prepare("SELECT * FROM devop WHERE user_devop = :usDevop && pass_devop = :codEnc && estado_devop = :valid");
 				$stmt -> bindParam("usDevop", $usDevop, PDO::PARAM_STR);
-				$stmt -> bindParam("codDevop", $codDevop, PDO::PARAM_STR);
+				$stmt -> bindParam("codEnc", $codEnc, PDO::PARAM_STR);
 				$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
 				$stmt -> execute(); $filStmt = $stmt -> rowCount();
 				if ($filStmt === 1) {

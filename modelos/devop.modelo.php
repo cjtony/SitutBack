@@ -397,5 +397,56 @@ class Developer {
 		}
 	}
 
+	public function obtDataCor($param) {
+		try {
+			$param = base64_decode($param);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM coordinadores WHERE id_coordinador = :param");
+			$stmt -> bindParam("param", $param, PDO::PARAM_INT);
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null;
+		}
+	}
+
+	public function obtDataDir($param) {
+		try {
+			$param = base64_decode($param);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM directores dir INNER JOIN carreras car ON car.id_carrera = dir.id_carrera WHERE dir.id_director = :param");
+			$stmt -> bindParam("param", $param, PDO::PARAM_INT);
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null;
+		}
+	}
+
+	public function obtDataDoc($param) {
+		try {
+			$param = base64_decode($param);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM docentes WHERE id_docente = :param");
+			$stmt -> bindParam("param", $param, PDO::PARAM_INT);
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null;
+		}
+	}
+
 
 }

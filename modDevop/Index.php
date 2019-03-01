@@ -169,7 +169,7 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
                 <?php 
                   while ($datCor = $dataCor -> fetch(PDO::FETCH_OBJ)) {
                 ?>
-                  <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datCor->id_coordinador); ?>/adm/">
+                  <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datCor->id_coordinador); ?>/cor/">
                     <?php echo $datCor -> nombre_c_cor; ?>
                   </a>
                   <div class="collapse-divider"></div>
@@ -198,7 +198,7 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
               <?php 
                 while ($datDir = $dataDir -> fetch(PDO::FETCH_OBJ)) {
               ?>
-                <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($dataDoc->id_docente); ?>/dir/">
+                <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datDir->id_director); ?>/dir/">
                   <?php echo $datDir -> nombre_c_dir; ?>
                 </a>
                 <div class="collapse-divider"></div>
