@@ -448,5 +448,61 @@ class Developer {
 		}
 	}
 
+	public function detCareer() {
+		try {
+			$valid = 1;
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM carreras car INNER JOIN directores dir ON dir.id_carrera = car.id_carrera WHERE dir.estado_dir = :valid");
+			$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+			$stmt -> execute();
+			return $stmt;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; 
+		}
+	}
+
+	public function detailsStd($param) {
+		try {
+			$param = base64_decode($param);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM alumnos al INNER JOIN det_grupo dt ON dt.id_detgrupo = al.id_detgrupo INNER JOIN grupos gr ON gr.id_grupo = dt.id_grupo INNER JOIN carreras car ON car.id_carrera = dt.id_carrera WHERE al.id_alumno = :param");
+			$stmt -> bindParam("param", $param, PDO::PARAM_INT);
+			$stmt -> execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null; 
+		}	
+	}
+
+	public function detailTest($param) {
+		try {
+			$param = base64_decode($param);
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc -> prepare("SELECT * FROM evaluacion_test ev 
+				INNER JOIN enctes_alm enc ON enc.id_enctestalm = ev.id_enctestalm
+				INNER JOIN alumnos alm ON alm.id_alumno = enc.id_alumno
+				INNER JOIN datpersonales_alm da ON da.id_alumno = alm.id_alumno 
+				INNER JOIN det_grupo det ON det.id_detgrupo = alm.id_detgrupo
+				INNER JOIN docentes doc ON doc.id_docente = det.id_docente
+				INNER JOIN carreras car ON car.id_carrera = det.id_carrera
+				INNER JOIN grupos grp ON grp.id_grupo = det.id_grupo
+				WHERE alm.id_alumno = :param");
+			$stmt -> bindParam("param", $param, PDO::PARAM_INT);
+			$stmt -> execute();
+			return $stmt;
+		} catch (PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		} finally {
+			$dbc = null; $stmt = null; $data = null; 
+		}	
+	}
 
 }

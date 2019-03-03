@@ -137,7 +137,8 @@ $datRep = $devop -> dataRepSel($cod[2]);
 		                  			<b>*</b>
 		                  		</h5>
 	                  		</div>
-		                  	<form class="row mt-4 p-2 mb-4">
+		                  	<form class="row mt-4 p-2 mb-4" id="forRep">
+		                  		<input type="hidden" name="clvRep" value="<?php echo $dr->id_report; ?>">
 		                  		<div class="col-sm-6 mb-3">
 		                  			<div class="form-group">
 		                  				<label for="notaAg">Agregar:</label>
@@ -148,21 +149,31 @@ $datRep = $devop -> dataRepSel($cod[2]);
 		                  			<div class="form-group">
 		                  				<label for="selectEst">Estado:</label>
 		                  				<select class="form-control" name="selectEst" id="selectEst">
-		                  					<option value="SV" disabled="" selected="">Selecciona</option>
-		                  					<option value="0">Resuelto</option>
+		                  					<option value="0" selected="">Resuelto</option>
 		                  				</select>
 		                  			</div>
 		                  			<div class="form-group">
 		                  				<label for="confirmPs" class="font-weight-bold text-primary">Introduce tu contraseña para confirmar:</label>
 		                  				<input type="password" name="confirmPs" id="confirmPs" class="form-control">
 		                  			</div>
+		                  			<div class="text-center mt-4 border-left-danger animated d-none" id="divErr">
+		                  				<span class="font-weight-bold">
+		                  					Todos los campos son requeridos...
+		                  				</span>
+		                  			</div>
+		                  			<div class="text-center mt-4 border-left-success animated d-none" id="divGod">
+		                  				<span class="font-weight-bold">
+		                  					Correcto!, actualizando...
+		                  				</span>
+		                  			</div>
 		                  			<div class="text-center mt-4">
-			                  			<button class="btn btn-sm btn-primary">
+			                  			<button class="btn btn-sm btn-primary" id="btnReg">
 			                  				<i class="fas fa-check mr-2"></i> Registrar
 			                  			</button>
 			                  		</div>
 		                  		</div>
 		                  	</form>
+		                  	<script src="<?php echo SERVERURLDEV; ?>dev/js/conf/modifrep.js"></script>
 	                  	<?php
 	                  		} else {
 	                  			$drRes = $devop -> dataResultRep(base64_encode($dr->id_report));

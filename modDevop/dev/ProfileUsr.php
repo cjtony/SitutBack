@@ -20,7 +20,7 @@ $param2 = $cod[2];
 				<b><?php echo $dataAdm->nombre_c; ?></b>.
 		    </h1>
 		    <a href="<?php echo SERVERURLDEV; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-		      <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+		      <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Inicio 
 		    </a>
 		</div>
 
@@ -151,7 +151,7 @@ $param2 = $cod[2];
         <b><?php echo $dataCor->nombre_c_cor; ?></b>.
       </h1>
       <a href="<?php echo SERVERURLDEV; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+        <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Inicio 
       </a>
     </div>
 
@@ -255,7 +255,7 @@ $param2 = $cod[2];
         <b><?php echo $dataDir->nombre_c_dir; ?></b>.
       </h1>
       <a href="<?php echo SERVERURLDEV; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+        <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Inicio 
       </a>
     </div>
     
@@ -360,7 +360,7 @@ $param2 = $cod[2];
         <b><?php echo $dataDoc->nombre_c_doc; ?></b>.
       </h1>
       <a href="<?php echo SERVERURLDEV; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+        <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Inicio 
       </a>
     </div>
     

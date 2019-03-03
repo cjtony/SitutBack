@@ -26,147 +26,163 @@
 	<div class="row">
 		
 		<div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Rep resueltos.</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    <?php echo $cantRepRes->Cantidad; ?> registros.
-                  </div>
+      <a href="<?php echo SERVERURLDEV; ?>EstateRep/res/">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Rep resueltos.</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  <?php echo $cantRepRes->Cantidad; ?> registros.
                 </div>
-                <div class="col-auto">
-                  <i class="fas fa-check-circle fa-2x text-gray-300"></i>
-                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-check-circle fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>
         </div>
+      </a>
+    </div>
 
         <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Rep proceso.</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    <?php echo $cantRepPro->Cantidad; ?> registros.
+          <a href="<?php echo SERVERURLDEV; ?>EstateRep/not/">
+            <div class="card border-left-warning shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Rep proceso.</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <?php echo $cantRepPro->Cantidad; ?> registros.
+                    </div>
                   </div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-spinner fa-2x text-gray-300"></i>
+                  <div class="col-auto">
+                    <i class="fas fa-spinner fa-2x text-gray-300"></i>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
 
         <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Administradores</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    <?php echo $cantAdmn->Cantidad; ?> registros.
+          <a href="<?php echo SERVERURLDEV; ?>ConfigFunc/adm/">
+            <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Administradores</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <?php echo $cantAdmn->Cantidad; ?> registros.
+                    </div>
                   </div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-user-shield fa-2x text-gray-300"></i>
+                  <div class="col-auto">
+                    <i class="fas fa-user-shield fa-2x text-gray-300"></i>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
 
 		<div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Carreras</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    <?php echo $cantCarr->Cantidad; ?> registros.
+          <a href="<?php echo SERVERURLDEV; ?>DetCareer/">
+            <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Carreras</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <?php echo $cantCarr->Cantidad; ?> registros.
+                    </div>
                   </div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-university fa-2x text-gray-300"></i>
+                  <div class="col-auto">
+                    <i class="fas fa-university fa-2x text-gray-300"></i>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
 
         <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Coordinadores</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    <?php echo $cantCord->Cantidad; ?> registros.
+          <a href="<?php echo SERVERURLDEV; ?>ConfigFunc/cor/">
+            <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Coordinadores</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <?php echo $cantCord->Cantidad; ?> registros.
+                    </div>
                   </div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-user fa-2x text-gray-300"></i>
+                  <div class="col-auto">
+                    <i class="fas fa-user fa-2x text-gray-300"></i>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
 
         <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Directores</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    <?php echo $cantDire->Cantidad; ?> registros.
+          <a href="<?php echo SERVERURL ?>ConfigFunc/dir/">
+            <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Directores</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <?php echo $cantDire->Cantidad; ?> registros.
+                    </div>
                   </div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-user-tie fa-2x text-gray-300"></i>
+                  <div class="col-auto">
+                    <i class="fas fa-user-tie fa-2x text-gray-300"></i>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
 
         <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Docentes</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    <?php echo $cantDoct->Cantidad; ?> registros.
+          <a href="<?php echo SERVERURLDEV; ?>ConfigFunc/doc/">
+            <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Docentes</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <?php echo $cantDoct->Cantidad; ?> registros.
+                    </div>
                   </div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
+                  <div class="col-auto">
+                    <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
 
         <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Alumnos</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    <?php echo $cantAlmn->Cantidad; ?> registros.
+          <a href="<?php echo SERVERURLDEV; ?>Students/">
+            <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Alumnos</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <?php echo $cantAlmn->Cantidad; ?> registros.
+                    </div>
                   </div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-users fa-2x text-gray-300"></i>
+                  <div class="col-auto">
+                    <i class="fas fa-users fa-2x text-gray-300"></i>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
 
         <div class="col-sm-6">
