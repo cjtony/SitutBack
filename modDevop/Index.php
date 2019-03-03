@@ -96,9 +96,7 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confContCor" href="#">Contraseña</a>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confDatCor" href="#">Datos</a>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confFotPerf" href="#">Foto</a>
+            <a class="collapse-item" href="<?php echo SERVERURLDEV; ?>ConfCont/">Contraseña</a>
           </div>
         </div>
       </li>
