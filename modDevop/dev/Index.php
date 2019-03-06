@@ -27,7 +27,7 @@
 		
 		<div class="col-xl-3 col-md-6 mb-4">
       <a href="<?php echo SERVERURLDEV; ?>EstateRep/res/">
-        <div class="card border-left-success shadow h-100 py-2">
+        <div class="card border-left-success shadow h-100 py-2 hovAnim">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
@@ -47,7 +47,7 @@
 
         <div class="col-xl-3 col-md-6 mb-4">
           <a href="<?php echo SERVERURLDEV; ?>EstateRep/not/">
-            <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card border-left-warning shadow h-100 py-2 hovAnim">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
@@ -67,7 +67,7 @@
 
         <div class="col-xl-3 col-md-6 mb-4">
           <a href="<?php echo SERVERURLDEV; ?>ConfigFunc/adm/">
-            <div class="card border-left-info shadow h-100 py-2">
+            <div class="card border-left-info shadow h-100 py-2 hovAnim">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
@@ -87,7 +87,7 @@
 
 		<div class="col-xl-3 col-md-6 mb-4">
           <a href="<?php echo SERVERURLDEV; ?>DetCareer/">
-            <div class="card border-left-info shadow h-100 py-2">
+            <div class="card border-left-info shadow h-100 py-2 hovAnim">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
@@ -107,7 +107,7 @@
 
         <div class="col-xl-3 col-md-6 mb-4">
           <a href="<?php echo SERVERURLDEV; ?>ConfigFunc/cor/">
-            <div class="card border-left-info shadow h-100 py-2">
+            <div class="card border-left-info shadow h-100 py-2 hovAnim">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
@@ -127,7 +127,7 @@
 
         <div class="col-xl-3 col-md-6 mb-4">
           <a href="<?php echo SERVERURL ?>ConfigFunc/dir/">
-            <div class="card border-left-info shadow h-100 py-2">
+            <div class="card border-left-info shadow h-100 py-2 hovAnim">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
@@ -147,7 +147,7 @@
 
         <div class="col-xl-3 col-md-6 mb-4">
           <a href="<?php echo SERVERURLDEV; ?>ConfigFunc/doc/">
-            <div class="card border-left-info shadow h-100 py-2">
+            <div class="card border-left-info shadow h-100 py-2 hovAnim">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
@@ -167,7 +167,7 @@
 
         <div class="col-xl-3 col-md-6 mb-4">
           <a href="<?php echo SERVERURLDEV; ?>Students/">
-            <div class="card border-left-info shadow h-100 py-2">
+            <div class="card border-left-info shadow h-100 py-2 hovAnim">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">

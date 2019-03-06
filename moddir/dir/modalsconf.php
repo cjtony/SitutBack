@@ -6,7 +6,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-key fa-lg icoIni"></i> Configurar Contraseña</h5>
+        <h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-key fa-lg icoIni mr-2"></i> Configurar Contraseña</h5>
         <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -33,11 +33,11 @@
           <div class="col-sm-1"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnCloseConfContDir" class="btn btn-md btn-outline-danger" data-dismiss="modal">
+        <button type="button" id="btnCloseConfContDir" class="btn btn-sm btn-outline-danger" data-dismiss="modal">
           <i class="fas fa-times-circle mr-2"></i>  
           Cerrar
         </button>
-        <button type="submit" class="btn btn-outline-primary" id="btnGConfContDir">
+        <button type="submit" class="btn btn-outline-primary btn-sm" id="btnGConfContDir">
           <i class="fas fa-check-circle mr-2"></i>
           Guardar cambios
         </button>
@@ -57,7 +57,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-user-cog fa-lg icoIni"></i> Configurar Datos</h5>
+         <h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-user-cog fa-lg icoIni mr-2"></i> Configurar Datos</h5>
         <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -90,11 +90,11 @@
           <div class="col-sm-1"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">
+        <button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">
           <i class="fas fa-times-circle mr-2"></i>
           Cerrar
         </button>
-        <button type="submit" class="btn btn-outline-primary" id="btnGConfDat">
+        <button type="submit" class="btn btn-sm btn-outline-primary" id="btnGConfDat">
           <i class="fas fa-check-circle mr-2"></i>
           Guardar cambios</button>
         </form>
@@ -113,7 +113,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-image fa-lg icoIni"></i> Foto de perfil</h5>
+        <h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-image fa-lg icoIni mr-2"></i> Foto de perfil</h5>
         <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -130,10 +130,10 @@
           <div class="col-sm-1"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnCloseConfFotPerf" class="btn btn-outline-danger" data-dismiss="modal">
+        <button type="button" id="btnCloseConfFotPerf" class="btn btn-sm btn-outline-danger" data-dismiss="modal">
           <i class="fas fa-times-circle mr-2"></i>
           Cerrar</button>
-        <button type="submit" class="btn btn-outline-primary" id="btnFotPerf">
+        <button type="submit" class="btn btn-sm btn-outline-primary" id="btnFotPerf">
           <i class="fas fa-check-circle mr-2"></i>
           Guardar cambios</button>
         </form>

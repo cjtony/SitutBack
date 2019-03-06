@@ -1,25 +1,24 @@
 function init(){
-	setInterval(function(){
-		cantAlmCar();
-		cantGrpCar();
-	},20000);
+	cantAlmCar();
+	cantGrpCar();
 }
 
-function cantAlmCar() {
+cantAlmCar = () => {
 	$.ajax({
     	url:'../../ajax/dir/notifInd.php?oper=cantAlmCar',
 		type : "POST",
 		success:function (data) {
-			$('#cantAlmCar').text(data);
+			$('#cantAlmCar').text(data + " registros.");
 		}
     });
 }
-function cantGrpCar() {
+
+cantGrpCar = () => {
 	$.ajax({
     	url:'../../ajax/dir/notifInd.php?oper=cantGrpCar',
 		type : "POST",
 		success:function (data) {
-			$('#cantGrpCar').text(data);
+			$('#cantGrpCar').text(data + " registros.");
 		}
     });
 }
