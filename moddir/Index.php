@@ -10,6 +10,15 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
   $director = new Director();
   $keyDir = $_SESSION['keyDir'];
   $datDirec = $director->userDirDet($keyDir);
+  function formatFech($fechForm) {
+    $fechDat = substr($fechForm, 0,4);
+    $fechM = substr($fechForm, 5,2);
+    $fechD = substr($fechForm, 8,2);
+    $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+    $Fecha = date($fechD)." de ".$meses[date($fechM)-1]. " del ".date($fechDat);
+    return $Fecha;
+  }
   if ($datDirec) {
     $datCantDir = $director->cantDir();
     $car_Dir = $datDirec->id_carrera;

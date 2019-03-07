@@ -23,188 +23,150 @@
 		}
 	</style>
 
-	<div class="container animated fadeInDown">
-		<div class="row">
-			<div class="col-sm-12">
-				<a class="btn bg-white text-primary cardShadow mr-3 btn-md" href="<?php echo SERVERURLDIR; ?>DetGrp/<?php echo $valGrp; ?>/">
-					<i class="fas fa-arrow-left icoIni"></i>
-					Regresar
-				</a>
-			</div>
-		</div>
+<div class="container-fluid mt-4 animated fadeIn delay-1s">
+	
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<h1 class="h3 mb-0 text-gray-800">
+		    <i class="fas fa-user mr-2 text-primary"></i>
+			<b><?php echo "Dirección de: ".$datDirec->nombre_car; ?>.
+		</h1>
+		<a href="<?php echo SERVERURLDIR; ?>DetGrp/<?php echo $valGrp; ?>/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		   	<i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+		</a>
 	</div>
 
-	<div class="container-fluid mt-4">
-		<div class="row">
-			<div class="col-md-4 col-lg-3 animated fadeInLeft delay-1s">
-				<!-- SobreMi -->
-                <div class="container py-5">
-                    <div class="card shDC">
-                        <img class="card-img-top" src="<?php echo SERVERURL; ?>vistas/img/iceland.jpg" alt="Card image cap">
+	<div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">
+          	Perfil del alumno
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="row">
+          	<div class="col-sm-6 mb-4 shadow p-3 rounded">
+          		<h5 class="text-left text-capitalize text-primary">
+					<i class="fas fa-user-graduate mr-2"></i>
+					<b><?php echo $datAlm -> nombre_c_al; ?>.</b>
+				</h5>
+				<h5 class="text-left text-capitalize text-primary mt-4">
+					<i class="fas fa-calendar-check mr-2"></i>
+					Registro : <b><?php echo formatFech($datAlm->fecha_reg); ?>.</b>
+				</h5>
+				<h5 class="text-left text-capitalize text-primary mt-4">
+					<i class="fas fa-calendar mr-2"></i>
+					Ultima sesion : <b><?php echo formatFech($datAlm->fecha_ult_ses_alm); ?>.</b>
+				</h5>
+				<h5 class="text-left text-primary mt-4">
+					<i class="fas fa-id-badge mr-2"></i>
+					Cuenta :
+					<?php
+						if ($datAlm -> estado_al != 1) {
+					?>
+						<span class="badge badge-danger">
+							<i class="fas fa-times-circle mr-2"></i>
+							Inactiva
+						</span>
+					<?php	
+						} else {
+					?>
+						<span class="badge badge-primary">
+							<i class="fas fa-check-circle mr-2"></i>
+							Activa
+						</span>
+					<?php
+						}
+					?>
+				</h5>
+				<h5 class="text-left text-primary mt-4">
+					<i class="fas fa-user-friends mr-2"></i>
+					En el grupo:
+					<?php 
+						if ($datAlm -> acept_grp == 1) {
+					?>
+						<span class="badge badge-primary">
+							<i class="fas fa-check-circle mr-2"></i>
+							Aceptado
+						</span>	
+					<?php
+						} else {
+					?>
+						<span class="badge badge-warning">
+							<i class="fas fa-times-circle mr-2"></i>
+							Sin aceptar
+						</span>
+					<?php
+						}
+					?>
+				</h5>
+				
+          	</div>
+          	<div class="col-sm-6 mb-4 text-center rounded">
+          		<?php
+					if ($datAlm -> foto_perf_alm == "" && $datAlm -> sexo_al == "Masculino") {
+						echo "<img src='".SERVERURL."vistas/img/usermal.png' class='img-fluid' width='200'>";
+					} else if ($datAlm -> foto_perf_alm != "" && $datAlm -> sexo_al == "Masculino") {
+				?>
+					<img src="<?php echo SERVERURLFRONT;?>modAlm/Arch/perfil/<?php echo $datAlm->foto_perf_alm ?>" class="img-fluid rounded" width="200">
+				<?php
+					} else if ($datAlm -> foto_perf_alm == "" && $datAlm -> sexo_al == "Femenino") {
+						echo "<img src='".SERVERURL."vistas/img/userfem.png' class='img-fluid' width='200'>";
+					} else if ($datAlm -> foto_perf_alm != "" && $datAlm -> sexo_al == "Femenino") {
+				?>
+					<img src="<?php echo SERVERURLFRONT;?>modAlm/Arch/perfil/<?php echo $datAlm->foto_perf_alm ?>" class="img-fluid rounded" width="200">
+				<?php
+					} else {
+						echo "<img src='".SERVERURL."vistas/img/icous.png' class='img-fluid' width='200'>";
+					}
+				?>
+				<h5 class="text-center text-info mb-2 mt-4">
+					<?php 
+						if ($datAlm -> estado_al != 1) {
+					?>
+						<div class="">
+							<button onclick="activarAlm(<?php echo $datAlm->id_alumno; ?>)" class="btn btn-outline-primary ml-3 btn-sm" type="button">
+								<i class="fas fa-check mr-2"></i>
+								Activar Cuenta
+							</button>
+						</div>
+					<?php
+						} else {
+					?>
+						<div class="">
+							<button onclick="desactivarAlm(<?php echo $datAlm->id_alumno; ?>)" class="btn btn-outline-danger ml-3 btn-sm" type="button">
+								<i class="fas fa-times mr-2"></i>
+								Desactivar Cuenta
+							</button>
+						</div>
+					<?php
+						}
+					?>
+				</h5>
+          	</div>
 
-                        <div class="text-center margen-avatar">
-                        	<?php
-								if ($datDirec -> foto_perf_dir != "") {
-							?>
-								<img src="<?php echo SERVERURLDIR; ?>perfilFot/<?php echo $datDirec->foto_perf_dir; ?>" class='rounded-circle' width='100px'>
-							<?php
-								} else {
-							?>
-								<img src='<?php echo SERVERURL; ?>vistas/img/usermal.png' class='rounded-circle' width='100px'>
-							<?php
-								}
-							?>
-                        </div>
-                        <div class="card-body text-center">
-                        <h6 class="card-title font-weight-bold">
-                        	<?php echo $datDirec -> nombre_c_dir; ?>
-                        </h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-envelope fa-lg icoIni"></i>
-							<?php echo $datDirec -> correo_dir; ?>
-						</h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-phone fa-lg icoIni"></i>
-							<?php echo $datDirec -> telefono_dir; ?>
-						</h6>
-						<hr class="bg-info mt-4" style="height: 2px;">
-						<h6 class="text-center text-info">
-							<b>Director</b>
-						</h6>
-                        </div>
-                    </div>
-                </div><!-- SobreMi -->
-                <div class="container">
-                    <!-- Comentarios -->
-                    <div class="card">
-                        <div class="card-header text-center">
-                            Frase Celebre
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                            <p class="font-italic text-info">
-                            	<b>"</b> Todo el mundo tiene talento, solo es cuestión de moverse hasta descubrirlo. <b>"</b>
-                            </p>
-                            <footer class="blockquote-footer"><cite title="Source Title">George Lucas</cite></footer>
-                            </blockquote>
-                        </div>
-                    </div><!-- Comentarios -->
-                </div>
-			</div>
-			<div class="col-md-8 col-lg-9">
-				<div class="text-center bg-primary p-1 animated fadeIn" style="border-radius: 8px;">
-					<h4 class="text-center text-white mt-3"> 
-						<?php echo "Dirección de: ".$datDirec->nombre_car; ?>
-					</h4>
-				</div>
-				<div class="row mt-4 animated fadeInRight delay-1s">
-					<div class="col-sm-6 text-center">
-						<h5 class="text-left text-capitalize text-info">
-							<br>
-							<i class="fas fa-user-graduate mr-2"></i>
-							Alumno: <b><?php echo $datAlm -> nombre_c_al; ?></b>
-						</h5>
-						<h5 class="text-left text-info mt-3">
-							<i class="fas fa-id-badge mr-2"></i>
-							Cuenta :
-							<?php
-								if ($datAlm -> estado_al != 1) {
-							?>
-								<span class="badge badge-danger">
-									Inactiva
-								</span>
-							<?php	
-								} else {
-							?>
-								<span class="badge badge-primary">
-									Activa
-								</span>
-							<?php
-								}
-							?>
-						</h5>
-						<h5 class="text-left text-info mt-3">
-							<i class="fas fa-user-friends mr-2"></i>
-							En el grupo:
-							<?php 
-								if ($datAlm -> acept_grp == 1) {
-							?>
-								<span class="badge badge-primary">
-									Aceptado
-								</span>	
-							<?php
-								} else {
-							?>
-								<span class="badge badge-warning">
-									Sin aceptar
-								</span>
-							<?php
-								}
-							?>
-						</h5>
-						<h5 class="text-center text-info">
-							<?php 
-								if ($datAlm -> estado_al != 1) {
-							?>
-								<button onclick="activarAlm(<?php echo $datAlm->id_alumno; ?>)" class="btn btn-outline-primary mt-3 btn-sm" type="button">
-									<i class="fas fa-check icoIni"></i>
-									Activar Cuenta
-								</button>
-							<?php
-								} else {
-							?>
-								<button onclick="desactivarAlm(<?php echo $datAlm->id_alumno; ?>)" class="btn btn-outline-danger mt-3 btn-sm" type="button">
-									<i class="fas fa-times icoIni"></i>
-									Desactivar Cuenta
-								</button>
-							<?php
-								}
-							?>
-						</h5>
-						<hr style="height: 2px;" class="bg-info rounded">
-					</div>
-					<div class="col-sm-6 text-center">
-						<?php
-							if ($datAlm -> foto_perf_alm == "" && $datAlm -> sexo_al == "Masculino") {
-								echo "<img src='".SERVERURL."vistas/img/usermal.png' class='img-fluid' width='200'>";
-							} else if ($datAlm -> foto_perf_alm != "" && $datAlm -> sexo_al == "Masculino") {
-						?>
-							<img src="<?php echo SERVERURLFRONT;?>modAlm/Arch/perfil/<?php echo $datAlm->foto_perf_alm ?>" class="img-fluid img-thumbnail rounded" width="200">
-						<?php
-							} else if ($datAlm -> foto_perf_alm == "" && $datAlm -> sexo_al == "Femenino") {
-								echo "<img src='".SERVERURL."vistas/img/userfem.png' class='img-fluid' width='200'>";
-							} else if ($datAlm -> foto_perf_alm != "" && $datAlm -> sexo_al == "Femenino") {
-						?>
-							<img src="<?php echo SERVERURLFRONT;?>modAlm/Arch/perfil/<?php echo $datAlm->foto_perf_alm ?>" class="img-fluid img-thumbnail rounded" width="200">
-						<?php
-							} else {
-								echo "<img src='".SERVERURL."vistas/img/icous.png' class='img-fluid' width='200'>";
-							}
-						?>
-					</div>
-				</div>
+		
+			<div class="col-sm-12 mb-4">
 				<div class="row mt-5 animated fadeInDown delay-1s">
 					<div class="col-sm-3 text-center">
 						<button id="btnDatGrp" class="btn bg-white text-primary cardShadow btn-md" onclick="mostDatGrp(true),mostJustif(false), mostDatPer(false), mostDatHist(false)">
-							<i class="fas fa-users fa-lg icoIni"></i>
+							<i class="fas fa-users fa-lg icoIni mr-2"></i>
 							Grupo <?php echo $datAlm->grupo_n; ?>
 						</button>
 					</div>
 					<div class="col-sm-3 text-center">
 						<button id="btnJustif" class="btn bg-white text-primary cardShadow btn-md" onclick="mostJustif(true), mostDatPer(false), mostDatGrp(false), mostDatHist(false)">
-							<i class="fas fa-file-alt fa-lg icoIni"></i>
+							<i class="fas fa-file-alt fa-lg icoIni mr-2"></i>
 							Justificantes
 						</button>
 					</div>
 					<div class="col-sm-3 text-center">
 						<button id="btnDatPer" class="btn bg-white text-primary cardShadow btn-md" onclick="mostDatPer(true), mostJustif(false), mostDatGrp(false), mostDatHist(false)">
-							<i class="fas fa-book fa-lg icoIni"></i>
+							<i class="fas fa-book fa-lg icoIni mr-2"></i>
 							Datos personales
 						</button>
 					</div>
 					<div class="col-sm-3 text-center">
 						<button id="btnDatHist" class="btn bg-white text-primary cardShadow btn-md" onclick="mostDatPer(false), mostJustif(false), mostDatGrp(false), mostDatHist(true)">
-							<i class="fas fa-book-open fa-lg icoIni"></i>
+							<i class="fas fa-book-open fa-lg icoIni mr-2"></i>
 							Historial
 						</button>
 					</div>
@@ -212,32 +174,32 @@
 				<div class="row mt-5 ocult animated fadeIn" id="mostDatGrp">
 					<div class="col-sm-2"></div>
 					<div class="col-sm-8">
-							<div class="card pad10 cardShadow rounded">
+							<div class="card pad10 shadow rounded">
 								<div class=" card-body">
 									<div class="card-title mb-4 text-center">
 										<?php
 											if ($datAlm->foto_perf_doc != "") {
 										?>
-											<img src="../moddoc/perfilFot/<?php echo $datAlm->foto_perf_doc; ?>" width="150" class="img-fluid img-thumbnail rounded" alt="">
+											<img src="../moddoc/perfilFot/<?php echo $datAlm->foto_perf_doc; ?>" width="200" class="img-fluid img-thumbnail rounded" alt="">
 										<?php		
 											} else {
 										?>
 											<h5 class="text-center">
-												<i class="fas text-info fa-user fa-2x text-center"></i>
+												<i class="fas text-primary fa-user fa-2x text-center"></i>
 											</h5>
 										<?php
 											}
 										?>
 										<br>
 										<h4 class="text-center">
-											<i class="fas fa-chalkboard-teacher fa-lg icoIni text-info"></i>
+											<i class="fas fa-chalkboard-teacher mr-2 text-primary"></i>
 											Tutor : <?php echo $datAlm -> nombre_c_doc; ?>
 										</h4>
 									</div>
 									<div class="dropdown-divider"></div>
 									<div class="card-text mt-4">
 										<h5 class="text-center">
-											<i class="fas fa-users fa-lg icoIni text-info"></i>
+											<i class="fas fa-users mr-2 text-primary"></i>
 											Alumnos del grupo : 
 											<span class="font-weight-normal badge badge-pill badge-primary">
 												<?php echo $almGrp->CantAlm; ?>
@@ -269,7 +231,7 @@
 								while ($res = $stmt -> fetch(PDO::FETCH_OBJ)) {
 						?>
 						<div class="col-sm-4">
-							<div class="card pad10 cardShadow rounded">
+							<div class="card pad10 shadow rounded border-left-primary">
 								<div class=" card-body">
 									<div class="card-title mb-4">
 										<h5 class="text-center">
@@ -277,10 +239,10 @@
 											<?php echo $res->Cuatrimestre; ?>
 										</h5>
 									</div>
-									<hr style="height: 2px;" class="bg-info rounded">
+									<hr style="height: 2px;" class="bg-primary rounded">
 									<div class="card-text mt-4">
 										<h5 class="text-center">
-											<i class="fas fa-file-alt fa-lg icoIni text-info"></i>
+											<i class="fas fa-file-alt mr-2 text-primary"></i>
 											Justificantes : 
 											<span class="font-weight-normal badge badge-pill badge-primary">
 												<?php echo $res->Solicitados; ?>	
@@ -294,12 +256,13 @@
 								}
 							} else {
 						?>
-						<div class="col-sm-12">
-							<h2 class="text-center text-info">
-								<i class="fas fa-file-excel fa-2x"></i>
-								<br><br>
-								Aún no se han generado registros...
-							</h2>
+							<div class="col-sm-12 text-center">
+								<img class="img-fluid px-3 px-sm-4 mb-4" style="width: 13rem;" src="<?php echo SERVERURL; ?>assets/img/notdata.svg" alt="info site">
+							<h3 class="text-center text-danger">
+								<b>
+									Aún no se han generado registros...
+								</b>
+							</h3>
 						</div>
 						<?php 
 							}
@@ -317,13 +280,14 @@
 							include 'archExt/datPerAlm.php';
 						} else {
 					?>
-					<div class="col-sm-12">
-						<h2 class="text-center text-info">
-							<i class="fas fa-file-excel fa-2x"></i>
-							<br><br>
-							Aún no se han generado registros...
-						</h2>
-					</div>
+						<div class="col-sm-12 text-center">
+							<img class="img-fluid px-3 px-sm-4 mb-4" style="width: 13rem;" src="<?php echo SERVERURL; ?>assets/img/notdata.svg" alt="info site">
+							<h3 class="text-center text-danger">
+								<b>
+									Aún no se han generado registros...
+								</b>
+							</h3>
+						</div>
 					<?php		
 						}
 					?>
@@ -348,17 +312,24 @@
 						 	while ($res = $stmt -> fetch(PDO::FETCH_OBJ)) {
 					?>
 							<div class="col-sm-4">
-								<div class="cardShadow p-4">
+								<div class="shadow rounded p-4">
 									<div class="card-title mt-3">
 										<h5 class="text-center">Cuatrimestre: <?php echo $res->cuatri_almhist; ?></h5>
 									</div>
 									<h6 class="mt-3 text-center">Tutor: <?php echo $res->tutor_almhist; ?></h6>
-									<div class="text-right mt-3 border-top border-info row">
+									<hr style="height: 2px;" class="bg-primary rounded">
+									<div class="text-center mt-3 row">
 										<div class="col-sm-6">
-											<h6 class="mt-3"><?php echo $res->grupo_almhist; ?></h6>
+											<h6 class="mt-3">
+												<i class="fas fa-users mr-2 text-primary"></i>
+												<?php echo $res->grupo_almhist; ?>.
+											</h6>
 										</div>
 										<div class="col-sm-6">
-											<h6 class="mt-3"><?php echo $res->periodcuat_almhist; ?></h6>
+											<h6 class="mt-3">
+												<i class="fas fa-calendar mr-2 text-primary"></i>
+												<?php echo $res->periodcuat_almhist; ?>.
+											</h6>
 										</div>
 									</div>
 								</div>
@@ -367,19 +338,26 @@
 						 	}
 						} else {
 					?>	
-						<div class="col-sm-12">
-							<h2 class="text-center text-info">
-								<i class="fas fa-file-excel fa-2x"></i>
-								<br><br>
-								Aún no se han generado registros...
-							</h2>
+						<div class="col-sm-12 text-center">
+							<img class="img-fluid px-3 px-sm-4 mb-4" style="width: 13rem;" src="<?php echo SERVERURL; ?>assets/img/notdata.svg" alt="info site">
+							<h3 class="text-center text-danger">
+								<b>
+									Aún no se han generado registros...
+								</b>
+							</h3>
 						</div>
 					<?php
 						}
 					?>
 				</div>
 			</div>
-		</div>
-	</div>
+			
+
+          </div>
+        </div>
+    </div>
+
+	
+</div>
 
     <script src="<?php echo SERVERURLDIR; ?>dir/js/almInact.js"></script>

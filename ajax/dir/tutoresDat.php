@@ -193,8 +193,8 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
 	            $data[]=array(
 	                "0"=>$reg->grupo_n,
 	                "1"=>$reg->nombre_c_doc,
-	                "2" => '<button data-toggle="modal" data-backdrop="false" data-target="#editGrp" class="btn btn-warning btn-sm text-white" onclick="mostrarGrp('.$reg->id_detgrupo.')"><i class="fas fa-edit"></i></button>'.
-	                    ' <button class="btn btn-danger btn-sm" onclick="desactivarGrp('.$reg->id_detgrupo.')"><i class="fa fa-times"></i></button> '.'<a class="btn btn-primary btn-sm" href="'.SERVERURLDIR.'DetGrp/'.base64_encode($reg->id_detgrupo).'/"><i class="fa fa-info icoIni"></i>Info</a>'
+	                "2" => '<button data-toggle="modal" data-backdrop="false" data-target="#editGrp" class="btn btn-outline-warning btn-sm" onclick="mostrarGrp('.$reg->id_detgrupo.')"><i class="fas fa-edit"></i></button>'.
+	                    ' <button class="btn btn-outline-danger btn-sm" onclick="desactivarGrp('.$reg->id_detgrupo.')"><i class="fa fa-times"></i></button> '.'<a class="btn btn-outline-primary btn-sm" href="'.SERVERURLDIR.'DetGrp/'.base64_encode($reg->id_detgrupo).'/"><i class="fa fa-info mr-2"></i>Info</a>'
 	                );
 	        	}
 	        	$results = array(
@@ -221,8 +221,8 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
 	            $data[]=array(
 	                "0"=>$reg->grupo_n,
 	                "1"=>$reg->nombre_c_doc,
-	                "2"=>'<button data-toggle="modal" data-backdrop="false" data-target="#editGrp" class="btn btn-warning btn-sm text-white" onclick="mostrarGrp('.$reg->id_detgrupo.')"><i class="fa fa-edit"></i></button>'.
-                    ' <button class="btn btn-sm btn-success" onclick="activarGrp('.$reg->id_detgrupo.')"><i class="fa fa-check"></i></button>'
+	                "2"=>'<button data-toggle="modal" data-backdrop="false" data-target="#editGrp" class="btn btn-outline-warning btn-sm" onclick="mostrarGrp('.$reg->id_detgrupo.')"><i class="fa fa-edit"></i></button>'.
+                    ' <button class="btn btn-sm btn-outline-primary" onclick="activarGrp('.$reg->id_detgrupo.')"><i class="fa fa-check"></i></button>'
 	                );
 	        	}
 	        	$results = array(

@@ -5,191 +5,144 @@
 
 ?>
 
-	<div class="container-fluid mt-4">
-		<div class="row">
-			<div class="col-md-4 col-lg-3 animated fadeInLeft delay-1s">
-				<!-- SobreMi -->
-                <div class="container py-5">
-                    <div class="card shDC">
-                        <img class="card-img-top" src="<?php echo SERVERURL; ?>vistas/img/iceland.jpg" alt="Card image cap">
-
-                        <div class="text-center margen-avatar">
-                        	<?php
-								if ($datDirec -> foto_perf_dir != "") {
-							?>
-								<img src="<?php echo SERVERURLDIR; ?>perfilFot/<?php echo $datDirec->foto_perf_dir; ?>" class='rounded-circle' width='100px'>
-							<?php
-								} else {
-							?>
-								<img src='<?php echo SERVERURL; ?>vistas/img/usermal.png' class='rounded-circle' width='100px'>
-							<?php
-								}
-							?>
-                        </div>
-                        <div class="card-body text-center">
-                        <h6 class="card-title font-weight-bold">
-                        	<?php echo $datDirec -> nombre_c_dir; ?>
-                        </h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-envelope fa-lg icoIni"></i>
-							<?php echo $datDirec -> correo_dir; ?>
-						</h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-phone fa-lg icoIni"></i>
-							<?php echo $datDirec -> telefono_dir; ?>
-						</h6>
-						<hr class="bg-info mt-4" style="height: 2px;">
-						<h6 class="text-center text-info">
-							<b>Director</b>
-						</h6>
-                        </div>
-                    </div>
-                </div><!-- SobreMi -->
-                <div class="container">
-                    <!-- Comentarios -->
-                    <div class="card">
-                        <div class="card-header text-center">
-                            Frase Celebre
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                            <p class="font-italic text-info">
-                            	<b>"</b> Todo el mundo tiene talento, solo es cuestión de moverse hasta descubrirlo. <b>"</b>
-                            </p>
-                            <footer class="blockquote-footer"><cite title="Source Title">George Lucas</cite></footer>
-                            </blockquote>
-                        </div>
-                    </div><!-- Comentarios -->
-                </div>
-			</div>
-			<div class="col-md-8 col-lg-9">
-				<div class="text-center bg-primary p-1 animated fadeIn" style="border-radius: 8px;">
-					<h4 class="text-center text-white mt-3"> 
-						<?php echo "Dirección de: ".$datDirec->nombre_car; ?>
-					</h4>
-				</div>
-				<h5 class="text-center mt-4 animated fadeInDown">
-					<i class="fas text-info fa-plus icoIni fa-lg"></i>
-					Registrar Grupo
-				</h5>
-				<form class="row animated fadeInUp delay-1s" method="POST" id="formRegGrp" name="formRegGrp">
-					<div class="col-sm-12 col-md-12 col-lg-3"></div>
-					<div class="col-sm-12 col-md-12 col-lg-6">
-						<hr style="height: 2px;" class="bg-info rounded">
-						<div class="form-group">
-							<input readonly="" type="hidden" class="form-control" value="<?php echo $datDirec->id_carrera; ?>" name="id_carrera">
-						</div>
-						<div class="form-group">
-							<label for="grpDet">Grupo:</label>
-							<select name="grpDet" id="grpDet" class="form-control">
-								<option selected="" value="No">Selecciona</option>
-								<?php 
-									$sql = "SELECT * FROM grupos";
-									$result = $conexion->query($sql);
-									while ($res = $result->fetch_object()) {
-										echo "<option value=".$res->id_grupo.">".$res->grupo_n."</option>";
-									}
-								?>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="docGrp">Docente:</label>
-							<select class="form-control" id="docGrp" name="docGrp">
-								<option selected="" value="No">Selecciona</option>
-								<?php 
-									$sql = "SELECT * FROM docentes";
-									$result = $conexion->query($sql);
-									while ($res = $result->fetch_object()) {
-										echo "<option value=".$res->id_docente.">"
-												.$res->nombre_c_doc.
-											"</option>";
-									}
-								?>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="estGrp">Estado:</label>
-							<select class="form-control" name="estGrp" id="estGrp">
-								<option value="No">Selecciona</option>
-								<option value="1" selected="">Activo</option>
-								<option value="0">Inactivo</option>
-							</select>
-						</div>
-						<div class="form-group text-center">
-							<hr style="height: 2px;" class="bg-info rounded">
-							<button type="submit" class="btn btn-outline-primary btn-md">
-								<i class="fas fa-check-circle icoIni fa-lg"></i>
-								Aceptar
-							</button>
-						</div>
-					</div>
-					<div class="col-sm-12 col-md-12 col-lg-3"></div>
-				</form>
-				<div class="row mt-4">
-					<div class="col-sm-12 animated fadeInUp">
-						<h4 class="text-center">
-							<i class="fas text-info fa-list icoIni fa-lg"></i>
-							Listado Grupos
-						</h4>
-						<hr style="height: 2px;" class="bg-info rounded">
-						<br>
-					</div>
-				</div>
-				<div class="row text-center animated fadeInLeft delay-1s">
-					<div class="col-sm-6">
-						<button onclick="mostGrpAct(true), mostGrpDes(false)" id="listGrpAct" class="btn btn-outline-primary btn-md">
-							<i class="fas fa-check icoIni"></i>
-							Activos
-						</button>
-					</div>
-					<div class="col-sm-6">
-						<button onclick="mostGrpDes(true), mostGrpAct(false)" id="listGrpDes" class="btn btn-outline-danger btn-md">
-							<i class="fas fa-times icoIni"></i>
-							Inactivos
-						</button>
-					</div>
-				</div>
-				<div class="row mt-4 animated fadeInUp delay-1s">
-					<div class="col-sm-12 table-responsive text-center ocult" id="tbListadoGruposAct">
-						<div class="table-responsive">
-							<table class="table bg-white table-hover table-bordered rounded" id="tbListadoGrpAct">
-								<thead class="text-primary">
-									<th>Grupo:</th>
-									<th>Docente:</th>
-									<th>Acciones:</th>
-								</thead>
-								<tbody class="text-dark"></tbody>
-								<tfoot class="text-primary">
-									<th>Grupo:</th>
-									<th>Docente:</th>
-									<th>Acciones:</th>
-								</tfoot>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="row mt-4 animated fadeInUp">
-					<div class="col-sm-12 table-responsive text-center ocult" id="tbListadoGruposDes">
-						<div class="table-responsive">
-							<table width="700" class="table bg-white table-hover table-bordered rounded" id="tbListadoGrpDes">
-								<thead class="text-primary">
-									<th>Grupo:</th>
-									<th>Docente:</th>
-									<th>Acciones:</th>
-								</thead>
-								<tbody class="text-dark"></tbody>
-								<tfoot class="text-primary">
-									<th>Grupo:</th>
-									<th>Docente:</th>
-									<th>Acciones:</th>
-								</tfoot>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+<div class="container-fluid mt-4 animated fadeIn delay-1s">
+		
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<h1 class="h3 mb-0 text-gray-800">
+		    <i class="fas fa-user mr-2 text-primary"></i>
+			<b><?php echo "Dirección de: ".$datDirec->nombre_car; ?>.
+		</h1>
+		<a href="<?php echo SERVERURLDIR; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		   	<i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+		</a>
 	</div>
+
+	<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">
+              	Registrar Grupo
+              </h6>
+            </div>
+            <div class="card-body">
+              <div class="row">
+              	<div class="col-sm-6 mb-4">
+              		<div class="text-center">
+                		<img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 18rem;" src="<?php echo SERVERURL; ?>assets/img/workreg.svg" alt="info site">
+              		</div>
+              	</div>
+              	<div class="col-sm-6 mb-4">
+              		<form method="POST" id="formRegGrp" name="formRegGrp">
+              			<h1 class="h5 mb-4 text-gray-500 text-center"><i class="fas fa-plus mr-2"></i> Añadir grupo</h1>
+						<div class="">
+							<div class="form-group">
+								<input readonly="" type="hidden" class="form-control" value="<?php echo $datDirec->id_carrera; ?>" name="id_carrera">
+							</div>
+							<div class="form-group">
+								<label for="grpDet">Grupo:</label>
+								<select name="grpDet" id="grpDet" class="form-control">
+									<option selected="" value="No">Selecciona</option>
+									<?php 
+										$sql = "SELECT * FROM grupos";
+										$result = $conexion->query($sql);
+										while ($res = $result->fetch_object()) {
+											echo "<option value=".$res->id_grupo.">".$res->grupo_n."</option>";
+										}
+									?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="docGrp">Docente:</label>
+								<select class="form-control" id="docGrp" name="docGrp">
+									<option selected="" value="No">Selecciona</option>
+									<?php 
+										$sql = "SELECT * FROM docentes";
+										$result = $conexion->query($sql);
+										while ($res = $result->fetch_object()) {
+											echo "<option value=".$res->id_docente.">"
+													.$res->nombre_c_doc.
+												"</option>";
+										}
+									?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="estGrp">Estado:</label>
+								<select class="form-control" name="estGrp" id="estGrp">
+									<option value="No">Selecciona</option>
+									<option value="1" selected="">Activo</option>
+									<option value="0">Inactivo</option>
+								</select>
+							</div>
+							<div class="form-group text-center">
+								<button type="submit" class="btn btn-primary btn-sm">
+									<i class="fas fa-check-circle mr-2"></i>
+									Aceptar
+								</button>
+							</div>
+						</div>
+					</form>
+              	</div>
+              	<div class="col-sm-12 mt-4">
+	            			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+							  <li class="nav-item">
+							    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Activos</a>
+							  </li>
+							  <li class="nav-item">
+							    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Inactivos</a>
+							  </li>
+							</ul>
+							<div class="tab-content" id="pills-tabContent">
+							  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+							  	<div class="table-responsive">
+					                <table class="table table-bordered table-hover" id="tbListadoGrpAct" width="100%" cellspacing="0">
+					                  <thead>
+					                    <tr>
+					                      	<th>Grupo:</th>
+											<th>Docente:</th>
+											<th>Acciones:</th>
+					                    </tr>
+					                  </thead>
+					                  <tfoot>
+					                    <tr>
+					                     	<th>Grupo:</th>
+											<th>Docente:</th>
+											<th>Acciones:</th>
+					                    </tr>
+					                  </tfoot>
+					                  <tbody>
+					                  </tbody>
+					                </table>
+					            </div>
+							  </div>
+							  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+							  	<div class="table-responsive">
+					                <table class="table table-bordered table-hover" id="tbListadoGrpDes" width="100%" cellspacing="0">
+					                  <thead>
+					                    <tr>
+					                      	<th>Grupo:</th>
+											<th>Docente:</th>
+											<th>Acciones:</th>
+					                    </tr>
+					                  </thead>
+					                  <tfoot>
+					                    <tr>
+					                     	<th>Grupo:</th>
+											<th>Docente:</th>
+											<th>Acciones:</th>
+					                    </tr>
+					                  </tfoot>
+					                  <tbody>
+					                  </tbody>
+					                </table>
+					            </div>
+							  </div>
+							</div>
+	            		</div>
+              </div>
+            </div>
+        </div>
+
+
 
 
 	<div class="modal fade bgModal" id="editGrp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -197,7 +150,7 @@
 	    	<div class="modal-content">
 	      		<div class="modal-header">
 	        		<h5 class="modal-title" id="exampleModalLabel"> <i class="fas fa-edit icoNav"></i> Editar grupo
-	        			<span id="grpnam" class="badge badge-pill bg-success text-white" style="font-size: 20px; padding: 10px;">
+	        			<span id="grpnam" class="badge badge-pill bg-primary text-white" style="font-size: 20px; padding: 10px;">
 	        				
 	        			</span>
 	        		</h5>
@@ -240,17 +193,17 @@
 		       			<div class="col-sm-1"></div>
 		      	</div>
 		      	<div class="modal-footer">
-		        	<button type="button" class="btn btn-outline-danger" data-dismiss="modal">
+		        	<button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">
 		        		<i class="fas fa-times-circle mr-2 ml-2"></i>
 		        		Cerrar</button>
-		        	<button type="submit" class="btn btn-outline-primary">
+		        	<button type="submit" class="btn btn-sm btn-outline-primary">
 		        		<i class="fas fa-check-circle mr-2 ml-2"></i>
 		        		Guardar cambios</button>
 		        	</form>
 		      	</div>
 	    	</div>
 	  	</div>
-	</div>
+</div>
 
 
     <script src="<?php echo SERVERURLDIR; ?>dir/js/regGrupos.js"></script>
