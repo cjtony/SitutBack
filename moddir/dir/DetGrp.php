@@ -62,7 +62,7 @@
         </div>
 
         <div class="col-xl-4 col-md-6 mb-4">
-          <a href="PerfDoc.php?v=<?php echo base64_encode($datGrp->id_docente); ?>">
+          <a href="<?php echo SERVERURLDIR; ?>PerfDoc/<?php echo base64_encode($datGrp->id_docente); ?>/">
           	<div class="card border-left-info shadow h-100 py-2 hovAnim">
 	            <div class="card-body">
 	              <div class="row no-gutters align-items-center">
