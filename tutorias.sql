@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-02-2019 a las 11:10:56
+-- Tiempo de generación: 11-03-2019 a las 11:50:29
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 7.1.7
 
@@ -37,17 +37,19 @@ CREATE TABLE `administradores` (
   `usuario` varchar(50) NOT NULL,
   `condicion` tinyint(4) NOT NULL,
   `privileg` varchar(50) NOT NULL,
-  `fecha_reg_adm` date NOT NULL
+  `fecha_reg_adm` date NOT NULL,
+  `fecha_ult_ses_adm` date NOT NULL,
+  `us_mod_rep` tinyint(4) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `administradores`
 --
 
-INSERT INTO `administradores` (`id_admin`, `nombre_c`, `correo`, `contrasena`, `contdesc`, `usuario`, `condicion`, `privileg`, `fecha_reg_adm`) VALUES
-(1, 'Marco Aguilar', 'marco@gmail.com', '3829486b93ec44395f0b980424bae9b6fb07b7bc', 'marco', 'tony', 1, 'ALL', '2018-05-29'),
-(2, 'Manuel fernandez arriaga', 'manuel@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'mane', 1, 'ALL', '2018-08-19'),
-(3, 'Jacinto perez dominguez', 'jaci@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'jaci', 1, 'ALL', '2018-08-22');
+INSERT INTO `administradores` (`id_admin`, `nombre_c`, `correo`, `contrasena`, `contdesc`, `usuario`, `condicion`, `privileg`, `fecha_reg_adm`, `fecha_ult_ses_adm`, `us_mod_rep`) VALUES
+(1, 'Marco Aguilar', 'marco@gmail.com', '3829486b93ec44395f0b980424bae9b6fb07b7bc', 'marco', 'tony', 1, 'ALL', '2018-05-29', '2019-03-07', 1),
+(2, 'Manuel fernandez arriaga', 'manuel@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'mane', 1, 'ALL', '2018-08-19', '2019-01-27', 1),
+(3, 'Jacinto perez dominguez', 'jaci@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'jaci', 1, 'LIM', '2018-08-22', '2019-02-26', 1);
 
 -- --------------------------------------------------------
 
@@ -66,7 +68,9 @@ CREATE TABLE `alumnos` (
   `sexo_al` varchar(50) DEFAULT NULL,
   `estado_al` tinyint(4) NOT NULL,
   `acept_grp` tinyint(4) DEFAULT NULL,
+  `fin_car` tinyint(4) DEFAULT '0',
   `fecha_reg` date NOT NULL,
+  `fecha_ult_ses_alm` date NOT NULL,
   `id_detgrupo` int(11) DEFAULT NULL,
   `becado_alm` tinyint(4) DEFAULT NULL,
   `foto_perf_alm` varchar(500) DEFAULT NULL,
@@ -77,19 +81,19 @@ CREATE TABLE `alumnos` (
 -- Volcado de datos para la tabla `alumnos`
 --
 
-INSERT INTO `alumnos` (`id_alumno`, `nombre_c_al`, `correo_al`, `contrasena_al`, `contdesc_al`, `matricula_al`, `telefono_al`, `sexo_al`, `estado_al`, `acept_grp`, `fecha_reg`, `id_detgrupo`, `becado_alm`, `foto_perf_alm`, `id_carrera`) VALUES
-(24, 'Mario jaimes barrueta', 'mario@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005001', '7223321122', 'Masculino', 1, 1, '0000-00-00', 14, NULL, NULL, 7),
-(25, 'Marco Aguilar', 'marco@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005307', '7321193748', 'Masculino', 1, 1, '2018-08-15', 12, 0, 'perfilMarc.jpg', 7),
-(26, 'Alejandro Solis Reyes', 'yresq@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-002827', '982198219821', 'Masculino', 1, 1, '2018-08-15', 12, 0, NULL, 7),
-(27, 'Ezequiel Gonzales Avila', 'cheque@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-009383', '2387327832732', 'Masculino', 1, 1, '2018-08-15', 12, 0, NULL, 7),
-(28, 'Carlos Capi Martinez', 'risa@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-008292', '983983298239', 'Masculino', 1, 1, '2018-08-15', 12, 0, NULL, 7),
-(29, 'Alejandra Rios Vazques', 'ale@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005308', '7223312277', 'Femenino', 1, 1, '2018-08-15', 13, 0, NULL, 7),
-(30, 'Jacinto perez marquez', 'jaci@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005409', '7223219882', 'Masculino', 1, 1, '0000-00-00', 12, 1, NULL, 7),
-(31, 'Bryan David Vidal Hermenegildo', 'bryan@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-004974', '7225667014', 'Masculino', 1, 1, '0000-00-00', 12, NULL, NULL, 7),
-(32, 'Daniel garcia', 'dani@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005310', '7223435656', 'Masculino', 1, 1, '0000-00-00', 12, NULL, NULL, 7),
-(33, 'Martin gonzales', 'martin@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-008080', '7223112231', 'Masculino', 1, 1, '0000-00-00', 12, 1, NULL, 7),
-(34, 'Marco', NULL, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005301', NULL, NULL, 1, NULL, '0000-00-00', NULL, NULL, NULL, 7),
-(35, 'Alex', NULL, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005101', NULL, NULL, 1, NULL, '0000-00-00', NULL, NULL, NULL, 7);
+INSERT INTO `alumnos` (`id_alumno`, `nombre_c_al`, `correo_al`, `contrasena_al`, `contdesc_al`, `matricula_al`, `telefono_al`, `sexo_al`, `estado_al`, `acept_grp`, `fin_car`, `fecha_reg`, `fecha_ult_ses_alm`, `id_detgrupo`, `becado_alm`, `foto_perf_alm`, `id_carrera`) VALUES
+(24, 'Mario jaimes barrueta', 'mario@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005001', '7223321122', 'Masculino', 1, 1, 0, '2018-08-15', '2019-01-15', 14, NULL, NULL, 7),
+(25, 'Marco Aguilar', 'marco@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005307', '7321193748', 'Masculino', 1, 1, 0, '2018-08-15', '2019-01-25', 12, 0, 'perfilMarc.jpg', 7),
+(26, 'Alejandro Solis Reyes', 'yresq@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-002827', '982198219821', 'Masculino', 1, 1, 0, '2018-08-15', '2019-02-15', 12, 0, NULL, 7),
+(27, 'Ezequiel Gonzales Avila', 'cheque@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-009383', '2387327832732', 'Masculino', 1, 1, 0, '2018-08-15', '2019-01-29', 12, 0, NULL, 7),
+(28, 'Carlos Capi Martinez', 'risa@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-008292', '983983298239', 'Masculino', 1, 1, 0, '2018-08-15', '2019-01-15', 12, 0, NULL, 7),
+(29, 'Alejandra Rios Vazques', 'ale@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005308', '7223312277', 'Femenino', 1, 1, 0, '2018-08-15', '2019-01-23', 13, 0, NULL, 7),
+(30, 'Jacinto perez marquez', 'jaci@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005409', '7223219882', 'Masculino', 1, 1, 0, '2018-08-15', '2019-01-15', 12, 1, NULL, 7),
+(31, 'Bryan David Vidal Hermenegildo', 'bryan@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-004974', '7225667014', 'Masculino', 1, 1, 0, '2018-08-15', '2019-02-14', 12, NULL, NULL, 7),
+(32, 'Daniel garcia', 'dani@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005310', '7223435656', 'Masculino', 0, 1, 0, '2018-08-15', '2019-01-10', 12, NULL, NULL, 7),
+(33, 'Martin gonzales', 'martin@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-008080', '7223112231', 'Masculino', 1, 1, 0, '2018-08-15', '2019-01-28', 12, 1, NULL, 7),
+(34, 'Marco', NULL, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005301', NULL, NULL, 1, NULL, 0, '2018-08-15', '2019-02-13', NULL, NULL, NULL, 7),
+(35, 'Alex', NULL, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 'UTS15S-005101', NULL, NULL, 1, NULL, 0, '2018-08-15', '2019-01-09', NULL, NULL, NULL, 7);
 
 -- --------------------------------------------------------
 
@@ -107,6 +111,13 @@ CREATE TABLE `bajasalm_dat` (
   `estado_baj_alm` tinyint(4) NOT NULL,
   `id_alumno` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `bajasalm_dat`
+--
+
+INSERT INTO `bajasalm_dat` (`id_bajaalmdat`, `tipobaja`, `periodo`, `bajasolicitada`, `motivo_baja`, `fecha_reg_baj`, `estado_baj_alm`, `id_alumno`) VALUES
+(1, 'Prueba', 'Prueba', 'Si', 'Prueba', '2019-03-11', 0, 25);
 
 -- --------------------------------------------------------
 
@@ -152,6 +163,7 @@ INSERT INTO `becas_alm` (`id_becaalm`, `beca_nombre`, `estado_bec`, `fecha_re_be
 CREATE TABLE `carreras` (
   `id_carrera` int(11) NOT NULL,
   `nombre_car` varchar(200) NOT NULL,
+  `descripcion_car` varchar(500) NOT NULL,
   `estado_car` tinyint(4) NOT NULL,
   `fecha_reg_car` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -160,14 +172,14 @@ CREATE TABLE `carreras` (
 -- Volcado de datos para la tabla `carreras`
 --
 
-INSERT INTO `carreras` (`id_carrera`, `nombre_car`, `estado_car`, `fecha_reg_car`) VALUES
-(2, 'Mecatronica', 1, '2018-06-04'),
-(3, 'Enfermeria2', 0, '2018-06-04'),
-(4, 'Administración', 1, '2018-06-04'),
-(5, 'Contaduria', 1, '2018-06-14'),
-(6, 'Procesos Alimenticios', 1, '2018-08-11'),
-(7, 'Tecnologías de la Información y la Comunicacion', 1, '2018-08-11'),
-(8, 'Lengua Inglesa', 1, '2018-08-11');
+INSERT INTO `carreras` (`id_carrera`, `nombre_car`, `descripcion_car`, `estado_car`, `fecha_reg_car`) VALUES
+(2, 'Mecatronica', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 1, '2018-06-04'),
+(3, 'Enfermeria2', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 1, '2018-06-04'),
+(4, 'Administración', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 1, '2018-06-04'),
+(5, 'Contaduria', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 1, '2018-06-14'),
+(6, 'Procesos Alimenticios', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 1, '2018-08-11'),
+(7, 'Tecnologías de la Información', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\n                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,', 1, '2018-08-11'),
+(8, 'Lengua Inglesa', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 1, '2018-08-11');
 
 -- --------------------------------------------------------
 
@@ -198,17 +210,20 @@ CREATE TABLE `coordinadores` (
   `sexo_cor` varchar(50) DEFAULT NULL,
   `foto_perf_cor` varchar(256) DEFAULT NULL,
   `estado_cor` tinyint(4) DEFAULT NULL,
-  `fecha_reg_cor` date DEFAULT NULL
+  `fecha_reg_cor` date DEFAULT NULL,
+  `fecha_ult_ses_cor` date DEFAULT NULL,
+  `us_mod_rep` tinyint(4) UNSIGNED DEFAULT '1',
+  `connect_cor` tinyint(4) UNSIGNED DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `coordinadores`
 --
 
-INSERT INTO `coordinadores` (`id_coordinador`, `nombre_c_cor`, `correo_cor`, `contrasena_cor`, `contdesc_cor`, `telefono_cor`, `sexo_cor`, `foto_perf_cor`, `estado_cor`, `fecha_reg_cor`) VALUES
-(1, 'Mario Jaimes', 'mario@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', '12345', '7221155265', 'Masculino', 'aud2.jpg', 1, '2018-08-15'),
-(2, 'Manuel gomez palacios', 'manuel@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7682239822', 'Masculino', NULL, 1, '2018-08-15'),
-(3, 'Guillermo perez', 'memo@gmail.com', 'c5c0cba68b55bc343b292366cf8981586e237dab', 'memo', '7228391010', 'Masculino', NULL, 0, '2018-08-15');
+INSERT INTO `coordinadores` (`id_coordinador`, `nombre_c_cor`, `correo_cor`, `contrasena_cor`, `contdesc_cor`, `telefono_cor`, `sexo_cor`, `foto_perf_cor`, `estado_cor`, `fecha_reg_cor`, `fecha_ult_ses_cor`, `us_mod_rep`, `connect_cor`) VALUES
+(1, 'Mario Jaimes', 'mario@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7221155265', 'Masculino', 'aud2.jpg', 1, '2018-08-15', '2019-03-07', 1, 0),
+(2, 'Manuel gomez palacios', 'manuel@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7682239822', 'Masculino', NULL, 1, '2018-08-15', '2019-02-11', 1, 0),
+(3, 'Guillermo perez', 'memo@gmail.com', 'c5c0cba68b55bc343b292366cf8981586e237dab', 'memo', '7228391010', 'Masculino', NULL, 1, '2018-08-15', '2019-02-28', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -251,6 +266,24 @@ INSERT INTO `datpersonales_alm` (`id_datpersonalesalm`, `id_alumno`, `curp_dat`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `datsistem`
+--
+
+CREATE TABLE `datsistem` (
+  `id_datsistem` int(11) NOT NULL,
+  `version_sistem` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `datsistem`
+--
+
+INSERT INTO `datsistem` (`id_datsistem`, `version_sistem`) VALUES
+(1, '1.0.3.2');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `det_grupo`
 --
 
@@ -277,6 +310,30 @@ INSERT INTO `det_grupo` (`id_detgrupo`, `id_grupo`, `id_docente`, `id_carrera`, 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `devop`
+--
+
+CREATE TABLE `devop` (
+  `id_devop` int(11) NOT NULL,
+  `token_seg` varchar(256) DEFAULT NULL,
+  `nombre_devop` varchar(50) DEFAULT NULL,
+  `user_devop` varchar(50) DEFAULT NULL,
+  `correo_devop` varchar(70) DEFAULT NULL,
+  `pass_devop` varchar(256) DEFAULT NULL,
+  `indic_devop` varchar(5) DEFAULT NULL,
+  `estado_devop` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `devop`
+--
+
+INSERT INTO `devop` (`id_devop`, `token_seg`, `nombre_devop`, `user_devop`, `correo_devop`, `pass_devop`, `indic_devop`, `estado_devop`) VALUES
+(1, '567892', 'Marco Aguilar', 'tony', 'marcocaaguilar@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '14', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `directores`
 --
 
@@ -288,23 +345,25 @@ CREATE TABLE `directores` (
   `contdesc_dir` varchar(100) NOT NULL,
   `telefono_dir` varchar(100) NOT NULL,
   `fecha_reg_dir` date NOT NULL,
+  `fecha_ult_ses_dir` date NOT NULL,
   `estado_dir` tinyint(4) NOT NULL,
   `id_carrera` int(11) NOT NULL,
-  `foto_perf_dir` varchar(200) NOT NULL
+  `foto_perf_dir` varchar(200) NOT NULL,
+  `us_mod_rep` tinyint(4) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `directores`
 --
 
-INSERT INTO `directores` (`id_director`, `nombre_c_dir`, `correo_dir`, `contrasena_dir`, `contdesc_dir`, `telefono_dir`, `fecha_reg_dir`, `estado_dir`, `id_carrera`, `foto_perf_dir`) VALUES
-(1, 'Sergio rivera', 'sergio@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7225648999', '2018-08-15', 1, 7, 'aud1.png'),
-(2, 'Martin Gomez perez', 'martin@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7227899988', '2018-08-15', 0, 2, ''),
-(3, 'Ariel benites gonzales', 'ariel@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7228737722', '2018-08-15', 0, 3, ''),
-(4, 'Gerardo ortiz gomez', 'gerardo@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7223322992', '2018-08-15', 0, 4, ''),
-(5, 'Rafael Gonzales perez', 'rafael@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7622299993', '2018-08-15', 1, 6, ''),
-(6, 'Gonzalo pineda vargas', 'gonzalo@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7223338999', '2018-08-15', 1, 8, ''),
-(7, 'Eduardo torres vargas', 'eduardo@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7228929292', '2018-08-15', 1, 5, '');
+INSERT INTO `directores` (`id_director`, `nombre_c_dir`, `correo_dir`, `contrasena_dir`, `contdesc_dir`, `telefono_dir`, `fecha_reg_dir`, `fecha_ult_ses_dir`, `estado_dir`, `id_carrera`, `foto_perf_dir`, `us_mod_rep`) VALUES
+(1, 'Sergio rivera', 'sergio@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7225648999', '2018-08-15', '2019-03-11', 1, 7, 'aud1.png', 1),
+(2, 'Martin Gomez perez', 'martin@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7227899988', '2018-08-15', '2019-02-15', 1, 2, '', 1),
+(3, 'Ariel benites gonzales', 'ariel@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7228737722', '2018-08-15', '2019-01-15', 1, 3, '', 1),
+(4, 'Gerardo ortiz gomez', 'gerardo@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7223322992', '2018-08-15', '2019-02-19', 1, 4, '', 1),
+(5, 'Rafael Gonzales perez', 'rafael@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7622299993', '2018-08-15', '2019-02-19', 1, 6, '', 1),
+(6, 'Gonzalo pineda vargas', 'gonzalo@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7223338999', '2018-08-15', '2019-02-24', 1, 8, '', 1),
+(7, 'Eduardo torres vargas', 'eduardo@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', '7228929292', '2018-08-15', '2019-02-27', 1, 5, '', 1);
 
 -- --------------------------------------------------------
 
@@ -324,19 +383,21 @@ CREATE TABLE `docentes` (
   `telefono_doc` varchar(50) NOT NULL,
   `condicion_doc` tinyint(4) NOT NULL,
   `fecha_reg_doc` date NOT NULL,
-  `foto_perf_doc` varchar(200) NOT NULL
+  `fecha_ult_ses_doc` date NOT NULL,
+  `foto_perf_doc` varchar(200) NOT NULL,
+  `us_mod_rep` tinyint(4) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `docentes`
 --
 
-INSERT INTO `docentes` (`id_docente`, `nombre_c_doc`, `correo_doc`, `direccion_doc`, `contrasena_doc`, `contdesc_doc`, `edad_doc`, `especialidad_doc`, `telefono_doc`, `condicion_doc`, `fecha_reg_doc`, `foto_perf_doc`) VALUES
-(7, 'Nayelli Rios', 'nay12@gmail.com', 'Tejupilco Edo de México Zacatepec Col Jaimes', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 26, 'Psicologia', '7225566627', 1, '2018-08-15', ''),
-(8, 'Adan Jaimes Jaimes', 'adanja@gmail.com', 'Tejupilco Edo de México San simon', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 40, 'Redes', '2829929010', 1, '2018-08-15', ''),
-(9, 'Jenner Perez Perez', 'jennerpere@hotmail.com', 'Tejupilco Edo de México Col centro', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 45, 'Aplicaciones Moviles', '8712891298', 1, '2018-08-15', ''),
-(10, 'Armando Estrada Jaimes', 'armando@gmail.com', 'Tejupilco Edo México Col Centro', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 50, 'Sistemas informaticos', '2892198768', 1, '2018-08-15', ''),
-(11, 'Armando Jaimes Barrueta', 'jaimes@outlook.com', 'Tejupilco Edo de México Col Centro', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 50, 'Mantenimiento', '9812981298', 1, '2018-08-15', '');
+INSERT INTO `docentes` (`id_docente`, `nombre_c_doc`, `correo_doc`, `direccion_doc`, `contrasena_doc`, `contdesc_doc`, `edad_doc`, `especialidad_doc`, `telefono_doc`, `condicion_doc`, `fecha_reg_doc`, `fecha_ult_ses_doc`, `foto_perf_doc`, `us_mod_rep`) VALUES
+(7, 'Nayelli Rios', 'nay12@gmail.com', 'Tejupilco Edo de México Zacatepec Col Jaimes', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 26, 'Psicologia', '7225566627', 1, '2018-08-15', '2019-01-15', '', 1),
+(8, 'Adan Jaimes Jaimes', 'adanja@gmail.com', 'Tejupilco Edo de México San simon', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 40, 'Redes', '2829929010', 1, '2018-08-15', '2019-01-25', '', 1),
+(9, 'Jenner Perez Perez', 'jennerpere@hotmail.com', 'Tejupilco Edo de México Col centro', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 45, 'Aplicaciones Moviles', '8712891298', 0, '2018-08-15', '2019-01-28', '', 1),
+(10, 'Armando Estrada Jaimes', 'armando@gmail.com', 'Tejupilco Edo México Col Centro', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 50, 'Sistemas informaticos', '2892198768', 1, '2018-08-15', '2019-03-01', '', 1),
+(11, 'Armando Jaimes Barrueta', 'jaimes@outlook.com', 'Tejupilco Edo de México Col Centro', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 50, 'Mantenimiento', '9812981298', 1, '2018-08-15', '2019-02-25', '', 1);
 
 -- --------------------------------------------------------
 
@@ -640,6 +701,56 @@ INSERT INTO `prueba` (`id_alumno`, `nombre`, `sexo`, `matricula`, `contraseña`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `reportsprob`
+--
+
+CREATE TABLE `reportsprob` (
+  `id_report` int(11) NOT NULL,
+  `num_serie_rep` varchar(50) DEFAULT NULL,
+  `fecha_reg_rep` date DEFAULT NULL,
+  `estado_rep` tinyint(4) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `tag_user` varchar(50) DEFAULT NULL,
+  `describ_prob` varchar(500) DEFAULT NULL,
+  `arch_prob` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `reportsprob`
+--
+
+INSERT INTO `reportsprob` (`id_report`, `num_serie_rep`, `fecha_reg_rep`, `estado_rep`, `id_user`, `tag_user`, `describ_prob`, `arch_prob`) VALUES
+(7, 'CODaplhs', '2019-02-18', 0, 1, 'Coordinador', 'dfgvhbjnkmfghnj', 'Sin imagen'),
+(10, 'COD2sldw', '2019-02-18', 0, 1, 'Coordinador', 'Se soluciono en la versión 1.2 del sistema.', 'Sin imagen'),
+(11, 'CODqnd0k', '2019-02-19', 1, 1, 'Coordinador', 'Solucionado el error solo falta probar que sea del agrado del coordinador.', 'Sin imagen'),
+(16, 'COD9df8vvcp7', '2019-02-19', 1, 1, 'Administrador', 'Prueba de contenido nuevamente cambio en el git prueba num 2 nuevo codigo', 'Sin imagen'),
+(17, 'CODomj5ov1bf', '2019-02-21', 1, 1, 'Coordinador', 'Se soluciono solo se necesita la aprobación trabajo de 18 horas', 'Sin imagen'),
+(18, 'CODwscmoccp7', '2019-02-21', 1, 1, 'Coordinador', 'Problema resuelto en la actualización del pasado domingo', 'Sin imagen');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `represult`
+--
+
+CREATE TABLE `represult` (
+  `id_represult` int(11) NOT NULL,
+  `fecha_result` date DEFAULT NULL,
+  `nota_result` varchar(500) DEFAULT NULL,
+  `id_reportprob` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `represult`
+--
+
+INSERT INTO `represult` (`id_represult`, `fecha_result`, `nota_result`, `id_reportprob`) VALUES
+(1, '2019-02-22', 'Prueba de contenido de la resolución del reporte', 7),
+(2, '2019-03-03', 'Se soluciono el error en el apartado de coordinadores vista de perfil', 10);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tut_personales`
 --
 
@@ -734,6 +845,12 @@ ALTER TABLE `datpersonales_alm`
   ADD KEY `FK_datpersonales_alm_alumnos` (`id_alumno`);
 
 --
+-- Indices de la tabla `datsistem`
+--
+ALTER TABLE `datsistem`
+  ADD PRIMARY KEY (`id_datsistem`);
+
+--
 -- Indices de la tabla `det_grupo`
 --
 ALTER TABLE `det_grupo`
@@ -741,6 +858,12 @@ ALTER TABLE `det_grupo`
   ADD KEY `FK_det_grupo_grupos` (`id_grupo`),
   ADD KEY `FK_det_grupo_docentes` (`id_docente`),
   ADD KEY `FK_det_grupo_carreras` (`id_carrera`);
+
+--
+-- Indices de la tabla `devop`
+--
+ALTER TABLE `devop`
+  ADD PRIMARY KEY (`id_devop`);
 
 --
 -- Indices de la tabla `directores`
@@ -802,6 +925,19 @@ ALTER TABLE `prueba`
   ADD PRIMARY KEY (`id_alumno`);
 
 --
+-- Indices de la tabla `reportsprob`
+--
+ALTER TABLE `reportsprob`
+  ADD PRIMARY KEY (`id_report`);
+
+--
+-- Indices de la tabla `represult`
+--
+ALTER TABLE `represult`
+  ADD PRIMARY KEY (`id_represult`),
+  ADD KEY `FK_represult_reportsprob` (`id_reportprob`);
+
+--
 -- Indices de la tabla `tut_personales`
 --
 ALTER TABLE `tut_personales`
@@ -826,7 +962,7 @@ ALTER TABLE `alumnos`
 -- AUTO_INCREMENT de la tabla `bajasalm_dat`
 --
 ALTER TABLE `bajasalm_dat`
-  MODIFY `id_bajaalmdat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bajaalmdat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `becados_alm`
 --
@@ -858,10 +994,20 @@ ALTER TABLE `coordinadores`
 ALTER TABLE `datpersonales_alm`
   MODIFY `id_datpersonalesalm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT de la tabla `datsistem`
+--
+ALTER TABLE `datsistem`
+  MODIFY `id_datsistem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `det_grupo`
 --
 ALTER TABLE `det_grupo`
   MODIFY `id_detgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT de la tabla `devop`
+--
+ALTER TABLE `devop`
+  MODIFY `id_devop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `directores`
 --
@@ -907,6 +1053,16 @@ ALTER TABLE `periodos`
 --
 ALTER TABLE `prueba`
   MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT de la tabla `reportsprob`
+--
+ALTER TABLE `reportsprob`
+  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT de la tabla `represult`
+--
+ALTER TABLE `represult`
+  MODIFY `id_represult` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tut_personales`
 --
@@ -978,6 +1134,12 @@ ALTER TABLE `historial_academ`
 --
 ALTER TABLE `justificantes`
   ADD CONSTRAINT `FK_justificantes_alumnos` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`id_alumno`);
+
+--
+-- Filtros para la tabla `represult`
+--
+ALTER TABLE `represult`
+  ADD CONSTRAINT `FK_represult_reportsprob` FOREIGN KEY (`id_reportprob`) REFERENCES `reportsprob` (`id_report`);
 
 --
 -- Filtros para la tabla `tut_personales`
