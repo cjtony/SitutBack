@@ -93,15 +93,15 @@ $almBajCar = $cordinador -> cantBajCar(base64_decode($valCar));
 			                  <thead>
 			                    <tr>
 			                      	<th>Grupo:</th>
-									<th>Alumnos:</th>
-									<th>Acciones:</th>
+            									<th>Alumnos:</th>
+            									<th>Acciones:</th>
 			                    </tr>
 			                  </thead>
 			                  <tfoot>
 			                    <tr>
 			                     	<th>Grupo:</th>
-									<th>Alumnos:</th>
-									<th>Acciones:</th>
+          									<th>Alumnos:</th>
+          									<th>Acciones:</th>
 			                    </tr>
 			                  </tfoot>
 			                  <tbody>

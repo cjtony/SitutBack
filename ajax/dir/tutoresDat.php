@@ -71,8 +71,8 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
                 "0" => $reg -> nombre_c_doc,
                 "1" => $reg -> correo_doc,
                 "2" => $reg -> telefono_doc,
-                "3" => '<a class="btn btn-primary btn-sm" href="'.SERVERURLDIR.'PerfDoc/'.base64_encode($reg->id_docente).'/"> <i class="fas fa-eye"></i> Perfil</a> 
-	            	<button class="btn btn-danger btn-sm" type="button" onclick="desactivarTut('.$reg->id_docente.')">
+                "3" => '<a class="btn btn-outline-primary btn-sm" href="'.SERVERURLDIR.'PerfDoc/'.base64_encode($reg->id_docente).'/"> <i class="fas fa-eye mr-2"></i> Perfil</a> 
+	            	<button class="btn btn-outline-danger btn-sm" type="button" onclick="desactivarTut('.$reg->id_docente.')">
 	            		<i class="fas fa-times"></i>
 	            	</button>'
                 );
@@ -97,8 +97,8 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
                 "0" => $reg -> nombre_c_doc,
                 "1" => $reg -> correo_doc,
                 "2" => $reg -> telefono_doc,
-                "3" => '<a class="btn btn-primary btn-sm" href="'.SERVERURLDIR.'PerfDoc/'.base64_encode($reg->id_docente).'/"> <i class="fas fa-eye"></i> Perfil</a> 
-            	<button class="btn btn-success btn-sm" type="button" onclick="activarTut('.$reg->id_docente.')">
+                "3" => '<a class="btn btn-sm btn-outline-primary" href="'.SERVERURLDIR.'PerfDoc/'.base64_encode($reg->id_docente).'/"> <i class="fas fa-eye mr-2"></i> Perfil</a> 
+            	<button class="btn btn-outline-primary btn-sm" type="button" onclick="activarTut('.$reg->id_docente.')">
             		<i class="fas fa-check"></i>
             	</button>'
                 );

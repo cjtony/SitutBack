@@ -1,5 +1,29 @@
 let tabla;
 let tablades;
+const lenguaje = {
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+        "sFirst":    "Primero",
+        "sLast":     "Último",
+        "sNext":     "Siguiente",
+        "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+};
 function init() {
 	$("#corTut").on("keyup", function() {
 		validEmaill();
@@ -11,31 +35,8 @@ function init() {
 	$("#repPassTut").on("keyup", function() {
 		contIgull();
 	});
-	$(window).scroll(function() {
-	  if ($("#menu1").offset().top > 56) {
-	      $("#menu1").addClass("bg-info");
-	  } else {
-	      $("#menu1").removeClass("bg-info");
-	  }
-	});
-	$(window).scroll(function(){
-		if ($("#menu2").offset().top > 56) {
-	      $("#menu2").addClass("bg-info");
-	      $("#textLog").text("U T S E M");
-	  } else {
-	      $("#menu2").removeClass("bg-info");
-	      $("#textLog").text("S I T U T");
-	  }
-	});
-	$("#formRegTutor").on("submit",function(e){
-		regTut(e);
-	});
 	listarTutores();
 	listarTutoresDes();
-	mostTutAct(true);
-	setInterval(function(){
-		docAct(); docInc();
-	}, 20000);
 }
 
 function segContt() {
@@ -289,7 +290,8 @@ function listarTutores(){
 			}
 		},
 		"bDestroy" : true,
-		"iDisplayLength" : 5
+		"iDisplayLength" : 5,
+		"language" : lenguaje
 		// "order" : [[0, "desc"]]
 	}).DataTable();
 }
@@ -310,7 +312,8 @@ function listarTutoresDes(){
 			}
 		},
 		"bDestroy" : true,
-		"iDisplayLength" : 5
+		"iDisplayLength" : 5,
+		"language" : lenguaje
 		// "order" : [[0, "desc"]]
 	}).DataTable();
 }
@@ -421,32 +424,5 @@ function desactivarTut(id_docente) {
 	});
 }
 
-function docAct () {
-	$.ajax({
-		url:'../../ajax/dir/tutoresDat.php?oper=docAct',
-		type : "POST",
-		success:function (data) {
-			if (data > 1 || data == 0) {
-				$('#docAct').html(data + " Registros");	
-			} else {
-				$('#docAct').html(data + " Registro");	
-			}
-		}
-	});
-}
-
-function docInc () {
-	$.ajax({
-		url:'../../ajax/dir/tutoresDat.php?oper=docInc',
-		type : "POST",
-		success:function (data) {
-			if (data > 1 || data == 0) {
-				$('#docInc').html(data + " Registros");	
-			} else {
-				$('#docInc').html(data + " Registro");	
-			}
-		}
-	});
-}
 
 init();

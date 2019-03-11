@@ -7,7 +7,6 @@
 	$datDirec = $director->userDirDet($keyDir);
 	$codigo = explode("/", $_GET['view']);
 	$valPerfAlm = $codigo[1];
-	$valGrp = $codigo[2];
 	$perfAlm = base64_decode($valPerfAlm);
 	$datCantDir = $director->cantDir();
 	$car_Dir = $datDirec->id_carrera;
@@ -30,8 +29,14 @@
 		    <i class="fas fa-user mr-2 text-primary"></i>
 			<b><?php echo "Dirección de: ".$datDirec->nombre_car; ?>.
 		</h1>
-		<a href="<?php echo SERVERURLDIR; ?>DetGrp/<?php echo $valGrp; ?>/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-		   	<i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+		<a href="<?php echo SERVERURLDIR; ?>DetGrp/<?php echo base64_encode($datAlm->id_detgrupo); ?>/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		   	<i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Grupo
+		</a>
+		<a href="<?php echo SERVERURLDIR; ?>AlmInact/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		   	<i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Inactivos
+		</a>
+		<a href="<?php echo SERVERURLDIR; ?>BajCar/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		   	<i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Bajas
 		</a>
 	</div>
 

@@ -7,6 +7,15 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
 } else {
 	include '../../modelos/rutasAmig.php';
 	require_once '../../modelos/director.modelo.php';
+	function formatFech($fechForm) {
+	    $fechDat = substr($fechForm, 0,4);
+	    $fechM = substr($fechForm, 5,2);
+	    $fechD = substr($fechForm, 8,2);
+	    $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+	    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+	    $Fecha = date($fechD)." de ".$meses[date($fechM)-1]. " del ".date($fechDat);
+	    return $Fecha;
+	}
 	$director = new Director();
 	$keyDir = $_SESSION['keyDir'];
 	$datDirec = $director->userDirDet($_SESSION['keyDir']);
@@ -37,7 +46,7 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
 					"0" => $res -> nombre_c_al,
 					"1" => $res -> grupo_n,
 					"2" => $res -> nombre_c_doc,
-					"3" => '<a href="'.SERVERURLDIR.'PerfAlmInact/'.base64_encode($res->id_alumno).'/" class="btn btn-primary btn-sm"><i class="fas fa-eye fa-lg icoIni"></i>Perfil</a>'
+					"3" => '<a href="'.SERVERURLDIR.'PerfAlm/'.base64_encode($res->id_alumno).'/" class="btn btn-outline-primary btn-sm"><i class="fas fa-eye mr-2"></i>Perfil</a>'
 				);
 			}
 			$results = array(
@@ -98,8 +107,8 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
 					"0" => $res -> nombre_c_al,
 					"1" => $res -> grupo_n,
 					"2" => $res -> nombre_c_doc,
-					"3" => $res -> fecha_reg_baj,
-					"4" => '<a target="_blank" href="'.SERVERURLDIR.'dir/DocBajAlm.php?v='.base64_encode($res->id_alumno).'&&p='.base64_encode($res->id_bajaalmdat).'" class="btn btn-outline-primary btn-sm"><i class="fas fa-print fa-lg icoIni"></i>Documento</a>'.' <a href="'.SERVERURLDIR.'PerfAlmInact/'.base64_encode($res->id_alumno).'/" class="btn btn-primary btn-sm"><i class="fas fa-eye fa-lg icoIni"></i>Perfil</a>'
+					"3" => formatFech($res->fecha_reg_baj),
+					"4" => '<a target="_blank" href="'.SERVERURLDIR.'dir/DocBajAlm.php?v='.base64_encode($res->id_alumno).'&&p='.base64_encode($res->id_bajaalmdat).'" class="btn btn-outline-primary btn-sm"><i class="fas fa-print mr-2"></i>Documento</a>'.' <a href="'.SERVERURLDIR.'PerfAlm/'.base64_encode($res->id_alumno).'/" class="btn btn-outline-primary btn-sm"><i class="fas fa-eye mr-2"></i>Perfil</a>'
 				);
 			}
 			$results = array(

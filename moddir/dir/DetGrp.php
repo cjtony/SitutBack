@@ -119,7 +119,7 @@
 								<tr>
 									<td><?php echo $res->nombre_c_al; ?></td>
 									<td>
-										<a class="btn btn-outline-primary btn-sm" href="<?php echo SERVERURLDIR; ?>PerfAlm/<?php echo base64_encode($res->id_alumno); ?>/<?php echo base64_encode($grpClv); ?>/">
+										<a class="btn btn-outline-primary btn-sm" href="<?php echo SERVERURLDIR; ?>PerfAlm/<?php echo base64_encode($res->id_alumno); ?>/">
 											<i class="fas fa-eye mr-2"></i>
 											Perfil
 										</a>

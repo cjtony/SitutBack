@@ -27,22 +27,6 @@ const lenguaje = {
 	};
 
 function init() {
-	$(window).scroll(function() {
-	  if ($("#menu1").offset().top > 56) {
-	      $("#menu1").addClass("bg-info");
-	  } else {
-	      $("#menu1").removeClass("bg-info");
-	  }
-	});
-	$(window).scroll(function(){
-		if ($("#menu2").offset().top > 56) {
-	      $("#menu2").addClass("bg-info");
-	      $("#textLog").text("U T S E M");
-	  } else {
-	      $("#menu2").removeClass("bg-info");
-	      $("#textLog").text("S I T U T");
-	  }
-	});
 	$("#formRegGrp").on("submit",function(e){
 		regGrupo(e);
 	});
