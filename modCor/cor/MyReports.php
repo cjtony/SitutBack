@@ -86,7 +86,14 @@
 				}
 			} else {
 		?>
-
+			<div class="col-sm-12 text-center mt-5">
+				<img class="img-fluid px-3 px-sm-4 mb-4" style="width: 13rem;" src="<?php echo SERVERURL; ?>assets/img/notdata.svg" alt="info site">
+				<h3 class="text-center text-danger">
+					<b>
+						Aún no se han generado registros...
+					</b>
+				</h3>
+			</div>
 		<?php
 			}
 		?>

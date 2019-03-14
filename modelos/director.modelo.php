@@ -359,6 +359,99 @@ class Director
 		}
 	}
 
+	public function datMyReportEnv($tag, $clv) {
+    	try {
+    		$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+    		$stmt = $dbc -> prepare("SELECT * FROM reportsprob WHERE tag_user = :tag AND id_user = :clv");
+    		$stmt -> bindParam("tag", $tag, PDO::PARAM_STR);
+    		$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+    		$stmt -> execute();
+    		return $stmt;
+    	} catch (PDOException $e) {
+    		echo '{"error":{"text":'.$e->getMessage().'}}';
+    	}
+    }
+
+    public function docentRegister(){
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM docentes WHERE condicion_doc = 1 ORDER BY nombre_c_doc"); 
+			$stmt->execute();
+			return $stmt;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function directRegister($clv){
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM directores WHERE id_director != :clv && estado_dir = 1 ORDER BY nombre_c_dir");
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt->execute();
+			return $stmt;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function coordiRegister(){
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM coordinadores WHERE estado_cor = 1 ORDER BY nombre_c_cor");
+			$stmt->execute();
+			return $stmt;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function dataDirectSel($clv) {
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM directores dir INNER JOIN carreras car ON car.id_carrera = dir.id_carrera WHERE id_director = :clv"); 
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt->execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function dataDocentSel($clv) {
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM docentes WHERE id_docente = :clv"); 
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt->execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function dataCordinSel($clv) {
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM coordinadores WHERE id_coordinador = :clv"); 
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt->execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
 }
 //SELECT * FROM grupos WHERE NOT id_grupo In (SELECT id_grupo FROM det_grupo det WHERE det.id_carrera = 4);
 

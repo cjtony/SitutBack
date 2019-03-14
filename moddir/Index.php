@@ -25,6 +25,10 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
     $datCantGrp = $director->cantGrp($car_Dir);
     $cantBaj = $director -> cantBajCar($car_Dir);
     $cantInact = $director -> catnInactAlm($car_Dir);
+    $datDoc = $director -> docentRegister();
+    $datDoc = $director -> docentRegister();
+    $datDir = $director -> directRegister($keyDir);
+    $datCor = $director -> coordiRegister();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -120,7 +124,7 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
         <div id="alum_opc" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" href="<?php echo SERVERURLDIR; ?>dir/RegAlumnos.php">Registrar</a>
+            <a class="collapse-item" href="<?php echo SERVERURLDIR; ?>dir/RegAlumnos.php">Registrar grupo</a>
           </div>
         </div>
       </li>
@@ -132,6 +136,50 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
       </div>
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dataCord" aria-expanded="true" aria-controls="dataCord">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Coordinador</span>
+        </a>
+        <div id="dataCord" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Selecciona</h6>
+            <?php 
+              while ($dataCor = $datCor -> fetch(PDO::FETCH_OBJ)) {
+            ?>
+              <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDIR ?>ProfileDoc/<?php echo base64_encode($dataCor->id_coordinador); ?>/cor/">
+                <?php echo $dataCor -> nombre_c_cor; ?>
+              </a>
+              <div class="collapse-divider"></div>
+            <?php
+              }
+            ?>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dataDirect" aria-expanded="true" aria-controls="dataDirect">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Directores</span>
+        </a>
+        <div id="dataDirect" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Selecciona</h6>
+            <?php 
+              while ($dataDir = $datDir -> fetch(PDO::FETCH_OBJ)) {
+            ?>
+              <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDIR ?>ProfileDoc/<?php echo base64_encode($dataDir->id_director); ?>/dir/">
+                <?php echo $dataDir -> nombre_c_dir; ?>
+              </a>
+              <div class="collapse-divider"></div>
+            <?php
+              }
+            ?>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dataDocentes" aria-expanded="true" aria-controls="dataDocentes">
           <i class="fas fa-fw fa-folder"></i>
           <span>Docentes</span>
@@ -139,10 +187,16 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
         <div id="dataDocentes" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona</h6>
-            <a class="collapse-item text-capitalize" href="#">
-              Contenido
+            <?php 
+              while ($dataDoc = $datDoc -> fetch(PDO::FETCH_OBJ)) {
+            ?>
+              <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDIR ?>ProfileDoc/<?php echo base64_encode($dataDoc->id_docente); ?>/doc/">
+                <?php echo $dataDoc -> nombre_c_doc; ?>
               </a>
               <div class="collapse-divider"></div>
+            <?php
+              }
+            ?>
           </div>
         </div>
       </li>

@@ -39,7 +39,7 @@ class Coordinador
 		try {
 			$dbc = new Connect();
 			$dbc = $dbc -> getDB();
-			$stmt = $dbc->prepare("SELECT * FROM directores ORDER BY nombre_c_dir"); 
+			$stmt = $dbc->prepare("SELECT * FROM directores WHERE estado_dir = 1 ORDER BY nombre_c_dir"); 
 			$stmt->execute();
 			return $stmt;
 		} catch(PDOException $e) {
@@ -51,7 +51,7 @@ class Coordinador
 		try {
 			$dbc = new Connect();
 			$dbc = $dbc -> getDB();
-			$stmt = $dbc->prepare("SELECT * FROM docentes ORDER BY nombre_c_doc"); 
+			$stmt = $dbc->prepare("SELECT * FROM docentes WHERE condicion_doc = 1 ORDER BY nombre_c_doc"); 
 			$stmt->execute();
 			return $stmt;
 		} catch(PDOException $e) {

@@ -1,20 +1,11 @@
 <?php 
-	$tag = 'Administrador';
-	$datRep = $admin -> datMyReportEnv($tag, $keyAdm);
-	function formatFech($fechForm) {
-		$fechDat = substr($fechForm, 0,4);
-		$fechM = substr($fechForm, 5,2);
-		$fechD = substr($fechForm, 8,2);
-		$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-		$Fecha = date($fechD)." de ".$meses[date($fechM)-1]. " del ".date($fechDat);
-		return $Fecha;
-	}
+	$tag = 'Director';
+	$datRep = $director -> datMyReportEnv($tag, $keyDir);
 ?>
 <div class="container-fluid animated fadeIn delay-1s">
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800 text-center">Reportes enviados.</h1>
-        <a href="<?php echo SERVERURLCOR; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="<?php echo SERVERURLDIR; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
         </a>
     </div>
@@ -86,6 +77,7 @@
 				}
 			} else {
 		?>
+
 			<div class="col-sm-12 text-center mt-5">
 				<img class="img-fluid px-3 px-sm-4 mb-4" style="width: 13rem;" src="<?php echo SERVERURL; ?>assets/img/notdata.svg" alt="info site">
 				<h3 class="text-center text-danger">
@@ -94,6 +86,7 @@
 					</b>
 				</h3>
 			</div>
+
 		<?php
 			}
 		?>
