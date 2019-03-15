@@ -38,6 +38,9 @@
 		<a href="<?php echo SERVERURLDIR; ?>BajCar/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
 		   	<i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Bajas
 		</a>
+		<a href="<?php echo SERVERURLDIR; ?>GraduateStd/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		   	<i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Graduados
+		</a>
 	</div>
 
 	<div class="card shadow mb-4">
@@ -61,6 +64,9 @@
 					<i class="fas fa-calendar mr-2"></i>
 					Ultima sesion : <b><?php echo formatFech($datAlm->fecha_ult_ses_alm); ?>.</b>
 				</h5>
+				<?php 
+					if ($datAlm -> fin_car == 0) {
+				?>
 				<h5 class="text-left text-primary mt-4">
 					<i class="fas fa-id-badge mr-2"></i>
 					Cuenta :
@@ -103,6 +109,24 @@
 						}
 					?>
 				</h5>
+				<?php
+					}
+				?>
+
+				<?php 
+					if ($datAlm -> fin_car == 1) {
+				?>
+					<div>
+						<h5 class="text-center mt-4">
+							<span class="badge-success badge p-1">
+								<i class="fas fa-check-circle mr-2"></i>
+								Finalizo la carrera.
+							</span>
+						</h5>
+					</div>
+				<?php
+					}
+				?>
 				
           	</div>
           	<div class="col-sm-6 mb-4 text-center rounded">
@@ -123,29 +147,35 @@
 						echo "<img src='".SERVERURL."vistas/img/icous.png' class='img-fluid' width='200'>";
 					}
 				?>
-				<h5 class="text-center text-info mb-2 mt-4">
-					<?php 
-						if ($datAlm -> estado_al != 1) {
-					?>
-						<div class="">
-							<button onclick="activarAlm(<?php echo $datAlm->id_alumno; ?>)" class="btn btn-outline-primary ml-3 btn-sm" type="button">
-								<i class="fas fa-check mr-2"></i>
-								Activar Cuenta
-							</button>
-						</div>
-					<?php
-						} else {
-					?>
-						<div class="">
-							<button onclick="desactivarAlm(<?php echo $datAlm->id_alumno; ?>)" class="btn btn-outline-danger ml-3 btn-sm" type="button">
-								<i class="fas fa-times mr-2"></i>
-								Desactivar Cuenta
-							</button>
-						</div>
-					<?php
-						}
-					?>
-				</h5>
+				<?php 
+					if ($datAlm -> fin_car == 0) {
+				?>
+					<h5 class="text-center text-info mb-2 mt-4">
+						<?php 
+							if ($datAlm -> estado_al != 1) {
+						?>
+							<div class="">
+								<button onclick="activarAlm(<?php echo $datAlm->id_alumno; ?>)" class="btn btn-outline-primary ml-3 btn-sm" type="button">
+									<i class="fas fa-check mr-2"></i>
+									Activar Cuenta
+								</button>
+							</div>
+						<?php
+							} else {
+						?>
+							<div class="">
+								<button onclick="desactivarAlm(<?php echo $datAlm->id_alumno; ?>)" class="btn btn-outline-danger ml-3 btn-sm" type="button">
+									<i class="fas fa-times mr-2"></i>
+									Desactivar Cuenta
+								</button>
+							</div>
+						<?php
+							}
+						?>
+					</h5>
+				<?php
+					}
+				?>
           	</div>
 
 		

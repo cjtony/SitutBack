@@ -125,6 +125,7 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
             <a class="collapse-item" href="<?php echo SERVERURLDIR; ?>dir/RegAlumnos.php">Registrar grupo</a>
+            <a class="collapse-item" href="<?php echo SERVERURLDIR; ?>GraduateStd/">Graduados</a>
           </div>
         </div>
       </li>

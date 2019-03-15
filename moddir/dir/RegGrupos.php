@@ -206,4 +206,4 @@
 </div>
 
 
-    <script src="<?php echo SERVERURLDIR; ?>dir/js/regGrupos.js"></script>
+<script src="<?php echo SERVERURLDIR; ?>dir/js/regGrupos.js"></script>

@@ -119,6 +119,58 @@ if ($_SESSION['keyDir'] == "" || $_SESSION['keyDir'] == null) {
         	echo json_encode($results);
         	$stmt = null; $dbConexion = null;
 			break;	
+
+		case 'listAlmGraduate':
+			$valid = 1;
+			$stmt = $dbConexion -> prepare("SELECT * FROM alumnos alm
+				INNER JOIN det_grupo det ON det.id_detgrupo = alm.id_detgrupo
+				INNER JOIN carreras car ON car.id_carrera = det.id_carrera 
+				INNER JOIN grupos grp ON grp.id_grupo = det.id_grupo 
+				WHERE grp.grupo_n > 1000 && car.id_carrera = :id_car ORDER BY alm.fin_car ASC");
+			$stmt -> bindParam("id_car", $id_car, PDO::PARAM_INT);
+			$stmt -> execute();
+			$data = Array();
+			while ($res = $stmt -> fetch(PDO::FETCH_OBJ)) {
+				$data[] = array(
+					"0" => $res -> nombre_c_al,
+					"1" => $res -> correo_al,
+					"2" => $res -> grupo_n,
+					"3" => ($res->fin_car)?'<button type="button" class="mr-2 btn btn-sm btn-primary"> <i class="fas fa-check mr-2"></i> Confirmado</span> </button>'.'<a href="'.SERVERURLDIR.'PerfAlm/'.base64_encode($res->id_alumno).'/" class="btn btn-outline-primary btn-sm"><i class="fas fa-eye mr-2"></i>Perfil</a>' :'<button class="btn btn-outline-danger btn-sm mr-2" type="button" onclick="desactAlm('.$res->id_alumno.')">
+		            		<i class="fas fa-times mr-2"></i>
+		            		<b>Confirmar</b>
+		            	</button>' .'<a href="'.SERVERURLDIR.'PerfAlm/'.base64_encode($res->id_alumno).'/" class="btn btn-outline-primary btn-sm"><i class="fas fa-eye mr-2"></i>Perfil</a>'
+		            );
+			}
+			$results = array(
+        		"sEcho"=>1,
+        		"iTotalRecords"=>count($data),
+        		"iTotalDisplayRecords"=>count($data),
+        		"aaData"=>$data);
+        	echo json_encode($results);
+        	$stmt = null; $dbConexion = null;
+			break;
+
+		case 'desactAlm':
+
+			$valid = 1;
+			$inval = 0;
+			$idalumno = isset($_POST['idalumno']) ? limpiarDatos($_POST['idalumno']) : "";
+			$stmt = $dbConexion -> prepare("UPDATE alumnos SET estado_al = :inval, acept_grp = :inval, fin_car = :valid, becado_alm = :inval WHERE id_alumno = :idalumno");
+			$stmt -> bindParam("inval", $inval, PDO::PARAM_INT);
+			$stmt -> bindParam("inval", $inval, PDO::PARAM_INT);
+			$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+			$stmt -> bindParam("inval", $inval, PDO::PARAM_INT);
+			$stmt -> bindParam("idalumno", $idalumno, PDO::PARAM_INT);
+			$resstmt = $stmt -> execute();
+			if ($resstmt) {
+				echo 1;
+			} else {
+				echo 2;
+			}
+			$stmt = null; $dbConexion = null;
+
+			break;
+
 		default:
 			$dbConexion = null;
 			break;
