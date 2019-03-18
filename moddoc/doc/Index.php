@@ -1,155 +1,84 @@
 
-	<div class="container-fluid mt-4">
-		<div class="row">
-			<div class="col-md-4 col-lg-3">
-				<!-- SobreMi -->
-                <div class="container py-5">
-                    <div class="card shDC">
-                        <img class="card-img-top" src="<?php echo SERVERURL; ?>vistas/img/iceland.jpg" alt="Card image cap">
-
-                        <div class="text-center margen-avatar">
-                        	<?php 
-								if ($datDoce -> foto_perf_doc != "") {
-							?>
-								<div class="text-center">
-									<img src="<?php echo SERVERURLDOC; ?>/doc/perfilFot/<?php echo $datDoce->foto_perf_doc; ?>" class="rounded-circle" width="100px" >
-								</div>
-								<hr style="height: 2px;" class="bg-success rounded">
-							<?php
-								} else {
-							?>
-								<img src='<?php echo SERVERURL; ?>vistas/img/usermal.png' class='rounded-circle' width='100px'>
-							<?php
-								}
-							?>
-                        </div>
-                        <div class="card-body text-center">
-                        <h6 class="card-title font-weight-bold">
-                        	<?php echo $datDoce->nombre_c_doc; ?>
-                        </h6>
-                        <h6 class="text-left mt-3">
-                        	<i class="fas fa-certificate fa-lg icoIni"></i>
-                        	<?php echo $datDoce->especialidad_doc; ?>
-                        </h6>
-						<h6 class=" text-left mt-3 text-truncate" title="<?php echo $datDoce->correo_doc; ?>">
-							<i class="fas fa-envelope fa-lg icoIni"></i>
-							<?php echo $datDoce -> correo_doc; ?>
-						</h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-phone fa-lg icoIni"></i>
-							<?php echo $datDoce -> telefono_doc; ?>
-						</h6>
-						<hr class="bg-info mt-4" style="height: 2px;">
-						<h6 class="text-center text-info">
-							<b>Docente</b>
-						</h6>
-                        </div>
-                    </div>
-                </div><!-- SobreMi -->
-                <div class="container">
-                    <!-- Comentarios -->
-                    <div class="card">
-                        <div class="card-header text-center">
-                            Frase Celebre
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                            <p class="font-italic text-info">
-                            	<b>"</b> Todo el mundo tiene talento, solo es cuestión de moverse hasta descubrirlo. <b>"</b>
-                            </p>
-                            <footer class="blockquote-footer"><cite title="Source Title">George Lucas</cite></footer>
-                            </blockquote>
-                        </div>
-                    </div><!-- Comentarios -->
-                </div>
-			</div>
-			<div class="col-md-8 col-lg-9">
-				<div class="text-center bg-primary p-1" style="border-radius: 8px;">
-					<h4 class="text-center text-white mt-3"> 
-						Mis grupos tutorados
-					</h4>
-				</div>
-				<div class="row mt-4">
-					<?php 
-						$sql = "SELECT det.id_detgrupo, grp.grupo_n, grp.period_cuat, car.nombre_car FROM det_grupo det
-						INNER JOIN grupos grp ON grp.id_grupo = det.id_grupo 
-						INNER JOIN docentes doc ON doc.id_docente = det.id_docente
-						INNER JOIN carreras car On car.id_carrera = det.id_carrera
-						WHERE doc.id_docente = '".$keyDoc."' && det.estado_detgrp = 1";
-						$result = $conexion->query($sql);
-						$imp = "";
-						$datAn = date("Y");
-						while ($res = $result -> fetch_object()) {
-							$notifGrpJustif = $docente->notifJustifGrp($keyDoc, $res->id_detgrupo);
-							if ($notifGrpJustif->Cantidad > 0) {
-								echo '
-									<div class="col-sm-12 col-md-4">
-										<div class="card cardShadow">
-										  	<div class="card-body">
-										  	<div class="text-right">
-										  		<span class="badge badge-danger" style="font-size:16px;">
-										  		<i class="fas fa-clock icoIni"></i>Pendientes</span>
-										  	</div>
-										    	<h5 title="'.$res->nombre_car.'" class="card-title text-center text-truncate mt-3">
-										    		'.$res->nombre_car.'
-										    	</h5>
-										  	</div>
-										  	<ul class="list-group list-group-flush text-center">
-										    	<h6 class="list-group-item text-info">
-										    		<i class="fas fa-users icoIni "></i>
-										    		'.$res->grupo_n.'
-										    	</h6>
-										    	<h6 class="list-group-item text-info">
-										    		<i class="fas fa-calendar icoIni "></i>
-										    		'.$res->period_cuat.' '.$datAn.'
-										    	</h6>
-										    </ul>
-										  	<div class="card-body text-center">
-										    	<a href="'.SERVERURLDOC.'DetGrp/'.base64_encode($res->id_detgrupo).'/" class="btn btn-outline-primary btn-md">
-										    		<i class="fas fa-plus icoIni"></i>
-										    		Detalles
-										    	</a>
-										  	</div>
-										</div>
-										<br>
-									</div>';
-							} else {
-								echo '
-									<div class="col-sm-12 col-md-4">
-										<div class="card cardShadow">
-										  	<div class="card-body">
-										  	<div class="text-right">
-										  		<span class="badge badge-primary" style="font-size:16px;">
-										  		<i class="fas fa-check icoIni"></i>Todo bien</span>
-										  	</div>
-										    	<h5 title="'.$res->nombre_car.'" class="card-title text-center text-truncate mt-3">
-										    		'.$res->nombre_car.'
-										    	</h5>
-										  	</div>
-										  	<ul class="list-group list-group-flush text-center">
-										    	<h6 class="list-group-item text-info">
-										    		<i class="fas fa-users icoIni "></i>
-										    		'.$res->grupo_n.'
-										    	</h6>
-										    	<h6 class="list-group-item text-info">
-										    		<i class="fas fa-calendar icoIni "></i>
-										    		'.$res->period_cuat.' '.$datAn.'
-										    	</h6>
-										    </ul>
-										  	<div class="card-body text-center">
-										    	<a href="'.SERVERURLDOC.'DetGrp/'.base64_encode($res->id_detgrupo).'/" class="btn btn-outline-primary btn-md">
-										    		<i class="fas fa-plus icoIni"></i>
-										    		Detalles
-										    	</a>
-										  	</div>
-										</div>
-										<br>
-									</div>';
-							}
-							
-						}
-					?>
-				</div>
-			</div>
-		</div>
+<div class="container-fluid animated fadeIn delay-1s mt-4">
+	<div class="row mt-4">
+		<?php 
+			$sql = "SELECT det.id_detgrupo, grp.grupo_n, grp.period_cuat, car.nombre_car FROM det_grupo det
+			INNER JOIN grupos grp ON grp.id_grupo = det.id_grupo 
+			INNER JOIN docentes doc ON doc.id_docente = det.id_docente
+			INNER JOIN carreras car On car.id_carrera = det.id_carrera
+			WHERE doc.id_docente = '".$keyDoc."' && det.estado_detgrp = 1";
+			$result = $conexion->query($sql);
+			$imp = "";
+			$datAn = date("Y");
+			while ($res = $result -> fetch_object()) {
+				$notifGrpJustif = $docente->notifJustifGrp($keyDoc, $res->id_detgrupo);
+				if ($notifGrpJustif->Cantidad > 0) {
+					echo '
+						<div class="col-sm-12 col-md-4">
+							<div class="card shadow border-left-danger hovAnim">
+							  	<div class="card-body">
+							  	<div class="text-right">
+							  		<span class="badge badge-danger" style="font-size:12px;">
+							  		<i class="fas fa-clock mr-2"></i>Pendientes</span>
+							  	</div>
+							    	<h5 title="'.$res->nombre_car.'" class="card-title text-center text-truncate mt-3">
+							    		'.$res->nombre_car.'
+							    	</h5>
+							  	</div>
+							  	<ul class="list-group list-group-flush text-center">
+							    	<h6 class="list-group-item text-primary">
+							    		<i class="fas fa-users mr-2 "></i>
+							    		'.$res->grupo_n.'
+							    	</h6>
+							    	<h6 class="list-group-item text-primary">
+							    		<i class="fas fa-calendar mr-2 "></i>
+							    		'.$res->period_cuat.' '.$datAn.'
+							    	</h6>
+							    </ul>
+							  	<div class="card-body text-center">
+							    	<a href="'.SERVERURLDOC.'DetGrp/'.base64_encode($res->id_detgrupo).'/" class="btn btn-outline-primary btn-md">
+							    		<i class="fas fa-plus mr-2"></i>
+							    		Detalles
+							    	</a>
+							  	</div>
+							</div>
+							<br>
+						</div>';
+				} else {
+					echo '
+						<div class="col-sm-12 col-md-4">
+							<div class="card shadow border-left-primary hovAnim">
+							  	<div class="card-body">
+							  	<div class="text-right">
+							  		<span class="badge badge-primary" style="font-size:12px;">
+							  		<i class="fas fa-check mr-2"></i>Todo bien</span>
+							  	</div>
+							    	<h5 title="'.$res->nombre_car.'" class="card-title text-center text-truncate mt-3">
+							    		'.$res->nombre_car.'
+							    	</h5>
+							  	</div>
+							  	<ul class="list-group list-group-flush text-center">
+							    	<h6 class="list-group-item text-primary">
+							    		<i class="fas fa-users mr-2 "></i>
+							    		'.$res->grupo_n.'
+							    	</h6>
+							    	<h6 class="list-group-item text-primary">
+							    		<i class="fas fa-calendar mr-2 "></i>
+							    		'.$res->period_cuat.' '.$datAn.'
+							    	</h6>
+							    </ul>
+							  	<div class="card-body text-center">
+							    	<a href="'.SERVERURLDOC.'DetGrp/'.base64_encode($res->id_detgrupo).'/" class="btn btn-outline-primary btn-sm">
+							    		<i class="fas fa-plus mr-2"></i>
+							    		Detalles
+							    	</a>
+							  	</div>
+							</div>
+							<br>
+						</div>';
+				}
+				
+			}
+		?>
 	</div>
+</div>
