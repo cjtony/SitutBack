@@ -11,9 +11,15 @@
 	$cantBecMl = $docente -> cantMaleBecGrp($valObtDec, $keyDoc);
 	$cantBecFm = $docente -> cantFemaleBecGrp($valObtDec, $keyDoc);
 ?>
-	<div class="container">
+	<style>
+		.ocult {
+			display: none;
+		}
+	</style>
+
+	<!-- <div class="container">
 		<div class="btn-group">
-		  	<button class="btn bg-white text-primary cardShadow btn-md dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  	<button class="btn bg-white text-primary cardShadow btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    Justificantes <i id="bell" class="fas fa-bell icoPri"></i>
 		    	<span class="ml-2 lead icoIni icoPri" id="cantNotif"></span>
 		  	</button>
@@ -22,7 +28,7 @@
 			</div>
 		</div>
 		<div class="btn-group ml-3">
-		  	<button class="btn text-primary bg-white cardShadow btn-md dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  	<button class="btn text-primary bg-white cardShadow btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    Tutorías <i id="bell2" class="fas fa-bell icoPri"></i>
 		    	<span class="ml-2 lead icoIni icoPri" id="cantNotifTut"></span>
 		  	</button>
@@ -30,92 +36,174 @@
 		  		<div class="container-fluid listTut"></div>
 			</div>
 		</div>
+	</div> -->
+
+
+<div class="container-fluid mt-4 animated fadeIn delay-1s">
+
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<h1 class="h3 mb-0 text-gray-800">
+		    <i class="fas fa-user mr-2 text-primary"></i>
+			<b><?php echo "Carrera: ".$datGrup->nombre_car.", Grupo: ".$datGrup->grupo_n."."; ?></b>
+		</h1>
+		<a href="<?php echo SERVERURLDOC; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		   	<i class="fas fa-home fa-sm text-white-50 mr-2"></i> Inicio 
+		</a>
 	</div>
 
-	<div class="container-fluid mt-4">
-		<div class="row">
-			<div class="col-md-8 col-lg-9" id="loader">
-				<div class="text-center mt-5">
-					<img src="<?php echo SERVERURL; ?>vistas/img/load2.gif" width="200" alt="">
-					<h1 class="text-info" id="textLoad">
-						Cargando contenido... <b>Grupo: <?php echo $datGrup->grupo_n; ?></b>
-						<b class="text-truncate"><?php echo $datGrup->nombre_car; ?></b>
-					</h1>
+	<div class="row">
+		<div class="col-md-12 col-lg-12" id="loader">
+			<div class="text-center mt-5">
+				<div class="spinner-grow text-primary mb-3" role="status" style="width: 100px; height: 100px;">
+				  <span class="sr-only">Loading...</span>
 				</div>
-			</div>
-			<div class="col-md-8 col-lg-9 ocult" id="contend">
-				<div class="text-center bg-primary p-1" style="border-radius: 8px;">
-					<h4 class="text-center text-white mt-3"> 
-						<?php echo "Carrera: ".$datGrup->nombre_car.", Grupo: ".$datGrup->grupo_n."."; ?>
-					</h4>
-				</div>
-				<br>
-				<div class="row mt-5">
-					<div class="col-sm-12 col-lg-4 text-center border-right border-info">
-						<h6 class="bg-white pad10 rounded cardShadow">
-							<i class="fas fa-male icoIni fa-lg text-info"></i>
-							<span id="cantMale"></span>
-							<br>
-							<hr style="height: 2px;" class="bg-info rounded">
-							<i class="fas fa-money-bill-wave icoIni fa-lg text-info"></i>
-							<span id="cantMaleBec"></span>
-						</h6>
-					</div>
-					<div class="col-sm-12 col-lg-4 text-center">
-						<h6 class="bg-white pad10 rounded cardShadow">
-							<i class="fas fa-female icoIni fa-lg text-info"></i>
-							<span id="cantFemale"></span>
-							<br>
-							<hr style="height: 2px;" class="bg-info rounded">
-							<i class="fas fa-money-bill-wave icoIni fa-lg text-info"></i>
-							<span id="cantFemaleBec"></span>
-						</h6>
-					</div>
-					<div class="col-sm-12 col-lg-4 text-center border-left border-info">
-						<h6 class="bg-white pad10 rounded cardShadow">
-							<i class="fas fa-users icoIni fa-lg text-info"></i>
-							<span id="cantAllAlm"></span>
-							<br>
-							<hr style="height: 2px;" class="bg-info rounded">
-							<i class="fas fa-money-bill icoIni fa-lg text-info"></i>
-							<span id="cantAllBec"></span>
-						</h6>
-					</div>
-				</div>
-				<br>
-				<div class="row text-center mt-5">
-					<div class="col-sm-6 border-right border-info">
-						<button data-backdrop="false" data-toggle="modal" data-target="#regAlm" class="btn cardShadow btn-outline-primary  btn-md" type="button">
-							<i class="fas fa-plus icoIni"></i>
-							Registrar Alumno
-						</button>
-
-					</div>
-					<div class="col-sm-6">
-						<button data-backdrop="false" data-toggle="modal" data-target="#listAlm" class="btn cardShadow btn-outline-primary  btn-md" type="button">
-							<i class="fas fa-list icoIni"></i>
-							Mis Alumnos
-						</button>
-						<br><br>
-					</div>
-					<div class="col-sm-6 border-right border-info">
-						<button data-backdrop="false" data-toggle="modal" data-target="#listAlmAcept" class="btn btn-outline-primary cardShadow btn-md" type="button">
-							<i class="fas fa-check icoIni" id="icoAcept"></i>
-							<span id="cantAlmRech" class="icoIni icoPri"></span>
-							Aceptar Alumnos
-						</button>
-					</div>
-					<div class="col-sm-6">
-						<button data-backdrop="false" data-toggle="modal" data-target="#becAlm" class="btn cardShadow btn-outline-primary  btn-md" type="button">
-							<i class="fas fa-money-check-alt icoIni"></i>
-							Ver Becados
-						</button>
-					</div>
-				</div>
+				<b>
+					<h3 class="text-primary font-weight-bold" id="textLoad">
+						Cargando contenido...
+					</h3>
+				</b>	
 			</div>
 		</div>
 	</div>
 
+	<div class="ocult row" id="contend">
+		<div class="col-xl-4 col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Hombres</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  	<span id="cantMale" class="mr-2"></span>
+                  	<span id="cantMaleBec"></span>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-male fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Mujeres</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  	<span id="cantFemale" class="mr-2"></span>
+                  	<span id="cantFemaleBec"></span>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-female fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  	<span id="cantAllAlm" class="mr-2"></span>
+                  	<span id="cantAllBec"></span>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-users fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Registrar alumno</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  	<button data-backdrop="false" data-toggle="modal" data-target="#regAlm" class="btn cardShadow btn-outline-primary mt-3  btn-sm" type="button">
+						<i class="fas fa-plus mr-2"></i>
+						Presiona aquí...
+					</button>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-user-plus fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mis alumnos</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  	<button data-backdrop="false" data-toggle="modal" data-target="#listAlm" class="btn cardShadow btn-outline-primary  btn-sm mt-3" type="button">
+						<i class="fas fa-eye mr-2"></i>
+						Ver alumnos
+					</button>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-list fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Aceptar Alumnos</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  	<button data-backdrop="false" data-toggle="modal" data-target="#listAlmAcept" class="btn btn-outline-primary cardShadow btn-sm mt-3" type="button">
+						<i class="fas fa-check mr-2" id="icoAcept"></i>
+						<span id="cantAlmRech" class="icoIni icoPri"></span>
+						Alumnos
+					</button>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-user-check fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Alumnos becados</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  	<button data-backdrop="false" data-toggle="modal" data-target="#becAlm" class="btn cardShadow btn-outline-primary  btn-sm mt-3" type="button">
+						<i class="fas fa-eye mr-2"></i>
+						Ver Becados
+					</button>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-money-check-alt fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+	</div>
+</div>
 	<!--====================================================
 	=            Ventana modal registrar alumno            =
 	=====================================================-->

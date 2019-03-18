@@ -5,13 +5,13 @@ function init() {
 	setTimeout(function(){
 		$("#textLoad").text("Correcto!");
 		setTimeout(function(){
-			$("#loader").addClass("animated bounceOutUp");
+			$("#loader").addClass("animated fadeOut");
 			setTimeout(function(){
 				$("#loader").hide();
 				setTimeout(function(){
 					$("#contend, #loader1").removeClass("ocult");
-					$("#contend").addClass("animated bounceInUp");
-					$("#loader1").addClass("animated bounceInLeft");
+					$("#contend").addClass("animated fadeIn");
+					$("#loader1").addClass("animated fadeIn");
 				},500);
 			}, 1000);
 		},1500);

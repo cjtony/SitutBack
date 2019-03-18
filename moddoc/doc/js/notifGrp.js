@@ -1,20 +1,4 @@
 $(document).ready(function(){
-	$(window).scroll(function() {
-	  if ($("#menu1").offset().top > 56) {
-	      $("#menu1").addClass("bg-info");
-	  } else {
-	      $("#menu1").removeClass("bg-info");
-	  }
-	});
-	$(window).scroll(function(){
-		if ($("#menu2").offset().top > 56) {
-	      $("#menu2").addClass("bg-info");
-	      $("#textLog").text("U T S E M");
-	  } else {
-	      $("#menu2").removeClass("bg-info");
-	      $("#textLog").text("S I T U T");
-	  }
-	});
 	setInterval(function () {
 		cantAllAlm();
 		cantMale();
@@ -133,9 +117,9 @@ $(document).ready(function(){
 			type : "POST",
 			success:function (data) {
 				if (data > 1 || data == 0) {
-					$('#cantMale').html(data + " Hombres");	
+					$('#cantMale').html(data + " registros.");	
 				} else {
-					$('#cantMale').html(data + " Hombre");	
+					$('#cantMale').html(data + " registro.");	
 				}
 			}
 		});
@@ -146,9 +130,9 @@ $(document).ready(function(){
 			type : "POST",
 			success:function (data) {
 				if (data > 1 || data == 0) {
-					$('#cantFemale').html(data + " Mujeres");	
+					$('#cantFemale').html(data + " registros.");	
 				} else {
-					$('#cantFemale').html(data + " Mujer");	
+					$('#cantFemale').html(data + " registro.");	
 				}
 			}
 		});
@@ -159,9 +143,9 @@ $(document).ready(function(){
 			type : "POST",
 			success:function (data) {
 				if (data > 1 || data == 0) {
-					$('#cantAllBec').html(data + " Totales");	
+					$('#cantAllBec').html(data + " registros.");	
 				} else {
-					$('#cantAllBec').html(data + " Total");	
+					$('#cantAllBec').html(data + " registro.");	
 				}
 			}
 		});
@@ -172,9 +156,9 @@ $(document).ready(function(){
 			type : "POST",
 			success:function (data) {
 				if (data > 1 || data == 0) {
-					$('#cantMaleBec').html(data + " Becados");	
+					$('#cantMaleBec').html(data + " becados.");	
 				} else {
-					$('#cantMaleBec').html(data + " Becado");	
+					$('#cantMaleBec').html(data + " becado.");	
 				}
 			}
 		});
@@ -185,9 +169,9 @@ $(document).ready(function(){
 			type : "POST",
 			success:function (data) {
 				if (data > 1 || data == 0) {
-					$('#cantFemaleBec').html(data + " Becadas");	
+					$('#cantFemaleBec').html(data + " becadas.");	
 				} else {
-					$('#cantFemaleBec').html(data + " Becada");	
+					$('#cantFemaleBec').html(data + " becada.");	
 				}
 			}
 		});
@@ -198,9 +182,9 @@ $(document).ready(function(){
 			type : "POST",
 			success:function (data) {
 				if (data > 1 || data == 0) {
-					$('#cantAllBec').html(data + " Totales");	
+					$('#cantAllBec').html(data + " totales.");	
 				} else {
-					$('#cantAllBec').html(data + " Total");	
+					$('#cantAllBec').html(data + " total.");	
 				}
 			}
 		});

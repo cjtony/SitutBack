@@ -58,7 +58,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo SERVERURLDIR; ?>Home/">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo SERVERURLDOC; ?>Home/">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-user-graduate"></i>
         </div>
@@ -68,7 +68,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item active text-center">
-        <a class="nav-link text-center" href="<?php echo SERVERURLDIR; ?>Home/">
+        <a class="nav-link text-center" href="<?php echo SERVERURLDOC; ?>Home/">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Panel de control</span></a>
       </li>
