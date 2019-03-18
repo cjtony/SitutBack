@@ -87,8 +87,8 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confContDir" href="#">Contraseña</a>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confDatDir" href="#">Datos</a>
+            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confContDoc" href="#">Contraseña</a>
+            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confDatDoc" href="#">Datos</a>
             <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confFotPerf" href="#">Foto</a>
           </div>
         </div>
