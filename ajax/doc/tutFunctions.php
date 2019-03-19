@@ -87,46 +87,46 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == "") {
 				if ($notifAlmJustif->Cantidad > 0) {
 					if ($reg->becado_alm == 1) {
 						$data[] = array(
-							"0" => "<i class='fas fa-clock fa-lg text-danger icoIni'></i>".$reg -> nombre_c_al."",
+							"0" => "<i class='fas fa-clock fa-lg text-danger icoIni mr-2'></i>".$reg -> nombre_c_al."",
 			                "1" => $reg -> matricula_al,
-			                "2" => '<a href="'.SERVERURLDOC.'PerfAlm/'.base64_encode($reg->id_alumno).'/" class="btn btn-primary text-white">
+			                "2" => '<a href="'.SERVERURLDOC.'PerfAlm/'.base64_encode($reg->id_alumno).'/" class="btn btn-primary text-white btn-sm">
 			                			<i class="fas fa-eye icoIni"></i>
 			                			Perfil
-			                		</a> <button class="btn btn-danger" onclick="desactivarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-times"></i></button>',
-			                "3" => 	'<button type="button" class="btn btn-primary"><i class="fa fa-check-circle fa-lg"></i></button>'	
+			                		</a> <button class="btn btn-danger btn-sm" onclick="desactivarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-times"></i></button>',
+			                "3" => 	'<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-check-circle fa-lg"></i></button>'	
 						);
 					} else {
 						$data[] = array(
-							"0" => "<i class='fas fa-clock fa-lg text-danger icoIni'></i>".$reg -> nombre_c_al."",
+							"0" => "<i class='fas fa-clock fa-lg text-danger icoIni mr-2'></i>".$reg -> nombre_c_al."",
 			                "1" => $reg -> matricula_al,
-			                "2" => '<a href="'.SERVERURLDOC.'PerfAlm/'.base64_encode($reg->id_alumno).'/" class="btn btn-primary text-white">
+			                "2" => '<a href="'.SERVERURLDOC.'PerfAlm/'.base64_encode($reg->id_alumno).'/" class="btn btn-primary text-white btn-sm">
 			                			<i class="fas fa-eye icoIni"></i>
 			                			Perfil
-			                		</a> <button class="btn btn-danger" onclick="desactivarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-times"></i></button>',
-			                "3" => 	'<button class="btn btn-outline-success" onclick="becadoAlm('.$reg->id_alumno.')"><i class="fa fa-check-circle fa-lg"></i></button>'	
+			                		</a> <button class="btn btn-danger btn-sm" onclick="desactivarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-times"></i></button>',
+			                "3" => 	'<button class="btn btn-outline-success btn-sm" onclick="becadoAlm('.$reg->id_alumno.')"><i class="fa fa-check-circle fa-lg"></i></button>'	
 						);
 					}
 					
 				} else {	
 					if ($reg->becado_alm == 1) {
 						$data[] = array(
-							"0" => "<i class='fas fa-clock fa-lg text-success icoIni'></i>".$reg -> nombre_c_al."",
+							"0" => "<i class='fas fa-clock fa-lg text-success icoIni mr-2'></i>".$reg -> nombre_c_al."",
 			                "1" => $reg -> matricula_al,
-			                "2" => '<a href="'.SERVERURLDOC.'PerfAlm/'.base64_encode($reg->id_alumno).'/" class="btn btn-primary text-white">
+			                "2" => '<a href="'.SERVERURLDOC.'PerfAlm/'.base64_encode($reg->id_alumno).'/" class="btn btn-primary text-white btn-sm">
 			                			<i class="fas fa-eye icoIni"></i>
 			                			Perfil
-			                		</a> <button class="btn btn-danger" onclick="desactivarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-times"></i></button>',
-			                "3" => '<button class="btn btn-primary" type="button"><i class="fa fa-check-circle fa-lg"></i></button>'		
+			                		</a> <button class="btn btn-danger btn-sm" onclick="desactivarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-times"></i></button>',
+			                "3" => '<button class="btn btn-primary btn-sm" type="button"><i class="fa fa-check-circle fa-lg"></i></button>'		
 						);
 					} else {	
 						$data[] = array(
-							"0" => "<i class='fas fa-clock fa-lg text-success icoIni'></i>".$reg -> nombre_c_al."",
+							"0" => "<i class='fas fa-clock fa-lg text-success icoIni mr-2'></i>".$reg -> nombre_c_al."",
 			                "1" => $reg -> matricula_al,
-			                "2" => '<a href="'.SERVERURLDOC.'PerfAlm/'.base64_encode($reg->id_alumno).'/" class="btn btn-primary text-white">
+			                "2" => '<a href="'.SERVERURLDOC.'PerfAlm/'.base64_encode($reg->id_alumno).'/" class="btn btn-primary text-white btn-sm">
 			                			<i class="fas fa-eye icoIni"></i>
 			                			Perfil
-			                		</a> <button class="btn btn-danger" onclick="desactivarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-times"></i></button>',
-			                "3" => '<button class="btn btn-outline-success" onclick="becadoAlm('.$reg->id_alumno.')"><i class="fa fa-check-circle fa-lg"></i></button>'		
+			                		</a> <button class="btn btn-danger btn-sm" onclick="desactivarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-times"></i></button>',
+			                "3" => '<button class="btn btn-outline-success btn-sm" onclick="becadoAlm('.$reg->id_alumno.')"><i class="fa fa-check-circle fa-lg"></i></button>'		
 						);
 					}
 				}
@@ -155,7 +155,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == "") {
 							"0" => '<img src="'.$urlFront.'modAlm/Arch/perfil/'.$reg->foto_perf_alm.'" class="img-fluid rounded" width="100">',
 							"1" => $reg -> nombre_c_al,
 							"2" => $reg -> matricula_al,
-							"3" => '<button class="btn btn-primary" onclick="activarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-check"></i></button>'
+							"3" => '<button class="btn btn-primary btn-sm" onclick="activarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-check"></i></button>'
 						);
 					} else {
 						if ($reg -> sexo_al == "Masculino") {
@@ -163,14 +163,14 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == "") {
 								"0" => '<img src="../vistas/img/usermal.png" class="img-fluid rounded" width="50">',
 								"1" => $reg -> nombre_c_al,
 								"2" => $reg -> matricula_al,
-								"3" => '<button class="btn btn-primary" onclick="activarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-check"></i></button>'
+								"3" => '<button class="btn btn-primary btn-sm" onclick="activarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-check"></i></button>'
 							);
 						} else {
 							$data[] = array(
 								"0" => '<img src="../vistas/img/userfem.png" class="img-fluid rounded" width="50">',
 								"1" => $reg -> nombre_c_al,
 								"2" => $reg -> matricula_al,
-								"3" => '<button class="btn btn-primary" onclick="activarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-check"></i></button>'
+								"3" => '<button class="btn btn-primary btn-sm" onclick="activarAlmGrp('.$reg->id_alumno.')"><i class="fa fa-check"></i></button>'
 							);
 						}
 					}
@@ -270,8 +270,8 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == "") {
 							"0" => $reg->nombre_c_al,
 							"1" => $reg->matricula_al,
 							"2" => '<span>Sin Dato</span>',
-							"3" => '<button class="btn btn-outline-success btnEditBec" type="button" data-target="#editBec" data-toggle="modal" onclick="editBec('.$reg->id_becadoalm.'),btnEditBec()"><i class="fas fa-edit fa-lg"></i></button>
-									<button class="btn btn-outline-danger" type="button" onclick="becadoRechAlm('.$reg->id_alumno.')"><i class="fas fa-times fa-lg"></i></button>'
+							"3" => '<button class="btn btn-outline-success btnEditBec btn-sm" type="button" data-target="#editBec" data-toggle="modal" onclick="editBec('.$reg->id_becadoalm.'),btnEditBec()"><i class="fas fa-edit fa-lg"></i></button>
+									<button class="btn btn-outline-danger btn-sm" type="button" onclick="becadoRechAlm('.$reg->id_alumno.')"><i class="fas fa-times fa-lg"></i></button>'
 						);
 					} else {
 						$data[] = array(

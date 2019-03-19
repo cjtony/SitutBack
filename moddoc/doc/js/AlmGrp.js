@@ -1,33 +1,17 @@
 function init() {
-	$(window).scroll(function() {
-	  if ($("#menu1").offset().top > 56) {
-	      $("#menu1").addClass("bg-info");
-	  } else {
-	      $("#menu1").removeClass("bg-info");
-	  }
-	});
-	$(window).scroll(function(){
-		if ($("#menu2").offset().top > 56) {
-	      $("#menu2").addClass("bg-info");
-	      $("#textLog").text("U T S E M");
-	  } else {
-	      $("#menu2").removeClass("bg-info");
-	      $("#textLog").text("S I T U T");
-	  }
-	});
 	setTimeout(function(){
 		$("#loader").removeClass("ocult");
-		$("#loader").addClass("animated rotateIn");
+		$("#loader").addClass("animated fadeIn");
 		setTimeout(function(){
 			$("#textLoad").text("Correcto!");
 			setTimeout(function(){
-				$("#loader").removeClass("animated rotateIn");
-				$("#loader").addClass("animated bounceOutUp");
+				$("#loader").removeClass("animated fadeIn");
+				$("#loader").addClass("animated fadeOut");
 				setTimeout(function(){
 					$("#loader").hide();
 					setTimeout(function(){
 						$("#contend").removeClass("ocult");
-						$("#contend").addClass("animated rotateInDownRight");
+						$("#contend").addClass("animated fadeIn");
 					},300);
 				}, 1000);
 			},1500);

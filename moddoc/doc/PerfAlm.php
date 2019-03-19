@@ -22,15 +22,6 @@
 	$cantTutPerSol = $docente->cantTutPerSolic($valPerfAlmDec);
 	$valDPAlm = $docente -> valDatPerAlm($valPerfAlmDec);
 	$valEnc = $docente -> valDatEnc($valPerfAlmDec);
-	function formatFech($fechForm) {
-		$fechDat = substr($fechForm, 0,4);
-		$fechM = substr($fechForm, 5,2);
-		$fechD = substr($fechForm, 8,2);
-		$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-		$Fecha = date($fechD)." de ".$meses[date($fechM)-1]. " del ".date($fechDat);
-		return $Fecha;
-	}
 	if ($datDoce) {
 ?>
 	<style type="text/css">
@@ -58,571 +49,509 @@
 			background: linear-gradient(to right, #185a9d, #43cea2);
 		}
 	</style>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-2"></div>
-			<div class="col-sm-12 col-md-12 col-lg-8">
-				<a href="<?php echo SERVERURLDOC; ?>DetGrp/<?php echo base64_encode($grp); ?>/" class="btn text-primary bg-white cardShadow mr-3 btn-md">
-					<i class="fas fa-arrow-left icoIni"></i>
-					Regresar
-				</a>
-				<button data-backdrop="false" data-toggle="modal" data-target="#almList" class="btn text-primary bg-white cardShadow mr-3 btn-md">
-					<i class="fas fa-list icoIni"></i>
-					Mis alumnos
-				</button>
+
+<div class="container-fluid mt-4 animated fadeIn delay-1s">
+
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<h1 class="h3 mb-0 text-gray-800">
+		    <i class="fas fa-university mr-2 text-primary"></i>
+			<b><?php echo "Carrera: ".$datGrup->nombre_car.", Grupo: ".$datGrup->grupo_n."."; ?></b>
+		</h1>
+		<a href="<?php echo SERVERURLDOC; ?>DetGrp/<?php echo base64_encode($grp); ?>/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		   	<i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+		</a>
+		<a data-backdrop="false" data-toggle="modal" data-target="#almList" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm text-white">
+		   	<i class="fas fa-list fa-sm text-white-50 mr-2"></i> Mis alumnos 
+		</a>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12 col-lg-12 ocult" id="loader">
+			<div class="text-center mt-5">
+				<div class="spinner-grow text-primary mb-3" role="status" style="width: 100px; height: 100px;">
+				  <span class="sr-only">Loading...</span>
+				</div>
+				<h3 class="text-primary font-weight-bold" id="textLoad">
+					Cargando datos de <b><?php echo $datAlm->nombre_c_al; ?></b>
+				</h3>
 			</div>
 		</div>
 	</div>
 
-	<div class="container-fluid mt-4">
-		<div class="row">
-			<div class="col-md-4 col-lg-3">
-				<!-- SobreMi -->
-                <div class="container py-5">
-                    <div class="card shDC">
-                        <img class="card-img-top" src="<?php echo SERVERURL; ?>vistas/img/iceland.jpg" alt="Card image cap">
-
-                        <div class="text-center margen-avatar">
-                        	<?php 
-								if ($datDoce -> foto_perf_doc != "") {
-							?>
-								<div class="text-center">
-									<img src="<?php echo SERVERURLDOC; ?>perfilFot/<?php echo $datDoce->foto_perf_doc; ?>" class="rounded-circle" width="100px" >
-								</div>
-								<hr style="height: 2px;" class="bg-success rounded">
-							<?php
-								} else {
-							?>
-								<img src='<?php echo SERVERURL; ?>vistas/img/usermal.png' class='rounded-circle' width='100px'>
-							<?php
-								}
-							?>
-                        </div>
-                        <div class="card-body text-center">
-                        <h6 class="card-title font-weight-bold">
-                        	<?php echo $datDoce->nombre_c_doc; ?>
-                        </h6>
-                        <h6 class="text-left mt-3">
-                        	<i class="fas fa-certificate fa-lg icoIni"></i>
-                        	<?php echo $datDoce->especialidad_doc; ?>
-                        </h6>
-						<h6 class=" text-left mt-3 text-truncate" title="<?php echo $datDoce->correo_doc; ?>">
-							<i class="fas fa-envelope fa-lg icoIni"></i>
-							<?php echo $datDoce -> correo_doc; ?>
-						</h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-phone fa-lg icoIni"></i>
-							<?php echo $datDoce -> telefono_doc; ?>
-						</h6>
-						<hr class="bg-info mt-4" style="height: 2px;">
-						<h6 class="text-center text-info">
-							<b>Docente</b>
-						</h6>
-                        </div>
-                    </div>
-                </div><!-- SobreMi -->
-                <div class="container">
-                    <!-- Comentarios -->
-                    <div class="card">
-                        <div class="card-header text-center">
-                            Frase Celebre
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                            <p class="font-italic text-info">
-                            	<b>"</b> Todo el mundo tiene talento, solo es cuestión de moverse hasta descubrirlo. <b>"</b>
-                            </p>
-                            <footer class="blockquote-footer"><cite title="Source Title">George Lucas</cite></footer>
-                            </blockquote>
-                        </div>
-                    </div><!-- Comentarios -->
-                </div>
-			</div>
-			<div class="col-md-8 col-lg-9 ocult" id="loader">
-				<div class="text-center mt-5">
-					<img src="<?php echo SERVERURL; ?>vistas/img/load2.gif" width="200" alt="">
-					<h1 class="text-info" id="textLoad">
-						Cargando datos de <b><?php echo $datAlm->nombre_c_al; ?></b>
-					</h1>
-				</div>
-			</div>
-			<div class="col-md-8 col-lg-9 ocult" id="contend">
-				<div class="text-center bg-primary p-1" style="border-radius: 8px;">
-					<h4 class="text-center text-white mt-3"> 
-						<?php echo "Carrera: ".$datGrup->nombre_car.", Grupo: ".$datGrup->grupo_n."."; ?>
-					</h4>
-				</div>
-				<div class="row mt-4">
-					<div class="col-sm-6">
-						<h6 class="text-left text-capitalize text-info">
-							<br>
-							<i class="fas fa-user-graduate mr-2"></i>
-							Alumno: <b><?php echo $datAlm->nombre_c_al; ?></b>
-						</h6>
-						<h6 class="text-left text-info mt-3">
-							<i class="fas fa-certificate mr-2"></i>
-							Matricula: <b><?php echo $datAlm->matricula_al; ?></b>
-						</h6>
-						<h6 class="text-left text-info  mt-3">
-							<i class="fas fa-envelope mr-2"></i>
-							Correo: <b><?php echo $datAlm->correo_al; ?></b>
-						</h6>
-						<h6 class="text-left text-info mt-3">
-							<i class="fas fa-phone mr-2"></i>
-							Telefono: <b><?php echo $datAlm->telefono_al; ?></b>
-						</h6>
-						<h6 class="text-left text-info mt-3">
-							<i class="fas fa-id-badge mr-2"></i>
-							Cuenta: 
-							<?php 
-								if ($datAlm->estado_al != 0) {
-							?>
-								<span class="badge badge-primary">
-									Activa
-								</span>
-							<?php
-								} else {
-							?>
-								<span class="badge badge-danger">
-									Inactiva
-								</span>
-							<?php
-								}
-							?>
-						</h6>
-						<h5 class="text-center mt-4">
-							<?php 
-								if ($datAlm->estado_al != 0) {
-							?>
-								<button class="btn btn-outline-danger btn-sm" type="button" onclick="desactAlm(<?php echo $datAlm->id_alumno; ?>)">
-									<i class="fas fa-times icoIni"></i>
-									Desactivar cuenta
-								</button>
-							<?php	
-								} else {
-							?>
-								<button class="btn btn-outline-primary btn-sm" type="button" onclick="activAlm(<?php echo $datAlm->id_alumno; ?>)">
-									<i class="fas fa-check icoIni"></i>
-									Activar cuenta
-								</button>
-							<?php
-								}
-							?>
-						</h5>
-						<hr style="height: 2px !important;" class="bg-info rounded">
-					</div>
-					<div class="col-sm-6 text-center mt-1">
+	<div class="row">
+		<div class="col-md-12 col-lg-12 ocult" id="contend">
+			<div class="row mt-4">
+				<div class="col-sm-6">
+					<h6 class="text-left text-capitalize text-info">
+						<br>
+						<i class="fas fa-user-graduate mr-2"></i>
+						Alumno: <b><?php echo $datAlm->nombre_c_al; ?></b>
+					</h6>
+					<h6 class="text-left text-info mt-3">
+						<i class="fas fa-certificate mr-2"></i>
+						Matricula: <b><?php echo $datAlm->matricula_al; ?></b>
+					</h6>
+					<h6 class="text-left text-info  mt-3">
+						<i class="fas fa-envelope mr-2"></i>
+						Correo: <b><?php echo $datAlm->correo_al; ?></b>
+					</h6>
+					<h6 class="text-left text-info mt-3">
+						<i class="fas fa-phone mr-2"></i>
+						Telefono: <b><?php echo $datAlm->telefono_al; ?></b>
+					</h6>
+					<h6 class="text-left text-info mt-3">
+						<i class="fas fa-id-badge mr-2"></i>
+						Cuenta: 
 						<?php 
-							if ($datAlm -> foto_perf_alm == "" && $datAlm -> sexo_al == "Masculino") {
-								echo "<img src='".SERVERURL."vistas/img/usermal.png' class='img-fluid mt-4' width='200'>";
-							} else if ($datAlm -> foto_perf_alm != "" && $datAlm -> sexo_al == "Masculino") {
+							if ($datAlm->estado_al != 0) {
 						?>
-							<img src="<?php echo $urlFront?>modAlm/Arch/perfil/<?php echo $datAlm->foto_perf_alm ?>" class="img-fluid img-thumbnail rounded mt-4" width="300">
-						<?php
-							} else if ($datAlm -> foto_perf_alm == "" && $datAlm -> sexo_al == "Femenino") {
-								echo "<img src='".SERVERURL."vistas/img/userfem.png' class='img-fluid mt-4' width='200'>";
-							} else if ($datAlm -> foto_perf_alm != "" && $datAlm -> sexo_al == "Femenino") {
-						?>
-							<img src="<?php echo $urlFront?>modAlm/Arch/perfil/<?php echo $datAlm->foto_perf_alm ?>" class="img-fluid img-thumbnail rounded mt-4" width="300">
+							<span class="badge badge-primary">
+								Activa
+							</span>
 						<?php
 							} else {
-								echo "<img src='".SERVERURL."vistas/img/icous.png' class='img-fluid mt-4' width='200'>";
+						?>
+							<span class="badge badge-danger">
+								Inactiva
+							</span>
+						<?php
 							}
 						?>
-					</div>
+					</h6>
+					<h5 class="text-center mt-4">
+						<?php 
+							if ($datAlm->estado_al != 0) {
+						?>
+							<button class="btn btn-outline-danger btn-sm" type="button" onclick="desactAlm(<?php echo $datAlm->id_alumno; ?>)">
+								<i class="fas fa-times icoIni"></i>
+								Desactivar cuenta
+							</button>
+						<?php	
+							} else {
+						?>
+							<button class="btn btn-outline-primary btn-sm" type="button" onclick="activAlm(<?php echo $datAlm->id_alumno; ?>)">
+								<i class="fas fa-check icoIni"></i>
+								Activar cuenta
+							</button>
+						<?php
+							}
+						?>
+					</h5>
+					<hr style="height: 2px !important;" class="bg-info rounded">
 				</div>
-				<div class="row mt-4">
-					<div class="col-sm-12 col-lg-12 cardShadow rounded">
-						<ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
-						  <li class="nav-item mr-2">
-						    <a class="nav-link active btn btn-sm" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
-								<h6 class="text-center">
-									<i class="fas fa-file icoIni fa-lg mt-1"></i>
-									Justificantes
-								</h6>
-						    </a>
-						  </li>
-						  <li class="nav-item mr-2">
-						    <a class="nav-link btn btn-sm" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
-						    	<h6 class="text-center">
-						    		<i class="fas fa-chalkboard-teacher fa-lg mt-1"></i>
-						    		Tutorias
-						    	</h6>
-						    </a>
-						  </li>
-						  <li class="nav-item mr-2">
-						    <a class="nav-link btn btn-sm" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">
-						    	<h6 class="text-center">
-						    		<i class="fas fa-book fa-lg mt-1"></i>
-						    		Encuesta</h6>
-						    	<div class="prubEnc"></div>
-						    </a>
-						  </li>
-						  <li class="nav-item mr-2">
-						    <a class="nav-link btn btn-sm" id="pills-contrasena-tab" data-toggle="pill" href="#pills-contrasena" role="tab" aria-controls="pills-contrasena" aria-selected="false">
-						    	<h6 class="text-center">
-						    		<i class="fas fa-key fa-lg mt-1"></i>
-						    		Contraseña</h6>
-						    	<div class="prubEnc"></div>
-						    </a>
-						  </li>
-						  <li class="nav-item mr-2">
-						    <a class="nav-link btn btn-sm" id="pills-baja-tab" data-toggle="pill" href="#pills-baja" role="tab" aria-controls="pills-baja" aria-selected="false">
-						    	<h6 class="text-center">
-						    		<i class="fas fa-times-circle fa-lg mt-1"></i>
-						    		Iniciar baja</h6>
-						    	<div class="prubEnc"></div>
-						    </a>
-						  </li>
-						</ul>
-						<hr>
-						<div class="tab-content rounded" id="pills-tabContent">
-						  <div class="tab-pane fade show active text-center pad10" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-						  	<div class="btn-group">
-								<button data-backdrop="false" data-toggle="modal" data-target="#genJustif" class="btn btn-outline-primary btn-md"><i class="fas fa-plus icoIni"></i>Generar</button>
-								<button data-backdrop="false" data-toggle="modal" data-target="#justifAlm" class="btn btn-outline-primary btn-md"><i class="fas fa-eye icoIni"></i>Aceptados 
-									<span class="badge badge-danger" id="cantJustAcept">
-										<!-- <?php echo $cantJusImp->Cantidad; ?> -->
-									</span>
-								</button>
-								<button data-backdrop="false" data-toggle="modal" data-target="#justifAlmAc" class="btn btn-outline-primary btn-md"><i class="fas fa-check icoIni"></i>Por Aceptar 
-									<span class="badge badge-danger" id="cantJustSinAcept">
-										<!-- <?php echo $cantJustifAc->Cantidad; ?> -->
-									</span></button>
-							<?php 
-								$dbc = new Connect();
-								$dbc = $dbc -> getDB();
-								$valid = 1;
-								$stmt = $dbc -> prepare("SELECT * FROM alumnos alm 
-									INNER JOIN det_grupo det On det.id_detgrupo = alm.id_detgrupo
-									INNER JOIN grupos grp ON grp.id_grupo = det.id_grupo
-									INNER JOIN justificantes just ON just.id_alumno = alm.id_alumno
-									WHERE grp.cuatrimestre_g = just.cuatrimestre_justif && alm.id_alumno = :keyAlm && estado_justif = :valid && just.cuatrimestre_justif = grp.cuatrimestre_g");
-								$stmt -> bindParam("keyAlm", $valPerfAlmDec, PDO::PARAM_INT);
-								$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
-								$stmt -> execute();
-								$resstmt = $stmt -> rowCount();
-								if ($resstmt == 2 || $resstmt > 2) {
-							?>
-								<button data-backdrop="false" data-toggle="modal" data-target="#justifAlmAc" class="btn btn-danger btn-md">
-									Ya se han ocupado los 2 justificantes generales
-								</button>
-							<?php
-								} else if ($resstmt == 1) {
-							?>
-								<button data-backdrop="false" data-toggle="modal" data-target="#justifAlmAc" class="btn btn-primary btn-md">
-									Aún queda 1 justificante general disponible
-								</button>
-							<?php		
-								} else {
-							?>
-								<button data-backdrop="false" data-toggle="modal" data-target="#justifAlmAc" class="btn btn-primary btn-md">
-									Aún quedan 2 justificantes generales disponibles
-								</button>
-							<?php		
-								}
-							?>
-							</div>
-							<br><br>
-							<div class="text-right">
-								<span class="badge badge-primary p-2">
-									Registros Totales : <span id="cantJustAll">
-										<!-- <?php echo $cantJustif->Cantidad; ?> -->
-											
-										</span>
-								</span>
-							</div>
-						  </div>
-						  <div class="tab-pane fade text-center pad10" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-						  	<div class="btn-group">
-								<button data-backdrop="false" data-toggle="modal" data-target="#genHist" class="btn btn-outline-primary btn-md"><i class="fas fa-plus icoIni"></i>Generar</button>
-								<button data-backdrop="false" data-toggle="modal" data-target="#histAlm" class="btn btn-outline-primary btn-md"><i class="fas fa-eye icoIni"></i>Ver historial
-									<span class="badge badge-danger" id="cantTut">
-										<!-- <?php echo $cantTutPerAcp->Cantidad; ?> -->
-									</span>
-								</button>
-								<button data-backdrop="false" data-toggle="modal" data-target="#histAlmSol" class="btn btn-outline-primary btn-md"><i class="fas fa-file icoIni"></i>Solicitudes
-									<span class="badge badge-danger" id="cantTutPerSol">
-										<!-- <?php echo $cantTutPerSol->Cantidad; ?> -->
-									</span>
-								</button>
-							</div>
-							<br><br>
-							<div class="text-right">
-								<span class="badge badge-primary p-2">
-									Registros totales : <span id="cantTutPerAll">
-										<!-- <?php echo $cantTutPer->Cantidad ?> -->
-											
-										</span>
-								</span>
-							</div>
-						  </div>
-						  <div class="tab-pane fade text-center pad10" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-						  	<?php 
-						  		if ($valEnc->CantEnc == 1) {
-						  	?>
-						  	<div class="btn-group text-center">
-						  		<a href="<?php echo SERVERURLDOC; ?>MostDatEnc/<?php echo base64_encode($valEnc->id_enctestalm); ?>/<?php echo base64_encode($valPerfAlmDec); ?>/" class="btn btn-outline-primary btn-md">
-						  			<i class="fas fa-eye icoIni"></i>
-						  			Ver datos
-						  		</a>
-						  	</div>
-						  	<br><br>
-						  	<div class="text-right">
-						  		<span class="badge badge-primary p-2">
-						  			Fecha de realización : <?php echo formatFech($valEnc->fecha_reg); ?> 
-						  		</span>
-						  	</div>
-						  	<?php		
-						  		} else {
-						  	?>
-								<h3 class="text-center text-info font-weight-bold">
-									Sin completar
-									<i class="fas fa-times ml-2 text-danger"></i>
-								</h3>
-						  	<?php		
-						  		}
-						  	?>
-						  </div>
-						  <div class="tab-pane fade show text-center pad10" id="pills-contrasena" role="tabpanel" aria-labelledby="pills-contrasena-tab">
-						  	<div class="btn-group">
-								<button data-backdrop="false" data-toggle="modal" data-target="#newContAlmEdit" class="btn btn-outline-primary btn-md">
-									<i class="fas fa-key icoIni"></i>
-									Nueva contraseña
-								</button>
-							</div>
-							<br><br><br>
-							<div></div>
-						  </div>
-							<div class="tab-pane fade show text-center pad10" id="pills-baja" role="tabpanel" aria-labelledby="pills-baja-tab">
-						  	<div class="btn-group">
-								<a href="<?php echo SERVERURLDOC; ?>RegBajaAlm/<?php echo base64_encode($datAlm->id_alumno); ?>/" class="btn btn-outline-primary btn-md">
-									<i class="fas fa-book-open icoIni"></i>
-									Iniciar Proceso de Baja del Alumno 
-								</a>
-							</div>
-							<br><br><br>
-							<div></div>
-						  </div>
-						</div>
-					</div>
-				</div>
-				<div class="row mt-5">
-					<br>
+				<div class="col-sm-6 text-center mt-1">
 					<?php 
-						if ($valDPAlm -> Cantidad == 1) {
-							$dat = $docente -> datAlmAll($valPerfAlmDec);
+						if ($datAlm -> foto_perf_alm == "" && $datAlm -> sexo_al == "Masculino") {
+							echo "<img src='".SERVERURL."vistas/img/usermal.png' class='img-fluid mt-4' width='200'>";
+						} else if ($datAlm -> foto_perf_alm != "" && $datAlm -> sexo_al == "Masculino") {
 					?>
-					<div class="col-sm-12 col-lg-3 text-center">
-						<button onclick="mostDatPer(true),mostDatDom(false), mostDatOrg(false), mostDatHist(false)" class="btn text-primary bg-white cardShadow btn-md" type="button" id="btnMostPer">
-							<i class="fas fa-address-card icoIni"></i>
-							Datos Personales
-						</button>
-						<br><br>
-					</div>
-					<div class="col-sm-12 col-lg-3 text-center">
-						<button onclick="mostDatDom(true), mostDatPer(false), mostDatOrg(false), mostDatHist(false)" class="btn text-primary bg-white cardShadow btn-md" type="button" id="btnMostDom">
-							<i class="fas fa-address-card icoIni"></i>
-							Domicilio Actual
-						</button>
-						<br><br>
-					</div>
-					<div class="col-sm-12 col-lg-3 text-center">
-						<button onclick="mostDatOrg(true), mostDatDom(false), mostDatPer(false), mostDatHist(false)" class="btn text-primary bg-white cardShadow btn-md" type="button" id="btnMostOrg">
-							<i class="fas fa-address-card icoIni"></i>
-							Originario De
-						</button>
-					</div>
-					<div class="col-sm-12 col-lg-3 text-center">
-						<button onclick="mostDatHist(true), mostDatPer(false), mostDatDom(false), mostDatOrg(false)" class="btn text-primary bg-white cardShadow btn-md" type="button" id="btnMostHist">
-							<i class="fas fa-book-open icoIni"></i>
-							Historial
-						</button>
-					</div>
-					<hr style="height: 2px;" class="bg-info rounded">
-					<div id="datMostPer" class="ocult col-md-12 mt-4">
-						<div class="row">
-							<div class="col-sm-12 col-md-6 col-lg-6">
-								<div class="form-group bg-info cardShadow text-white pad15 rounded">
-									<mark class="bg-info text-white hInf">Sexo: <span class="rounded pad10"><?php echo $dat->sexo_al; ?></span></mark>
-								</div>
-								<div class="form-group bg-info cardShadow text-white pad15 rounded">
-									<mark class="bg-info text-white hInf">Nacimiento: <span class="pad10 rounded"><?php echo formatFech($dat->fecha_nac_dat); ?></span></mark>
-								</div>
-								<div class="form-group bg-info cardShadow text-white pad15 rounded">
-									<mark class="bg-info text-white hInf">Tipo de seguridad social: <span class="text-uppercase pad10 rounded"><?php echo $dat->tipo_segsocial_dat; ?></span></mark>
-								</div>
-								<div class="form-group bg-info cardShadow text-white pad15 rounded">
-									<mark class="bg-info text-white hInf">Telefono casa: <span class="pad10 rounded"><?php echo $dat->telefono_casa_dat; ?></span></mark>
-								</div>
-								<div class="form-group bg-info cardShadow text-white pad15 rounded">
-									<mark class="bg-info text-white hInf">Facebook: <span class="pad10 rounded"><?php echo $dat->facebook_alm_dat; ?></span></mark>
-								</div>
-								<br>
-							</div>
-							<div class="col-sm-12 col-md-6 col-lg-6">
-								<div class="form-group bg-info cardShadow text-white pad15 rounded">
-									<mark class="bg-info text-white hInf">Edad: <span class="rounded text-white pad10"><?php echo $dat->edad_dat; ?> Años</span></mark>
-								</div>
-								<div class="form-group bg-info cardShadow text-white pad15 rounded">
-									<mark class="bg-info text-white hInf">Curp: <span class="text-uppercase rounded pad10"><?php echo $dat->curp_dat; ?></span></mark>
-								</div>
-								<div class="form-group bg-info cardShadow text-white pad15 rounded">
-									<mark class="bg-info text-white hInf">No. seguridad social: <span class="text-uppercase rounded pad10"><?php echo $dat->num_segsocial_dat; ?></span></mark>
-								</div>
-								<div class="form-group bg-info cardShadow text-white pad15 rounded">
-									<mark class="bg-info text-white hInf">Telefono recado: <span class="text-uppercase pad10 rounded"><?php echo $dat->telefono_rec_dat; ?></span></mark>
-								</div>
-								<div class="form-group bg-info cardShadow text-white pad15 rounded">
-									<mark class="bg-info text-white hInf">Estado civil: <span class="rounded pad10"><?php echo $dat->estado_civil_dat; ?></span></mark>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="ocult col-md-12 mt-4" id="datMostDom">
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group bg-info cardShadow text-white rounded pad15">
-									<mark class="bg-info text-white rounded pad15 hInf">Calle: <span class="rounded pad10"><?php echo $dat->calle_dat_act; ?></span></mark>
-									<mark class="bg-info text-white rounded pad15 hInf">No: <span class="rounded pad10"><?php echo $dat->num_casa_dat_act; ?></span></mark>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group bg-info cardShadow text-white rounded pad15">
-									<mark class="bg-info text-white rounded pad15 hInf">Colonia: <span class="rounded pad10"><?php echo $dat->colonia_dat_act; ?></span></mark>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group bg-info cardShadow text-white rounded pad15">
-									<mark class="bg-info text-white hInf">Localidad: <span class="rounded pad10"><?php echo $dat->localidad_dat_act; ?></span></mark>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group bg-info cardShadow text-white rounded pad15">
-									<mark class="bg-info text-white rounded pad15 hInf">Municipio: <span class="rounded pad10"><?php echo $dat->municipio_dat_act; ?></span></mark>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group bg-info cardShadow text-white rounded pad15">
-									<mark class="bg-info text-white hInf">Estado: <span class="rounded pad10"><?php echo $dat->estado_dat_act; ?></span></mark>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group bg-info cardShadow text-white rounded pad15">
-									<mark class="bg-info text-white hInf">C.P: <span class="rounded pad10"><?php echo $dat->codpostal_dat_act; ?></span></mark>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="ocult col-md-12 mt-4" id="datMostOrg">
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group bg-info cardShadow text-white rounded pad15">
-									<mark class="bg-info text-white hInf">Municipio: <span class="rounded pad10"><?php echo $dat->municipio_dat_org; ?></span></mark>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group bg-info cardShadow text-white rounded pad15">
-									<mark class="bg-info text-white hInf">Estado: <span class="rounded pad10"><?php echo $dat->estado_dat_org; ?></span></mark>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="ocult col-md-12 mt-4" id="datMostHist">
-						<div class="row">
-							<?php 
-								$dbc = new Connect();
-								$dbc = $dbc -> getDB();
-								$valid = 1;
-								$stmt = $dbc -> prepare("SELECT * FROM historial_academ 
-									WHERE id_alumno = :valPerfAlmDec && estado_almhist = :valid");
-								$stmt -> bindParam("valPerfAlmDec", $valPerfAlmDec, PDO::PARAM_INT);
-								$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
-								$stmt -> execute();
-								$resstmt = $stmt -> rowCount();
-								if ($resstmt > 0) {
-									while ($res = $stmt -> fetch(PDO::FETCH_OBJ)) {
-										if ($res->cuatri_almhist == $datGrup->cuatrimestre_g && $res->tutor_almhist == $datGrup->nombre_c_doc && $res->grupo_almhist == $datGrup->grupo_n && $res->periodcuat_almhist == $datGrup->period_cuat) {
-								?>
-									<div class="col-sm-4">
-										<div class="cardShadow p-4">
-											<span class="badge badge-primary">
-												Actual
-											</span>
-											<div class="card-title mt-3">
-												<h5 class="text-center">Cuatrimestre: <?php echo $res->cuatri_almhist; ?></h5>
-											</div>
-											<h6 class="mt-3 text-center">Tutor: <?php echo $res->tutor_almhist; ?></h6>
-											<div class="text-right mt-3 border-top border-info row">
-												<div class="col-sm-6">
-													<h6 class="mt-3"><?php echo $res->grupo_almhist; ?></h6>
-												</div>
-												<div class="col-sm-6">
-													<h6 class="mt-3"><?php echo $res->periodcuat_almhist; ?></h6>
-												</div>
-											</div>
-										</div>
-									</div>
-								<?php
-										} else {
-								?>
-									<div class="col-sm-4">
-										<div class="cardShadow p-4">
-											<span class="badge badge-danger">
-												Pasado
-											</span>
-											<div class="card-title mt-3">
-												<h5 class="text-center">Cuatrimestre: <?php echo $res->cuatri_almhist; ?></h5>
-											</div>
-											<h6 class="mt-3 text-center">Tutor: <?php echo $res->tutor_almhist; ?></h6>
-											<div class="text-right mt-3 border-top border-info row">
-												<div class="col-sm-6">
-													<h6 class="mt-3"><?php echo $res->grupo_almhist; ?></h6>
-												</div>
-												<div class="col-sm-6">
-													<h6 class="mt-3"><?php echo $res->periodcuat_almhist; ?></h6>
-												</div>
-											</div>
-										</div>
-									</div>
-								<?php
-										}
-								?>
-								<?php
-									}
-								} else {
-							?>
-								<div class="text-center p-3 col-sm-12">
-									<h3 class="text-center font-weight-bold">
-										No se encontraron registros... 
-										<i class="fas fa-times text-danger mr-2"></i>
-									</h3>
-								</div>
-							<?php
-								}
-							?>
-						</div>
-					</div>
+						<img src="<?php echo $urlFront?>modAlm/Arch/perfil/<?php echo $datAlm->foto_perf_alm ?>" class="img-fluid img-thumbnail rounded mt-4" width="300">
+					<?php
+						} else if ($datAlm -> foto_perf_alm == "" && $datAlm -> sexo_al == "Femenino") {
+							echo "<img src='".SERVERURL."vistas/img/userfem.png' class='img-fluid mt-4' width='200'>";
+						} else if ($datAlm -> foto_perf_alm != "" && $datAlm -> sexo_al == "Femenino") {
+					?>
+						<img src="<?php echo $urlFront?>modAlm/Arch/perfil/<?php echo $datAlm->foto_perf_alm ?>" class="img-fluid img-thumbnail rounded mt-4" width="300">
 					<?php
 						} else {
-					?>
-					<div class="text-center col-sm-12 p-3">
-						<h3 class="font-weight-bold">
-							El alumno no ha completado sus datos personales... 
-							<i class="fas fa-times text-danger ml-2"></i>
-						</h3>
-					</div>
-					<?php 		
+							echo "<img src='".SERVERURL."vistas/img/icous.png' class='img-fluid mt-4' width='200'>";
 						}
 					?>
 				</div>
 			</div>
+			<div class="row mt-4">
+				<div class="col-sm-12 col-lg-12 cardShadow rounded">
+					<ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
+					  <li class="nav-item mr-2">
+					    <a class="nav-link active btn btn-sm" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+							<h6 class="text-center">
+								<i class="fas fa-file icoIni fa-lg mt-1"></i>
+								Justificantes
+							</h6>
+					    </a>
+					  </li>
+					  <li class="nav-item mr-2">
+					    <a class="nav-link btn btn-sm" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
+					    	<h6 class="text-center">
+					    		<i class="fas fa-chalkboard-teacher fa-lg mt-1"></i>
+					    		Tutorias
+					    	</h6>
+					    </a>
+					  </li>
+					  <li class="nav-item mr-2">
+					    <a class="nav-link btn btn-sm" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">
+					    	<h6 class="text-center">
+					    		<i class="fas fa-book fa-lg mt-1"></i>
+					    		Encuesta</h6>
+					    	<div class="prubEnc"></div>
+					    </a>
+					  </li>
+					  <li class="nav-item mr-2">
+					    <a class="nav-link btn btn-sm" id="pills-contrasena-tab" data-toggle="pill" href="#pills-contrasena" role="tab" aria-controls="pills-contrasena" aria-selected="false">
+					    	<h6 class="text-center">
+					    		<i class="fas fa-key fa-lg mt-1"></i>
+					    		Contraseña</h6>
+					    	<div class="prubEnc"></div>
+					    </a>
+					  </li>
+					  <li class="nav-item mr-2">
+					    <a class="nav-link btn btn-sm" id="pills-baja-tab" data-toggle="pill" href="#pills-baja" role="tab" aria-controls="pills-baja" aria-selected="false">
+					    	<h6 class="text-center">
+					    		<i class="fas fa-times-circle fa-lg mt-1"></i>
+					    		Iniciar baja</h6>
+					    	<div class="prubEnc"></div>
+					    </a>
+					  </li>
+					</ul>
+					<hr>
+					<div class="tab-content rounded" id="pills-tabContent">
+					  <div class="tab-pane fade show active text-center pad10" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+					  	<div class="btn-group">
+							<button data-backdrop="false" data-toggle="modal" data-target="#genJustif" class="btn btn-outline-primary btn-md"><i class="fas fa-plus icoIni"></i>Generar</button>
+							<button data-backdrop="false" data-toggle="modal" data-target="#justifAlm" class="btn btn-outline-primary btn-md"><i class="fas fa-eye icoIni"></i>Aceptados 
+								<span class="badge badge-danger" id="cantJustAcept">
+									<!-- <?php echo $cantJusImp->Cantidad; ?> -->
+								</span>
+							</button>
+							<button data-backdrop="false" data-toggle="modal" data-target="#justifAlmAc" class="btn btn-outline-primary btn-md"><i class="fas fa-check icoIni"></i>Por Aceptar 
+								<span class="badge badge-danger" id="cantJustSinAcept">
+									<!-- <?php echo $cantJustifAc->Cantidad; ?> -->
+								</span></button>
+						<?php 
+							$dbc = new Connect();
+							$dbc = $dbc -> getDB();
+							$valid = 1;
+							$stmt = $dbc -> prepare("SELECT * FROM alumnos alm 
+								INNER JOIN det_grupo det On det.id_detgrupo = alm.id_detgrupo
+								INNER JOIN grupos grp ON grp.id_grupo = det.id_grupo
+								INNER JOIN justificantes just ON just.id_alumno = alm.id_alumno
+								WHERE grp.cuatrimestre_g = just.cuatrimestre_justif && alm.id_alumno = :keyAlm && estado_justif = :valid && just.cuatrimestre_justif = grp.cuatrimestre_g");
+							$stmt -> bindParam("keyAlm", $valPerfAlmDec, PDO::PARAM_INT);
+							$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+							$stmt -> execute();
+							$resstmt = $stmt -> rowCount();
+							if ($resstmt == 2 || $resstmt > 2) {
+						?>
+							<button data-backdrop="false" data-toggle="modal" data-target="#justifAlmAc" class="btn btn-danger btn-md">
+								Ya se han ocupado los 2 justificantes generales
+							</button>
+						<?php
+							} else if ($resstmt == 1) {
+						?>
+							<button data-backdrop="false" data-toggle="modal" data-target="#justifAlmAc" class="btn btn-primary btn-md">
+								Aún queda 1 justificante general disponible
+							</button>
+						<?php		
+							} else {
+						?>
+							<button data-backdrop="false" data-toggle="modal" data-target="#justifAlmAc" class="btn btn-primary btn-md">
+								Aún quedan 2 justificantes generales disponibles
+							</button>
+						<?php		
+							}
+						?>
+						</div>
+						<br><br>
+						<div class="text-right">
+							<span class="badge badge-primary p-2">
+								Registros Totales : <span id="cantJustAll">
+									<!-- <?php echo $cantJustif->Cantidad; ?> -->
+										
+									</span>
+							</span>
+						</div>
+					  </div>
+					  <div class="tab-pane fade text-center pad10" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+					  	<div class="btn-group">
+							<button data-backdrop="false" data-toggle="modal" data-target="#genHist" class="btn btn-outline-primary btn-md"><i class="fas fa-plus icoIni"></i>Generar</button>
+							<button data-backdrop="false" data-toggle="modal" data-target="#histAlm" class="btn btn-outline-primary btn-md"><i class="fas fa-eye icoIni"></i>Ver historial
+								<span class="badge badge-danger" id="cantTut">
+									<!-- <?php echo $cantTutPerAcp->Cantidad; ?> -->
+								</span>
+							</button>
+							<button data-backdrop="false" data-toggle="modal" data-target="#histAlmSol" class="btn btn-outline-primary btn-md"><i class="fas fa-file icoIni"></i>Solicitudes
+								<span class="badge badge-danger" id="cantTutPerSol">
+									<!-- <?php echo $cantTutPerSol->Cantidad; ?> -->
+								</span>
+							</button>
+						</div>
+						<br><br>
+						<div class="text-right">
+							<span class="badge badge-primary p-2">
+								Registros totales : <span id="cantTutPerAll">
+									<!-- <?php echo $cantTutPer->Cantidad ?> -->
+										
+									</span>
+							</span>
+						</div>
+					  </div>
+					  <div class="tab-pane fade text-center pad10" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+					  	<?php 
+					  		if ($valEnc->CantEnc == 1) {
+					  	?>
+					  	<div class="btn-group text-center">
+					  		<a href="<?php echo SERVERURLDOC; ?>MostDatEnc/<?php echo base64_encode($valEnc->id_enctestalm); ?>/<?php echo base64_encode($valPerfAlmDec); ?>/" class="btn btn-outline-primary btn-md">
+					  			<i class="fas fa-eye icoIni"></i>
+					  			Ver datos
+					  		</a>
+					  	</div>
+					  	<br><br>
+					  	<div class="text-right">
+					  		<span class="badge badge-primary p-2">
+					  			Fecha de realización : <?php echo formatFech($valEnc->fecha_reg); ?> 
+					  		</span>
+					  	</div>
+					  	<?php		
+					  		} else {
+					  	?>
+							<h3 class="text-center text-info font-weight-bold">
+								Sin completar
+								<i class="fas fa-times ml-2 text-danger"></i>
+							</h3>
+					  	<?php		
+					  		}
+					  	?>
+					  </div>
+					  <div class="tab-pane fade show text-center pad10" id="pills-contrasena" role="tabpanel" aria-labelledby="pills-contrasena-tab">
+					  	<div class="btn-group">
+							<button data-backdrop="false" data-toggle="modal" data-target="#newContAlmEdit" class="btn btn-outline-primary btn-md">
+								<i class="fas fa-key icoIni"></i>
+								Nueva contraseña
+							</button>
+						</div>
+						<br><br><br>
+						<div></div>
+					  </div>
+						<div class="tab-pane fade show text-center pad10" id="pills-baja" role="tabpanel" aria-labelledby="pills-baja-tab">
+					  	<div class="btn-group">
+							<a href="<?php echo SERVERURLDOC; ?>RegBajaAlm/<?php echo base64_encode($datAlm->id_alumno); ?>/" class="btn btn-outline-primary btn-md">
+								<i class="fas fa-book-open icoIni"></i>
+								Iniciar Proceso de Baja del Alumno 
+							</a>
+						</div>
+						<br><br><br>
+						<div></div>
+					  </div>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<br>
+				<?php 
+					if ($valDPAlm -> Cantidad == 1) {
+						$dat = $docente -> datAlmAll($valPerfAlmDec);
+				?>
+				<div class="col-sm-12 col-lg-3 text-center">
+					<button onclick="mostDatPer(true),mostDatDom(false), mostDatOrg(false), mostDatHist(false)" class="btn text-primary bg-white cardShadow btn-md" type="button" id="btnMostPer">
+						<i class="fas fa-address-card icoIni"></i>
+						Datos Personales
+					</button>
+					<br><br>
+				</div>
+				<div class="col-sm-12 col-lg-3 text-center">
+					<button onclick="mostDatDom(true), mostDatPer(false), mostDatOrg(false), mostDatHist(false)" class="btn text-primary bg-white cardShadow btn-md" type="button" id="btnMostDom">
+						<i class="fas fa-address-card icoIni"></i>
+						Domicilio Actual
+					</button>
+					<br><br>
+				</div>
+				<div class="col-sm-12 col-lg-3 text-center">
+					<button onclick="mostDatOrg(true), mostDatDom(false), mostDatPer(false), mostDatHist(false)" class="btn text-primary bg-white cardShadow btn-md" type="button" id="btnMostOrg">
+						<i class="fas fa-address-card icoIni"></i>
+						Originario De
+					</button>
+				</div>
+				<div class="col-sm-12 col-lg-3 text-center">
+					<button onclick="mostDatHist(true), mostDatPer(false), mostDatDom(false), mostDatOrg(false)" class="btn text-primary bg-white cardShadow btn-md" type="button" id="btnMostHist">
+						<i class="fas fa-book-open icoIni"></i>
+						Historial
+					</button>
+				</div>
+				<hr style="height: 2px;" class="bg-info rounded">
+				<div id="datMostPer" class="ocult col-md-12 mt-4">
+					<div class="row">
+						<div class="col-sm-12 col-md-6 col-lg-6">
+							<div class="form-group bg-info cardShadow text-white pad15 rounded">
+								<mark class="bg-info text-white hInf">Sexo: <span class="rounded pad10"><?php echo $dat->sexo_al; ?></span></mark>
+							</div>
+							<div class="form-group bg-info cardShadow text-white pad15 rounded">
+								<mark class="bg-info text-white hInf">Nacimiento: <span class="pad10 rounded"><?php echo formatFech($dat->fecha_nac_dat); ?></span></mark>
+							</div>
+							<div class="form-group bg-info cardShadow text-white pad15 rounded">
+								<mark class="bg-info text-white hInf">Tipo de seguridad social: <span class="text-uppercase pad10 rounded"><?php echo $dat->tipo_segsocial_dat; ?></span></mark>
+							</div>
+							<div class="form-group bg-info cardShadow text-white pad15 rounded">
+								<mark class="bg-info text-white hInf">Telefono casa: <span class="pad10 rounded"><?php echo $dat->telefono_casa_dat; ?></span></mark>
+							</div>
+							<div class="form-group bg-info cardShadow text-white pad15 rounded">
+								<mark class="bg-info text-white hInf">Facebook: <span class="pad10 rounded"><?php echo $dat->facebook_alm_dat; ?></span></mark>
+							</div>
+							<br>
+						</div>
+						<div class="col-sm-12 col-md-6 col-lg-6">
+							<div class="form-group bg-info cardShadow text-white pad15 rounded">
+								<mark class="bg-info text-white hInf">Edad: <span class="rounded text-white pad10"><?php echo $dat->edad_dat; ?> Años</span></mark>
+							</div>
+							<div class="form-group bg-info cardShadow text-white pad15 rounded">
+								<mark class="bg-info text-white hInf">Curp: <span class="text-uppercase rounded pad10"><?php echo $dat->curp_dat; ?></span></mark>
+							</div>
+							<div class="form-group bg-info cardShadow text-white pad15 rounded">
+								<mark class="bg-info text-white hInf">No. seguridad social: <span class="text-uppercase rounded pad10"><?php echo $dat->num_segsocial_dat; ?></span></mark>
+							</div>
+							<div class="form-group bg-info cardShadow text-white pad15 rounded">
+								<mark class="bg-info text-white hInf">Telefono recado: <span class="text-uppercase pad10 rounded"><?php echo $dat->telefono_rec_dat; ?></span></mark>
+							</div>
+							<div class="form-group bg-info cardShadow text-white pad15 rounded">
+								<mark class="bg-info text-white hInf">Estado civil: <span class="rounded pad10"><?php echo $dat->estado_civil_dat; ?></span></mark>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ocult col-md-12 mt-4" id="datMostDom">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group bg-info cardShadow text-white rounded pad15">
+								<mark class="bg-info text-white rounded pad15 hInf">Calle: <span class="rounded pad10"><?php echo $dat->calle_dat_act; ?></span></mark>
+								<mark class="bg-info text-white rounded pad15 hInf">No: <span class="rounded pad10"><?php echo $dat->num_casa_dat_act; ?></span></mark>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group bg-info cardShadow text-white rounded pad15">
+								<mark class="bg-info text-white rounded pad15 hInf">Colonia: <span class="rounded pad10"><?php echo $dat->colonia_dat_act; ?></span></mark>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group bg-info cardShadow text-white rounded pad15">
+								<mark class="bg-info text-white hInf">Localidad: <span class="rounded pad10"><?php echo $dat->localidad_dat_act; ?></span></mark>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group bg-info cardShadow text-white rounded pad15">
+								<mark class="bg-info text-white rounded pad15 hInf">Municipio: <span class="rounded pad10"><?php echo $dat->municipio_dat_act; ?></span></mark>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group bg-info cardShadow text-white rounded pad15">
+								<mark class="bg-info text-white hInf">Estado: <span class="rounded pad10"><?php echo $dat->estado_dat_act; ?></span></mark>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group bg-info cardShadow text-white rounded pad15">
+								<mark class="bg-info text-white hInf">C.P: <span class="rounded pad10"><?php echo $dat->codpostal_dat_act; ?></span></mark>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ocult col-md-12 mt-4" id="datMostOrg">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group bg-info cardShadow text-white rounded pad15">
+								<mark class="bg-info text-white hInf">Municipio: <span class="rounded pad10"><?php echo $dat->municipio_dat_org; ?></span></mark>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group bg-info cardShadow text-white rounded pad15">
+								<mark class="bg-info text-white hInf">Estado: <span class="rounded pad10"><?php echo $dat->estado_dat_org; ?></span></mark>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ocult col-md-12 mt-4" id="datMostHist">
+					<div class="row">
+						<?php 
+							$dbc = new Connect();
+							$dbc = $dbc -> getDB();
+							$valid = 1;
+							$stmt = $dbc -> prepare("SELECT * FROM historial_academ 
+								WHERE id_alumno = :valPerfAlmDec && estado_almhist = :valid");
+							$stmt -> bindParam("valPerfAlmDec", $valPerfAlmDec, PDO::PARAM_INT);
+							$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+							$stmt -> execute();
+							$resstmt = $stmt -> rowCount();
+							if ($resstmt > 0) {
+								while ($res = $stmt -> fetch(PDO::FETCH_OBJ)) {
+									if ($res->cuatri_almhist == $datGrup->cuatrimestre_g && $res->tutor_almhist == $datGrup->nombre_c_doc && $res->grupo_almhist == $datGrup->grupo_n && $res->periodcuat_almhist == $datGrup->period_cuat) {
+							?>
+								<div class="col-sm-4">
+									<div class="cardShadow p-4">
+										<span class="badge badge-primary">
+											Actual
+										</span>
+										<div class="card-title mt-3">
+											<h5 class="text-center">Cuatrimestre: <?php echo $res->cuatri_almhist; ?></h5>
+										</div>
+										<h6 class="mt-3 text-center">Tutor: <?php echo $res->tutor_almhist; ?></h6>
+										<div class="text-right mt-3 border-top border-info row">
+											<div class="col-sm-6">
+												<h6 class="mt-3"><?php echo $res->grupo_almhist; ?></h6>
+											</div>
+											<div class="col-sm-6">
+												<h6 class="mt-3"><?php echo $res->periodcuat_almhist; ?></h6>
+											</div>
+										</div>
+									</div>
+								</div>
+							<?php
+									} else {
+							?>
+								<div class="col-sm-4">
+									<div class="cardShadow p-4">
+										<span class="badge badge-danger">
+											Pasado
+										</span>
+										<div class="card-title mt-3">
+											<h5 class="text-center">Cuatrimestre: <?php echo $res->cuatri_almhist; ?></h5>
+										</div>
+										<h6 class="mt-3 text-center">Tutor: <?php echo $res->tutor_almhist; ?></h6>
+										<div class="text-right mt-3 border-top border-info row">
+											<div class="col-sm-6">
+												<h6 class="mt-3"><?php echo $res->grupo_almhist; ?></h6>
+											</div>
+											<div class="col-sm-6">
+												<h6 class="mt-3"><?php echo $res->periodcuat_almhist; ?></h6>
+											</div>
+										</div>
+									</div>
+								</div>
+							<?php
+									}
+							?>
+							<?php
+								}
+							} else {
+						?>
+							<div class="text-center p-3 col-sm-12">
+								<h3 class="text-center font-weight-bold">
+									No se encontraron registros... 
+									<i class="fas fa-times text-danger mr-2"></i>
+								</h3>
+							</div>
+						<?php
+							}
+						?>
+					</div>
+				</div>
+				<?php
+					} else {
+				?>
+				<div class="text-center col-sm-12 p-3">
+					<h3 class="font-weight-bold">
+						El alumno no ha completado sus datos personales... 
+						<i class="fas fa-times text-danger ml-2"></i>
+					</h3>
+				</div>
+				<?php 		
+					}
+				?>
+			</div>
 		</div>
 	</div>
+
+</div>
 
 
 	<div class="modal fade bgModal" id="almList" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

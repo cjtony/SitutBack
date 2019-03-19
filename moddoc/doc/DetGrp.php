@@ -43,7 +43,7 @@
 
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<h1 class="h3 mb-0 text-gray-800">
-		    <i class="fas fa-user mr-2 text-primary"></i>
+		    <i class="fas fa-university mr-2 text-primary"></i>
 			<b><?php echo "Carrera: ".$datGrup->nombre_car.", Grupo: ".$datGrup->grupo_n."."; ?></b>
 		</h1>
 		<a href="<?php echo SERVERURLDOC; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
@@ -212,7 +212,7 @@
 	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-plus fa-lg icoIni"></i> Registrar Alumno</h5>
+	      	<h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-plus fa-lg mr-2"></i> Registrar alumno</h5>
 	        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -289,10 +289,10 @@
 	          	<div class="col-sm-1"></div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" id="btnCloseRegAl" class="btn btn-outline-danger" data-dismiss="modal">
+	        <button type="button" id="btnCloseRegAl" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
 	        	<i class="fas fa-times-circle mr-2"></i>
 	        	Cerrar</button>
-	        <button type="submit" class="btn btn-outline-primary" id="btnGRegAlm">
+	        <button type="submit" class="btn btn-outline-primary btn-sm" id="btnGRegAlm">
 	        	<i class="fas fa-check-circle mr-2"></i>
 	        	Guardar</button>
 	        </form>
@@ -311,7 +311,7 @@
 	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-list fa-lg icoIni"></i>Listado alumnos</h5>
+	      	<h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-list fa-lg mr-2"></i> Listado de alumnos</h5>
 	        <button type="button" id="closeIconListAlm" class="close text-danger" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -339,7 +339,7 @@
 	        </div>  
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" id="btnCloseAlmList" class="btn btn-outline-danger" data-dismiss="modal">
+	        <button type="button" id="btnCloseAlmList" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
 	        	<i class="fas fa-times-circle mr-2"></i>
 	        	Cerrar</button>
 	      </div>
@@ -357,7 +357,7 @@
 	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-list fa-lg icoIni"></i>Aceptar alumnos</h5>
+	      	<h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-user-check fa-lg icoIni mr-2"></i> Aceptar alumnos </h5>
 	        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -385,7 +385,7 @@
 	        </div>  
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" id="btnCloseAlmAcept" class="btn btn-outline-danger" data-dismiss="modal">
+	        <button type="button" id="btnCloseAlmAcept" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
 	        	<i class="fas fa-times-circle mr-2"></i>
 	        	Cerrar</button>
 	      </div>
@@ -403,7 +403,7 @@
 	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-list fa-lg icoIni"></i>Alumnos Becados</h5>
+	      	<h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-money-check-alt fa-lg icoIni mr-2"></i> Alumnos becados </h5>
 	        <button type="button" id="closeIconAlmBec" class="close text-danger" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -431,7 +431,7 @@
 	        </div>  
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" id="btnCloseBecAlm" class="btn btn-outline-danger" data-dismiss="modal">
+	        <button type="button" id="btnCloseBecAlm" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
 	        	<i class="fas fa-times-circle mr-2"></i>
 	        	Cerrar</button>
 	      </div>
@@ -449,7 +449,7 @@
 	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-edit fa-lg icoIni"></i> Editar datos</h5>
+	      	<h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-edit fa-lg icoIni mr-2"></i> Editar datos </h5>
 	        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -487,10 +487,10 @@
 	          	<div class="col-sm-2"></div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" id="btnCloseEditBec" class="btn btn-outline-danger" data-dismiss="modal">
+	        <button type="button" id="btnCloseEditBec" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
 	        	<i class="fas fa-times-circle mr-2"></i>
 	        	Cerrar</button>
-	        <button type="submit" class="btn btn-outline-primary" id="btnEditBec">
+	        <button type="submit" class="btn btn-outline-primary btn-sm" id="btnEditBec">
 				<i class="fas fa-check-circle mr-2"></i>
 	        	Guardar</button>
 	        </form>
