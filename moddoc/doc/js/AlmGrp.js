@@ -62,18 +62,41 @@ let tablajus;
 let tablajusAC;
 let tablaHist;
 let tablaSolicHist;
-
+const lenguaje = {
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+        "sFirst":    "Primero",
+        "sLast":     "Último",
+        "sNext":     "Siguiente",
+        "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+};
 function mostDatPer(flag) {
 	if (flag) {
 		$("#datMostPer").removeClass("ocult");
-		$("#datMostPer").addClass("animated bounceInRight").show();
+		$("#datMostPer").addClass("animated fadeIn").show();
 		$("#btnMostPer").removeClass("bg-white");
 		$("#btnMostPer").removeClass("text-primary");
 		$("#btnMostPer").addClass("bg-primary");
 		$("#btnMostPer").addClass("text-white");
 	} else {
 		// $("#datMostPer").hide();
-		$("#datMostPer").removeClass("animated bounceInRight").hide();
+		$("#datMostPer").removeClass("animated fadeIn").hide();
 		$("#datMostPer").addClass("ocult");
 		$("#btnMostPer").removeClass("bg-primary");
 		$("#btnMostPer").removeClass("text-white");
@@ -85,13 +108,13 @@ function mostDatPer(flag) {
 function mostDatDom(flag) {
 	if (flag) {
 		$("#datMostDom").removeClass("ocult");
-		$("#datMostDom").addClass("animated bounceInRight").show();
+		$("#datMostDom").addClass("animated fadeIn").show();
 		$("#btnMostDom").removeClass("bg-white");
 		$("#btnMostDom").removeClass("text-primary");
 		$("#btnMostDom").addClass("bg-primary");
 		$("#btnMostDom").addClass("text-white");
 	} else {
-		$("#datMostDom").removeClass("animated bounceInRight").hide();
+		$("#datMostDom").removeClass("animated fadeIn").hide();
 		$("#datMostDom").addClass("ocult");
 		$("#btnMostDom").removeClass("bg-primary");
 		$("#btnMostDom").removeClass("text-white");
@@ -103,13 +126,13 @@ function mostDatDom(flag) {
 function mostDatOrg(flag) {
 	if (flag) {
 		$("#datMostOrg").removeClass("ocult");
-		$("#datMostOrg").addClass("animated bounceInRight").show();
+		$("#datMostOrg").addClass("animated fadeIn").show();
 		$("#btnMostOrg").removeClass("bg-white");
 		$("#btnMostOrg").removeClass("text-primary");
 		$("#btnMostOrg").addClass("bg-primary");
 		$("#btnMostOrg").addClass("text-white");
 	} else {
-		$("#datMostOrg").addClass("animated bounceInRight").hide();
+		$("#datMostOrg").addClass("animated fadeIn").hide();
 		$("#datMostOrg").addClass("ocult");
 		$("#btnMostOrg").removeClass("bg-primary");
 		$("#btnMostOrg").removeClass("text-white");
@@ -121,13 +144,13 @@ function mostDatOrg(flag) {
 function mostDatHist(flag) {
 	if (flag) {
 		$("#datMostHist").removeClass("ocult");
-		$("#datMostHist").addClass("animated bounceInRight").show();
+		$("#datMostHist").addClass("animated fadeIn").show();
 		$("#btnMostHist").removeClass("bg-white");
 		$("#btnMostHist").removeClass("text-primary");
 		$("#btnMostHist").addClass("bg-primary");
 		$("#btnMostHist").addClass("text-white");
 	} else {
-		$("#datMostHist").addClass("animated bounceInRight").hide();
+		$("#datMostHist").addClass("animated fadeIn").hide();
 		$("#datMostHist").addClass("ocult");
 		$("#btnMostHist").removeClass("bg-primary");
 		$("#btnMostHist").removeClass("text-white");
@@ -228,6 +251,7 @@ function listaAlumnos() {
 		},
 		"bDestroy" : true,
 		"iDisplayLength" : 5,
+		"language" : lenguaje,
 		"order" : [[0, "desc"]]
 	}).DataTable();
 }
@@ -248,7 +272,8 @@ function listarJustif() {
 			}
 		},
 		"bDestroy" : true,
-		"iDisplayLength" : 5
+		"iDisplayLength" : 5,
+		"language" : lenguaje
 		//"order" : [[0, "desc"]]
 	}).DataTable();
 }
@@ -269,7 +294,8 @@ function listarJustifAC() {
 			}
 		},
 		"bDestroy" : true,
-		"iDisplayLength" : 5
+		"iDisplayLength" : 5,
+		"language" : lenguaje
 		// "order" : [[0, "desc"]]
 	}).DataTable();
 }
@@ -449,6 +475,7 @@ function listadoHistorial() {
 		},
 		"bDestroy" : true,
 		"iDisplayLength" : 5,
+		"language" : lenguaje,
 		"order" : [[0, "desc"]]
 	}).DataTable();
 }
@@ -470,6 +497,7 @@ function listadoHistorialSolic() {
 		},
 		"bDestroy" : true,
 		"iDisplayLength" : 5,
+		"language" : lenguaje,
 		"order" : [[0, "desc"]]
 	}).DataTable();
 }

@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-check-circle fa-lg icoIni"></i> Aceptar Tutoría Personalizada</h5>
+        <h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-list fa-lg icoIni mr-2"></i>Aceptar tutoria personalizada</h5>
         <button id="btnIcoCloseNCA" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -24,8 +24,8 @@
           <div class="col-sm-1"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnCloseAceptTut" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-success" id="btnAceptTut">Guardar cambios</button>
+        <button type="button" id="btnCloseAceptTut" class="btn btn-danger btn-sm" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-success btn-sm" id="btnAceptTut">Guardar cambios</button>
         </form>
       </div>
     </div>

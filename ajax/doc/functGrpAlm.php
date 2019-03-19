@@ -31,11 +31,10 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 			while ($reg = $consult->fetch(PDO::FETCH_OBJ)) {
 				$data[] = array(
 					"0" => $reg -> nombre_c_al,
-		           	"1" => $reg -> correo_al,
-		            "2" => $reg -> matricula_al,
-		            "3" => '<a href="'.SERVERURLDOC.'PerfAlm/'.base64_encode($reg->id_alumno).'/" class="btn btn-primary text-white">
-	                		<i class="fas fa-eye icoIni"></i>
-	                	Ver perfil'
+		            "1" => $reg -> matricula_al,
+		            "2" => '<a href="'.SERVERURLDOC.'PerfAlm/'.base64_encode($reg->id_alumno).'/" class="btn btn-outline-primary btn-sm">
+	                		<i class="fas fa-eye mr-2"></i>
+	                	Perfil'
 					);
 				}
 				$results = array(
@@ -83,9 +82,9 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 							"1" => $reg -> cuatrimestre_justif,
 							"2" => $reg -> fecha_justif,
 							"3" => $reg -> fecha_reg_justif,
-							"4" => '<i class="fas fa-times text-danger fa-lg"></i>',
-							"5" => '<a target="_blank" class="btn btn-outline-primary" href="'.SERVERURLDOC.'doc/JustifAlm.php?v='.base64_encode($reg->id_justificante).'"><i class="fas fa-print"></i></a>
-								<button type="button" onclick="rechJustif('.$reg->id_justificante.')" class="btn btn-outline-danger"><i class="fas fa-times-circle"></i></button>'
+							"4" => '<i class="fas fa-times text-danger"></i>',
+							"5" => '<a target="_blank" class="btn btn-outline-primary btn-sm" href="'.SERVERURLDOC.'doc/JustifAlm.php?v='.base64_encode($reg->id_justificante).'"><i class="fas fa-print"></i></a>
+								<button type="button" onclick="rechJustif('.$reg->id_justificante.')" class="btn btn-outline-danger btn-sm"><i class="fas fa-times-circle"></i></button>'
 						);
 						} else {
 							$data[] = array(
@@ -93,9 +92,9 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 								"1" => $reg -> cuatrimestre_justif,
 								"2" => $reg -> fecha_justif,
 								"3" => $reg -> fecha_reg_justif,
-								"4" => '<a target="_blank" href="'.$urlFront.'modAlm/Arch/justificantes/'.$reg -> archivo_justif.'"><i class="fas fa-file text-primary fa-lg"></i></a>',
+								"4" => '<a target="_blank" href="'.$urlFront.'modAlm/Arch/justificantes/'.$reg -> archivo_justif.'"><i class="fas fa-file text-primary"></i></a>',
 								"5" => '<a target="_blank" class="btn btn-outline-primary" href="'.SERVERURLDOC.'doc/ImprmJustif.php?v='.base64_encode($reg->id_justificante).'"><i class="fas fa-print"></i></a>
-									<button type="button" onclick="rechJustif('.$reg->id_justificante.')" class="btn btn-outline-danger"><i class="fas fa-times-circle"></i></button>'
+									<button type="button" onclick="rechJustif('.$reg->id_justificante.')" class="btn btn-outline-danger btn-sm"><i class="fas fa-times-circle"></i></button>'
 							);
 						}
 					} else {
@@ -105,7 +104,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 								"1" => $reg -> cuatrimestre_justif,
 								"2" => $reg -> fecha_justif,
 								"3" => $reg -> fecha_reg_justif,
-								"4" => '<i class="fas fa-times text-danger fa-lg"></i>',
+								"4" => '<i class="fas fa-times text-danger"></i>',
 								"5" => '-----'
 							);
 						} else {
@@ -114,7 +113,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 								"1" => $reg -> cuatrimestre_justif,
 								"2" => $reg -> fecha_justif,
 								"3" => $reg -> fecha_reg_justif,
-								"4" => '<a target="_blank" href="'.$urlFront.'modAlm/Arch/justificantes/'.$reg -> archivo_justif.'"><i class="fas fa-file text-primary fa-lg"></i></a>',
+								"4" => '<a target="_blank" href="'.$urlFront.'modAlm/Arch/justificantes/'.$reg -> archivo_justif.'"><i class="fas fa-file text-primary"></i></a>',
 								"5" => '-----'
 							);
 						}
@@ -149,8 +148,8 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 							"1" => $reg -> cuatrimestre_justif,
 							"2" => $reg -> fecha_justif,
 							"3" => $reg -> fecha_reg_justif,
-							"4" => '<i class="fas fa-times text-danger fa-lg"></i>',
-							"5" => '<button type="button" onclick="aceptJustif('.$reg->id_justificante.')" class="btn btn-outline-success"> <i class="fas fa-check"></i></button>'
+							"4" => '<i class="fas fa-times text-danger"></i>',
+							"5" => '<button type="button" onclick="aceptJustif('.$reg->id_justificante.')" class="btn btn-outline-primary btm-sm"> <i class="fas fa-check"></i></button>'
 						);
 						} else {
 							$data[] = array(
@@ -158,8 +157,8 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 								"1" => $reg -> cuatrimestre_justif,
 								"2" => $reg -> fecha_justif,
 								"3" => $reg -> fecha_reg_justif,
-								"4" => '<a target="_blank" href="'.$urlFront.'modAlm/Arch/justificantes/'.$reg -> archivo_justif.'"><i class="fas fa-file text-primary fa-lg"></i></a>',
-								"5" => '<button type="button" onclick="aceptJustif('.$reg->id_justificante.')" class="btn btn-outline-success"> <i class="fas fa-check"></i></button>'
+								"4" => '<a target="_blank" href="'.$urlFront.'modAlm/Arch/justificantes/'.$reg -> archivo_justif.'"><i class="fas fa-file text-primary"></i></a>',
+								"5" => '<button type="button" onclick="aceptJustif('.$reg->id_justificante.')" class="btn btn-outline-primary btn-sm"> <i class="fas fa-check"></i></button>'
 							);
 						}
 					} else {
@@ -169,7 +168,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 								"1" => $reg -> cuatrimestre_justif,
 								"2" => $reg -> fecha_justif,
 								"3" => $reg -> fecha_reg_justif,
-								"4" => '<i class="fas fa-times text-danger fa-lg"></i>',
+								"4" => '<i class="fas fa-times text-danger"></i>',
 								"5" => '-----'
 							);
 						} else {
@@ -178,7 +177,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 								"1" => $reg -> cuatrimestre_justif,
 								"2" => $reg -> fecha_justif,
 								"3" => $reg -> fecha_reg_justif,
-								"4" => '<a target="_blank" href="'.$urlFront.'modAlm/Arch/justificantes/'.$reg -> archivo_justif.'"><i class="fas fa-file text-primary fa-lg"></i></a>',
+								"4" => '<a target="_blank" href="'.$urlFront.'modAlm/Arch/justificantes/'.$reg -> archivo_justif.'"><i class="fas fa-file text-primary"></i></a>',
 								"5" => '-----'
 							);
 						}
@@ -273,7 +272,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 						"1" => $reg -> razones_tut,
 						"2" => $datCol,
 						"3" => $reg -> fecha_reg_obs,
-						"4" => '<a class="btn btn-outline-primary" href="'.SERVERURLDOC.'HistAlm/'.base64_encode($reg->id_tutpersonales).'/">Ver <i class="fas fa-eye"></i></a>'
+						"4" => '<a class="btn btn-outline-primary btn-sm" href="'.SERVERURLDOC.'HistAlm/'.base64_encode($reg->id_tutpersonales).'/"><i class="fas fa-eye mr-2"></i>Ver</a>'
 					);
 				}
 				$results = array(
@@ -311,8 +310,8 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 					"0" => $reg -> razones_tut,
 					"1" => $datCol,
 					"2" => $reg -> fecha_reg_obs,
-					"3" => '<button onclick="datIdTut('.$reg->id_tutpersonales.')" data-target="#citTut" data-toggle="modal" class="btn btn-outline-success btn-lg">
-						<i class="fas fa-check-circle"></i>
+					"3" => '<button onclick="datIdTut('.$reg->id_tutpersonales.')" data-target="#citTut" data-toggle="modal" class="btn btn-outline-primary btn-sm">
+						<i class="fas fa-check-circle mr-2"></i>
 						Aceptar</button>'
 					// "3" => '<button onclick="aceptHist('.$reg->id_tutpersonales.')" class="btn btn-outline-success btn-lg">
 					// 	<i class="fas fa-check-circle"></i>

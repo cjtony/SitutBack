@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-key fa-lg icoIni"></i> Nueva Contraseña</h5>
+        <h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-key fa-lg icoIni mr-2"></i> Nueva contraseña</h5>
         <button id="btnIcoCloseNCA" type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -31,12 +31,12 @@
           <div class="col-sm-1"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnCloseNewContAlm" class="btn btn-outline-danger" data-dismiss="modal">
+        <button type="button" id="btnCloseNewContAlm" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
         <i class="fas fa-times-circle mr-2"></i>
         Cerrar</button>
-        <button type="submit" class="btn btn-outline-primary" id="btnNewContAlmConf">
+        <button type="submit" class="btn btn-outline-primary btn-sm" id="btnNewContAlmConf">
         <i class="fas fa-check-circle mr-2"></i>
-        Guardar cambios</button>
+        Guardar</button>
         </form>
       </div>
     </div>
