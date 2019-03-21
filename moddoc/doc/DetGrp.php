@@ -74,8 +74,7 @@
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Hombres</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  	<span id="cantMale" class="mr-2"></span>
-                  	<span id="cantMaleBec"></span>
+                  	<span id="cantMale" class=""></span>
                   </div>
                 </div>
                 <div class="col-auto">
@@ -92,8 +91,7 @@
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Mujeres</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  	<span id="cantFemale" class="mr-2"></span>
-                  	<span id="cantFemaleBec"></span>
+                  	<span id="cantFemale" class=""></span>
                   </div>
                 </div>
                 <div class="col-auto">
@@ -110,8 +108,7 @@
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  	<span id="cantAllAlm" class="mr-2"></span>
-                  	<span id="cantAllBec"></span>
+                  	<span id="cantAllAlm" class=""></span>
                   </div>
                 </div>
                 <div class="col-auto">
@@ -121,8 +118,59 @@
             </div>
           </div>
         </div>
+        <div class="col-xl-4 col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Hombres</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  	<span id="cantMaleBec"></span>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-money-check-alt fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Mujeres</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  	<span id="cantFemaleBec"></span>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-money-check-alt fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  	<span id="cantAllBec"></span>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-money-check-alt fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="col-xl-6 col-md-6 mb-4">
-          <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card border-left-primary shadow h-100 py-2 hovAnim">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
@@ -142,7 +190,7 @@
           </div>
         </div>
         <div class="col-xl-6 col-md-6 mb-4">
-          <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card border-left-primary shadow h-100 py-2 hovAnim">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
@@ -162,7 +210,7 @@
           </div>
         </div>
         <div class="col-xl-6 col-md-6 mb-4">
-          <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card border-left-primary shadow h-100 py-2 hovAnim">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
@@ -183,7 +231,7 @@
           </div>
         </div>
         <div class="col-xl-6 col-md-6 mb-4">
-          <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card border-left-primary shadow h-100 py-2 hovAnim">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">

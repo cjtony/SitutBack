@@ -3,20 +3,20 @@
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-edit fa-lg icoIni"></i>Editar evaluación</h5>
+        <h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-edit fa-lg mr-2"></i> Editar evaluación</h5>
         <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-info">
+      <div class="modal-body text-dark">
         <form class="row" method="POST" id="formEditEval" name="formEditEval">
           <div class="col-sm-12">
             <input type="hidden" value="<?php echo $valDatEnc; ?>" name="id_testalm">
             <input type="hidden" value="<?php echo base64_encode($dataEval->id_evaltest); ?>" name="id_enctest">
             <div class="form-group">
               <label for="vulnerableEdit" class=" font-weight-bold">
-                <b class="lead">1. </b>
-                De acuerdo a la información obtenida en los aspectos I, II Y III. ¿Se considera al alumno como elemento de uno o más grupos altamente vulnerables?
+                <b class="lead font-weight-bold">1. </b>
+                De acuerdo a la darkrmación obtenida en los aspectos I, II Y III. ¿Se considera al alumno como elemento de uno o más grupos altamente vulnerables?
               </label>
             </div>
             <div class="form-group">
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
               <label class=" font-weight-bold">
-                <b class="lead">2. </b>
+                <b class="lead font-weight-bold">2. </b>
                 Marque los grupos en los que se considera se incluye al alumno altamente vulnerable.
               </label>
             </div>
@@ -105,7 +105,7 @@
             </div>
             <div class="form-group">
               <label class=" font-weight-bold">
-                <b class="lead">3. </b>
+                <b class="lead font-weight-bold">3. </b>
                 De los siguientes aspectos, seleccione aquellos que usted observa en el alumno de forma evidente
               </label>
             </div>
@@ -279,7 +279,7 @@
             </div>
             <div class="form-group">
               <label class="font-weight-bold ">
-                <b class="lead">4. </b>
+                <b class="lead font-weight-bold">4. </b>
                 Observaciones del tutor
               </label>
             </div>
@@ -299,12 +299,12 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">
+        <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
         <i class="fas fa-times-circle mr-2"></i>
         Cerrar</button>
-        <button type="submit" class="btn btn-outline-primary" id="btnGEditEval">
+        <button type="submit" class="btn btn-outline-primary btn-sm" id="btnGEditEval">
         <i class="fas fa-check-circle mr-2"></i>
-        Guardar cambios</button>
+        Guardar</button>
         </form>
       </div>
     </div>

@@ -6,7 +6,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-key fa-lg icoIni"></i> Configurar Contraseña</h5>
+        <h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-key fa-lg mr-2"></i> Configurar contraseña </h5>
         <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -33,12 +33,12 @@
           <div class="col-sm-1"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnCloseConfContDoc" class="btn btn-outline-danger" data-dismiss="modal">
+        <button type="button" id="btnCloseConfContDoc" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
         <i class="fas fa-times-circle mr-2"></i>
         Cerrar</button>
-        <button type="submit" class="btn btn-outline-primary" id="btnGConfContDoc">
+        <button type="submit" class="btn btn-outline-primary btn-sm" id="btnGConfContDoc">
           <i class="fas fa-check-circle mr-2"></i>
-          Guardar cambios</button>
+          Guardar</button>
         </form>
       </div>
     </div>
@@ -55,7 +55,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-user-cog fa-lg icoIni"></i> Configurar Datos</h5>
+        <h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-user-cog fa-lg mr-2"></i> Configurar datos </h5>
         <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -96,12 +96,12 @@
           <div class="col-sm-1"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnClose" class="btn btn-outline-danger" data-dismiss="modal">
+        <button type="button" id="btnClose" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
         <i class="fas fa-times-circle mr-2"></i>
         Cerrar</button>
-        <button type="submit" class="btn btn-outline-primary" id="btnGConfDat">
+        <button type="submit" class="btn btn-outline-primary btn-sm" id="btnGConfDat">
           <i class="fas fa-check-circle mr-2"></i>
-          Guardar cambios</button>
+          Guardar</button>
         </form>
       </div>
     </div>
@@ -118,7 +118,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLabel"><i class="fas fa-image fa-lg icoIni"></i> Foto de perfil</h5>
+        <h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-image fa-lg mr-2"></i> Cambiar foto </h5>
         <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -135,12 +135,12 @@
           <div class="col-sm-1"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnCloseConfFotPerf" class="btn btn-outline-danger" data-dismiss="modal">
+        <button type="button" id="btnCloseConfFotPerf" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
         <i class="fas fa-times-circle mr-2"></i>
         Cerrar</button>
-        <button type="submit" class="btn btn-outline-primary" id="btnFotPerf">
+        <button type="submit" class="btn btn-outline-primary btn-sm" id="btnFotPerf">
           <i class="fas fa-check-circle mr-2"></i>
-          Guardar cambios</button>
+          Guardar</button>
         </form>
       </div>
     </div>
@@ -149,3 +149,4 @@
 
 <!--====  End of Ventana Modal Conf Foto Perfil  ====-->
 
+ <script src="<?php echo SERVERURLDOC; ?>doc/js/confDatDoc.js"></script>

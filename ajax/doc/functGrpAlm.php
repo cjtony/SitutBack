@@ -33,8 +33,8 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 					"0" => $reg -> nombre_c_al,
 		            "1" => $reg -> matricula_al,
 		            "2" => '<a href="'.SERVERURLDOC.'PerfAlm/'.base64_encode($reg->id_alumno).'/" class="btn btn-outline-primary btn-sm">
-	                		<i class="fas fa-eye mr-2"></i>
-	                	Perfil'
+	                		<i class="fas fa-eye"></i>
+	                	'
 					);
 				}
 				$results = array(
@@ -259,11 +259,11 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 				while ($reg = $consult -> fetch(PDO::FETCH_OBJ)) {
 					$datCol = "";
 					if ($reg -> prioridad_tut == "Alta") {
-						$datCol = '<b class="text-danger">Alta</b>';
+						$datCol = '<span class="badge-danger badge p-1">Alta</span>';
 					} else if ($reg -> prioridad_tut == "Media") {
-						$datCol = '<b class="text-warning">Media</b>';
+						$datCol = '<span class="badge-warning badge p-1">Media</span>';
 					} else if ($reg -> prioridad_tut == "Baja") {
-						$datCol = '<b class="text-primary">Baja</b>';
+						$datCol = '<span class="badge-primary badge p-1">Baja</span>';
 					} else {
 						$datCol = $reg -> prioridad_tut;
 					}
@@ -272,7 +272,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 						"1" => $reg -> razones_tut,
 						"2" => $datCol,
 						"3" => $reg -> fecha_reg_obs,
-						"4" => '<a class="btn btn-outline-primary btn-sm" href="'.SERVERURLDOC.'HistAlm/'.base64_encode($reg->id_tutpersonales).'/"><i class="fas fa-eye mr-2"></i>Ver</a>'
+						"4" => '<a class="btn btn-outline-primary btn-sm" href="'.SERVERURLDOC.'HistAlm/'.base64_encode($reg->id_tutpersonales).'/"><i class="fas fa-eye"></i></a>'
 					);
 				}
 				$results = array(

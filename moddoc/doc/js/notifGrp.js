@@ -182,9 +182,9 @@ $(document).ready(function(){
 			type : "POST",
 			success:function (data) {
 				if (data > 1 || data == 0) {
-					$('#cantAllBec').html(data + " totales.");	
+					$('#cantAllBec').html(data + " Totales.");	
 				} else {
-					$('#cantAllBec').html(data + " total.");	
+					$('#cantAllBec').html(data + " Total.");	
 				}
 			}
 		});

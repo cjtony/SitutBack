@@ -968,40 +968,40 @@
 	      </div>
 	      <div class="modal-body">
 	        <form class="row" method="POST" id="formHistAlm" name="formHistAlm">
-	        	<div class="col-sm-1"></div>
-	        	<div class="col-sm-10">
-	        		<input type="hidden" class="form-control" value="<?php echo base64_encode($valPerfAlmDec); ?>" name="id_alumno">
-	        		<div class="form-group">
-	        			<label>Cuatrimestre:</label>
-	        			<input type="text" class="form-control" value="<?php echo $datAlm->cuatrimestre_g; ?>" name="cuatnom" readonly>
+	        	<div class="col-sm-12">
+	        		<div class="row">
+	        			<input type="hidden" class="form-control" value="<?php echo base64_encode($valPerfAlmDec); ?>" name="id_alumno">
+		        		<div class="form-group col-sm-6 mb-4">
+		        			<label>Cuatrimestre:</label>
+		        			<input type="text" class="form-control" value="<?php echo $datAlm->cuatrimestre_g; ?>" name="cuatnom" readonly>
+		        		</div>
+		        		<div class="form-group col-sm-6 mb-4">
+		        			<label for="priHist">Prioridad:</label>
+		        			<select class="form-control" id="priHist" name="priHist">
+								<option value="0" selected="">Selecciona</option>
+								<option value="Alta">Alta</option>
+								<option value="Media">Media</option>
+								<option value="Baja">Baja</option>
+							</select>
+		        		</div>
+		        		<div class="form-group col-sm-6 mb-4">
+		        			<label for="razHist">Razones:</label>
+		        			<textarea id="razHist" name="razHist" class="form-control" rows="3"></textarea>
+		        		</div>
+		        		<div class="form-group col-sm-6 mb-4">
+		        			<label for="obsHist">Observaciones</label>
+		        			<textarea id="obsHist" name="obsHist" class="form-control" rows="3"></textarea>
+		        		</div>
+		        		<div class="form-group col-sm-6 mb-4">
+			          		<label for="citFech2">Fecha de la cita:</label>
+			          		<input required="" type="date" id="citFech2" name="citFech" class="form-control">
+			          	</div>
+			          	<div class="form-group col-sm-6 mb-4">
+			          		<label for="timCit2">Hora de la cita:</label>
+			          		<input required="" type="time" id="timCit2" name="timCit" class="form-control">
+			          	</div>
 	        		</div>
-	        		<div class="form-group">
-	        			<label for="razHist">Razones:</label>
-	        			<textarea id="razHist" name="razHist" class="form-control" rows="5"></textarea>
-	        		</div>
-	        		<div class="form-group">
-	        			<label for="priHist">Prioridad:</label>
-	        			<select class="form-control" id="priHist" name="priHist">
-							<option value="0" selected="">Selecciona</option>
-							<option value="Alta">Alta</option>
-							<option value="Media">Media</option>
-							<option value="Baja">Baja</option>
-						</select>
-	        		</div>
-	        		<div class="form-group">
-	        			<label for="obsHist">Observaciones</label>
-	        			<textarea id="obsHist" name="obsHist" class="form-control" rows="5"></textarea>
-	        		</div>
-	        		<div class="form-group">
-		          		<label for="citFech2">Fecha de la cita:</label>
-		          		<input required="" type="date" id="citFech2" name="citFech" class="form-control">
-		          	</div>
-		          	<div class="form-group">
-		          		<label for="timCit2">Hora de la cita:</label>
-		          		<input required="" type="time" id="timCit2" name="timCit" class="form-control">
-		          	</div>
 	        	</div>
-	        	<div class="col-sm-1"></div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" id="btnCloseHist" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
@@ -1026,7 +1026,7 @@
 	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	      	<h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-list fa-lg icoIni mr-2"></i> Listado tutorias personalizadas </h5>
+	      	<h5 class="modal-title h5 mb-0 text-gray-700" id="exampleModalLabel"><i class="fas text-gray-300 fa-list fa-lg icoIni mr-2"></i> Tutorias </h5>
 	        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>

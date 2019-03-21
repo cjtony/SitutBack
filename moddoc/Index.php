@@ -102,27 +102,13 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" href="<?php echo SERVERURLDIR; ?>RepProblem/">Reportar un problema</a>
-            <a class="collapse-item" href="<?php echo SERVERURLDIR; ?>MyReports/">Reportes enviados</a>
+            <a class="collapse-item" href="<?php echo SERVERURLDOC; ?>RepProblem/">Reportar un problema</a>
+            <a class="collapse-item" href="<?php echo SERVERURLDOC; ?>MyReports/">Reportes enviados</a>
           </div>
         </div>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#alum_opc" aria-expanded="true" aria-controls="alum_opc">
-          <i class="fas fa-fw fa-users"></i>
-          <span>Alumnos</span>
-        </a>
-        <div id="alum_opc" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" href="<?php echo SERVERURLDIR; ?>dir/RegAlumnos.php">Registrar grupo</a>
-            <a class="collapse-item" href="<?php echo SERVERURLDIR; ?>GraduateStd/">Graduados</a>
-          </div>
-        </div>
-      </li>
-
-      <hr class="sidebar-divider">
+      <!-- <hr class="sidebar-divider"> -->
 
       <div class="sidebar-heading">
         Directorio
@@ -321,6 +307,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
               include 'doc/Index.php';
           }
         ?>
+
       <?php include 'doc/modalsconf.php'; ?>
 
       </div>
@@ -375,9 +362,6 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
   <!-- Custom scripts for all pages-->
   <script src="<?php echo SERVERURL; ?>assets/js/sb-admin-2.min.js"></script>
 
-  <script src="<?php echo SERVERURLDIR; ?>dir/js/confDatContDir.js"></script>
-
-  
 </body>
 
 </html>
