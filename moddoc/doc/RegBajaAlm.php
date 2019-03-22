@@ -19,15 +19,6 @@
 	$datBaj = $docente -> validBajDat($valPerfAlmDec); 
 	// $valDPAlm = $docente -> valDatPerAlm($valPerfAlmDec);
 	// $valEnc = $docente -> valDatEnc($valPerfAlmDec);
-	function formatFech($fechForm) {
-		$fechDat = substr($fechForm, 0,4);
-		$fechM = substr($fechForm, 5,2);
-		$fechD = substr($fechForm, 8,2);
-		$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-		$Fecha = date($fechD)." de ".$meses[date($fechM)-1]. " del ".date($fechDat);
-		return $Fecha;
-	}
 	if ($datDoce) {
 ?>
 	
@@ -63,115 +54,53 @@
 		}
 	</style>
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-12 col-md-12 col-lg-2"></div>
-			<div class="col-sm-12 col-md-12 col-lg-8">
-				<a href="<?php echo SERVERURLDOC; ?>PerfAlm/<?php echo $valPerfAlm; ?>/" class="btn bg-white cardShadow rounded mr-3 text-primary btn-md">
-					<i class="fas fa-arrow-left icoIni"></i>
-					Regresar
-				</a>
-			</div>
-		</div>
+
+<div class="container-fluid mt-4 animated fadeIn delay-1s">
+	
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<h1 class="h3 mb-0 text-gray-800">
+		    <i class="fas fa-university mr-2 text-dark "></i>
+			<b><?php echo "Carrera: ".$datGrup->nombre_car.", Grupo: ".$datGrup->grupo_n."."; ?></b>
+		</h1>
+		<a href="<?php echo SERVERURLDOC; ?>PerfAlm/<?php echo $valPerfAlm; ?>/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+		   	<i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
+		</a>
 	</div>
 
-	<div class="container-fluid mt-4">
-		<div class="row">
-			<div class="col-md-4 col-lg-3">
-				<!-- SobreMi -->
-                <div class="container py-5">
-                    <div class="card shDC">
-                        <img class="card-img-top" src="<?php echo SERVERURL; ?>vistas/img/iceland.jpg" alt="Card image cap">
-
-                        <div class="text-center margen-avatar">
-                        	<?php 
-								if ($datDoce -> foto_perf_doc != "") {
-							?>
-								<div class="text-center">
-									<img src="<?php echo SERVERURLDOC; ?>perfilFot/<?php echo $datDoce->foto_perf_doc; ?>" class="rounded-circle" width="100px" >
-								</div>
-								<hr style="height: 2px;" class="bg-success rounded">
-							<?php
-								} else {
-							?>
-								<img src='<?php echo SERVERURL; ?>vistas/img/usermal.png' class='rounded-circle' width='100px'>
-							<?php
-								}
-							?>
-                        </div>
-                        <div class="card-body text-center">
-                        <h6 class="card-title font-weight-bold">
-                        	<?php echo $datDoce->nombre_c_doc; ?>
-                        </h6>
-                        <h6 class="text-left mt-3">
-                        	<i class="fas fa-certificate fa-lg icoIni"></i>
-                        	<?php echo $datDoce->especialidad_doc; ?>
-                        </h6>
-						<h6 class=" text-left mt-3 text-truncate" title="<?php echo $datDoce->correo_doc; ?>">
-							<i class="fas fa-envelope fa-lg icoIni"></i>
-							<?php echo $datDoce -> correo_doc; ?>
-						</h6>
-						<h6 class=" text-left mt-3">
-							<i class="fas fa-phone fa-lg icoIni"></i>
-							<?php echo $datDoce -> telefono_doc; ?>
-						</h6>
-						<hr class="bg-info mt-4" style="height: 2px;">
-						<h6 class="text-center text-info">
-							<b>Docente</b>
-						</h6>
-                        </div>
-                    </div>
-                </div><!-- SobreMi -->
-                <div class="container">
-                    <!-- Comentarios -->
-                    <div class="card">
-                        <div class="card-header text-center">
-                            Frase Celebre
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                            <p class="font-italic text-info">
-                            	<b>"</b> Todo el mundo tiene talento, solo es cuestión de moverse hasta descubrirlo. <b>"</b>
-                            </p>
-                            <footer class="blockquote-footer"><cite title="Source Title">George Lucas</cite></footer>
-                            </blockquote>
-                        </div>
-                    </div><!-- Comentarios -->
-                </div>
-			</div>
-			<div class="col-md-8 col-lg-9">
-				<div class="text-center bg-primary p-1" style="border-radius: 8px;">
-					<h4 class="text-center text-white mt-3"> 
-						<?php echo "Carrera: ".$datGrup->nombre_car.", Grupo: ".$datGrup->grupo_n."."; ?>
-					</h4>
-				</div>
-				<?php 
-					if ($datEnc) {
-						if ($datBaj -> CANTIDAD == 0 ) {
-				?>
-					<h5 class="text-center text-uppercase text-info font-weight-bold mt-4">
-					Registro de baja del alumno
-					</h5>
-					<div class="container-fluid mt-4">
-						<div class="row">
-							<div class="col-sm-12 bg-white text-info cardShadow pad30">
+	
+			<?php 
+				if ($datEnc) {
+					if ($datBaj -> CANTIDAD == 0 ) {
+			?>
+				<div class="card shadow mb-4" id="contend">
+			        <div class="card-header py-3">
+			          <h6 class="m-0 font-weight-bold text-primary ">
+			          	<i class="fas fa-user-graduate mr-2"></i> <?php echo $datAlumno->nombre_c_al; ?>
+			          </h6>
+			        </div>
+			        <div class="card-body">
+						<h5 class="text-center text-uppercase text-primary  font-weight-bold mt-4">
+							Registro de baja del alumno
+						</h5>
+						<div class="row mt-5">
+							<div class="col-sm-12 bg-white text-dark p-4">
 								<form method="POST" id="formRegBaja" name="formRegBaja">
 									<input type="hidden" value="<?php echo base64_encode($datAlm->id_alumno); ?>" name="id_alumno">
-									<div class="form-group row">
-										<label class="">
+									<div class="form-group row text-center">
+										<label class=" text-center mt-2 font-weight-bold">
 											Fecha de solictud de la baja:
 										</label>
-										<div class="col-sm-6">
+										<div class="col-sm-3">
 											<input type="date" value="<?php echo date("Y-m-d"); ?>" class="form-control" name="">
 										</div>
 									</div>
 									<br><br>
 									<div class="row">
 										<div class="col-sm-12">
-											<h5 class="text-left text-uppercase">
+											<h5 class="text-left text-uppercase font-weight-bold">
 												I. Datos generales del alumno
 											</h5>
-											<hr style="height: 2px !important;" class="bg-info rounded">
+											<hr style="height: 2px !important;" class="bg-primary rounded">
 											<br>
 										</div>
 									</div>
@@ -321,10 +250,10 @@
 									<br><br>
 									<div class="row">
 										<div class="col-sm-12">
-											<h5 class="text-left text-uppercase">
+											<h5 class="text-left text-uppercase font-weight-bold">
 												II. Información sobre la baja
 											</h5>
-											<hr style="height: 2px !important;" class="bg-info rounded">
+											<hr style="height: 2px !important;" class="bg-primary rounded">
 										</div>
 									</div>
 									<div class="form-group row">
@@ -369,15 +298,15 @@
 									</div>	
 									<br><br>
 									<div class="form-group row">
-										<label class=" col-sm-6 text-center">Introduzca su contraseña para confirmar:</label>
+										<label class=" col-sm-6 text-center font-weight-bold">Introduzca su contraseña para confirmar:</label>
 										<div class="col-sm-6">
 											<input type="password" class="form-control" id="passConf" name="passConf">
 										</div>
 									</div>
 									<div class="form-group row mt-5">
 										<div class="text-center col-sm-12">
-											<button class="btn btn-outline-primary btn-md">
-												<i class="fas fa-check fa-lg mr-2"></i>
+											<button class="btn btn-outline-primary btn-sm">
+												<i class="fas fa-check mr-2"></i>
 												Guardar
 											</button>
 										</div>
@@ -385,123 +314,125 @@
 								</form>
 							</div>
 						</div>
-					</div>
-				<?php
-						} else {
-							$keyBaj = $docente -> keyBajAlm($valPerfAlmDec);
-				?>	
-				<br>
-					<div class="container-fluid mt-5">
-						<div class="row">
-							<div class="col-sm-6 mt-5">
-								<h5 class="text-center text-info">
+			        </div>
+			    </div>
+			<?php
+					} else {
+						$keyBaj = $docente -> keyBajAlm($valPerfAlmDec);
+			?>	
+			<div class="card shadow mb-4" id="contend">
+		        <div class="card-header py-3">
+		          <h6 class="m-0 font-weight-bold text-dark ">
+		          	<i class="fas fa-user-graduate mr-2"></i> <?php echo $datAlm->nombre_c_al; ?>
+		          </h6>
+		        </div>
+		        <div class="card-body">
+
+		        	<div class="row text-center">
+		        		<div class="col-sm-6 mb-4">
+		        			<div class="border-left-primary rounded shadow p-2">
+		        				<h5 class="text-center text-dark  font-weight-bold mt-4">
 									<i class="fas fa-info-circle mr-2"></i>
 									Ya existe un registro de baja.
 									<div class="mt-4 text-center">
-										<span class="badge badge-info p-3">
+										<span class="badge badge-primary p-3">
 											Fecha de realización: <?php echo formatFech($keyBaj->fecha_reg_baj);  ?>
 										</span>
 									</div>
+									<div class="mt-4 mb-4">
+										<a target="_blank" href="<?php echo SERVERURLDOC ?>doc/ImpBaja.php?v=<?php echo base64_encode($keyBaj->id_bajaalmdat); ?>&&p=<?php echo base64_encode($datAlm->id_alumno); ?>" class="btn btn-outline-primary btn-sm">
+											<i class="fas fa-print mr-2"></i>
+											Imprimir
+										</a>
+									</div>
 								</h5>
-								<h5 class="text-center text-capitalize text-info mt-4">
-									<i class="fas fa-user-graduate mr-2"></i>
-									Alumno : 
-									<b><?php echo $datAlm->nombre_c_al; ?></b>
-								</h5>
-								<div class="text-center mt-4">
-									<a target="_blank" href="<?php echo SERVERURLDOC ?>doc/ImpBaja.php?v=<?php echo base64_encode($keyBaj->id_bajaalmdat); ?>&&p=<?php echo base64_encode($datAlm->id_alumno); ?>" class="btn btn-outline-primary btn-md mr-4">
-										<i class="fas fa-print fa-lg mr-2"></i>
-										Imprimir
-									</a>
-									<!-- <button class="btn btn-outline-primary btn-md ml-4">
-										<i class="fas fa-eye fa-lg mr-2"></i>
-										Ver datos
-									</button> -->
-								</div>
-								<hr style="height: 2px;" class="bg-info rounded">
-							</div>
-							<div class="col-sm-6 text-center">
-								<?php 
-									if ($datAlm -> foto_perf_alm == "" && $datAlm -> sexo_al == "Masculino") {
-										echo "<img src='../vistas/img/usermal.png' class='img-fluid ' width='200'>";
-									} else if ($datAlm -> foto_perf_alm != "" && $datAlm -> sexo_al == "Masculino") {
-								?>
-									<img src="<?php echo $urlFront;?>modAlm/Arch/perfil/<?php echo $datAlm->foto_perf_alm ?>" class="img-fluid img-thumbnail rounded " width="300">
-								<?php
-									} else if ($datAlm -> foto_perf_alm == "" && $datAlm -> sexo_al == "Femenino") {
-										echo "<img src='../vistas/img/userfem.png' class='img-fluid ' width='200'>";
-									} else if ($datAlm -> foto_perf_alm != "" && $datAlm -> sexo_al == "Femenino") {
-								?>
-									<img src="<?php echo $urlFront;?>modAlm/Arch/perfil/<?php echo $datAlm->foto_perf_alm ?>" class="img-fluid img-thumbnail rounded " width="300">
-								<?php
-									} else {
-										echo "<img src='../vistas/img/icous.png' class='img-fluid ' width='200'>";
-									}
-								?>
-							</div>
-						</div>
-					</div>
-					<br><br><br>
-				<?php			
-						}
-				?>
-				
-				<?php
-					} else {
-				?>
-				<br>
-				<div class="container-fluid mt-5">
-					<div class="row">
-						<div class="col-sm-6 mt-5">
-							<h5 class="text-justify text-info">
-								El alumno <b><?php echo $datAlumno->nombre_c_al; ?></b>
-								no ha completado la entrevista inicial, mediante el sistema no se puede proceder a realizar la baja.
-							</h5>
-							<hr style="height: 2px;" class="bg-info rounded">
-							<h5 class="text-center mt-5 font-weight-bold text-info">
-								<i class="fas fa-arrow-down mr-2"></i>
+		        			</div>
+		        		</div>
+		        		<div class="col-sm-6 mb-4 mt-2">
+		        			<?php 
+								if ($datAlm -> foto_perf_alm == "" && $datAlm -> sexo_al == "Masculino") {
+									echo "<img src='../vistas/img/usermal.png' class='img-fluid ' width='200'>";
+								} else if ($datAlm -> foto_perf_alm != "" && $datAlm -> sexo_al == "Masculino") {
+							?>
+								<img src="<?php echo $urlFront;?>modAlm/Arch/perfil/<?php echo $datAlm->foto_perf_alm ?>" class="img-fluid rounded " width="200">
+							<?php
+								} else if ($datAlm -> foto_perf_alm == "" && $datAlm -> sexo_al == "Femenino") {
+									echo "<img src='../vistas/img/userfem.png' class='img-fluid ' width='200'>";
+								} else if ($datAlm -> foto_perf_alm != "" && $datAlm -> sexo_al == "Femenino") {
+							?>
+								<img src="<?php echo $urlFront;?>modAlm/Arch/perfil/<?php echo $datAlm->foto_perf_alm ?>" class="img-fluid rounded " width="200">
+							<?php
+								} else {
+									echo "<img src='../vistas/img/icous.png' class='img-fluid ' width='200'>";
+								}
+							?>
+		        		</div>
+		        	</div>
+
+		        </div>
+		    </div>
+			<?php			
+					}
+			?>
+			
+			<?php
+				} else {
+			?>
+			<div class="card shadow mb-4" id="contend">
+		        <div class="card-header py-3">
+		          <h6 class="m-0 font-weight-bold text-dark ">
+		          	<i class="fas fa-user-graduate mr-2"></i> <?php echo $datAlumno->nombre_c_al; ?>
+		          </h6>
+		        </div>
+		        <div class="card-body">
+
+		        	<div class="row text-center">
+		        		<div class="col-sm-6 mb-4">
+		        			<p class="text-justify text-dark">
+		        				El alumno
+								no ha completado la entrevista inicial, mediante el sistema no se puede proceder a 	realizar la baja.
+		        			</p>
+		        			<h5 class="font-weight-bold mt-4">
+		        				<i class="fas fa-arrow-down text-dark  mr-2"></i>
 								Más información
-							</h5>
-							<div class="mt-5">
-								<span class="text-info">
-									<i class="fas fa-circle mr-2"></i>
-									Es necesaria la información de la encuesta para un llenado correcto del formato de baja.
-								</span>
-							</div>
-							<div class="mt-3">
-								<span class="text-info">
-									<i class="fas fa-circle mr-2"></i>
-									Pida al alumno que conteste la encuesta para despues proceder a solicitar el formato de baja.
-								</span>
-							</div>
-						</div>
-						<div class="col-sm-6 text-center">
-							<?php 
+		        			</h5>
+		        			<p class="text-justify text-dark mt-4">
+		        				<i class="fas fa-circle text-dark  mr-2"></i>
+								Es necesaria la información de la encuesta para un llenado correcto del formato de baja.
+		        			</p>
+		        			<p class="text-justify text-dark mt-4">
+		        				<i class="fas fa-circle text-dark  mr-2"></i>
+								Pida al alumno que conteste la encuesta para despues proceder a solicitar el formato de baja.
+		        			</p>
+		        		</div>
+		        		<div class="col-sm-6 mb-4 mt-2">
+		        			<?php 
 								if ($datAlumno -> foto_perf_alm == "" && $datAlumno -> sexo_al == "Masculino") {
 									echo "<img src='".SERVERURL."vistas/img/usermal.png' class='img-fluid ' width='200'>";
 								} else if ($datAlumno -> foto_perf_alm != "" && $datAlumno -> sexo_al == "Masculino") {
 							?>
-								<img src="<?php echo $urlFront;?>modAlm/Arch/perfil/<?php echo $datAlumno->foto_perf_alm ?>" class="img-fluid img-thumbnail rounded " width="300">
+								<img src="<?php echo $urlFront;?>modAlm/Arch/perfil/<?php echo $datAlumno->foto_perf_alm ?>" class="img-fluid rounded " width="200">
 							<?php
 								} else if ($datAlumno -> foto_perf_alm == "" && $datAlumno -> sexo_al == "Femenino") {
 									echo "<img src='".SERVERURL."vistas/img/userfem.png' class='img-fluid ' width='200'>";
 								} else if ($datAlumno -> foto_perf_alm != "" && $datAlumno -> sexo_al == "Femenino") {
 							?>
-								<img src="<?php echo $urlFront;?>modAlm/Arch/perfil/<?php echo $datAlumno->foto_perf_alm ?>" class="img-fluid img-thumbnail rounded " width="300">
+								<img src="<?php echo $urlFront;?>modAlm/Arch/perfil/<?php echo $datAlumno->foto_perf_alm ?>" class="img-fluid rounded " width="200">
 							<?php
 								} else {
 									echo "<img src='".SERVERURL."vistas/img/icous.png' class='img-fluid ' width='200'>";
 								}
 							?>
-						</div>
-					</div>
-				</div>
-				<?php
-					}
-				?>
-			</div>
-		</div>
-	</div>
+		        		</div>
+		        	</div>
+
+		        </div>
+		    </div>
+			<?php
+				}
+			?>
+		
+</div>
 
 	<script src="<?php echo SERVERURLDOC; ?>doc/js/regBaj.js"></script>
 

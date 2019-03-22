@@ -87,30 +87,30 @@
         <div class="card-body">
           	<div class="row">
 	          	<div class="col-sm-6 mb-4 shadow p-3 rounded">
-	          		<h5 class="text-left text-capitalize text-primary">
+	          		<h6 class="text-left text-capitalize text-primary">
 						<i class="fas fa-user-graduate mr-2"></i>
 						<b><?php echo $datAlm->nombre_c_al; ?></b>
-					</h5>
-					<h5 class="text-left text-primary mt-4">
+					</h6>
+					<h6 class="text-left text-primary mt-4">
 						<i class="fas fa-certificate mr-2"></i>
 						<b><?php echo $datAlm->matricula_al; ?></b>
-					</h5>
-					<h5 class="text-left text-primary  mt-4">
+					</h6>
+					<h6 class="text-left text-primary  mt-4">
 						<i class="fas fa-envelope mr-2"></i>
 						<b><?php echo $datAlm->correo_al; ?></b>
-					</h5>
-					<h5 class="text-left text-primary mt-4">
+					</h6>
+					<h6 class="text-left text-primary mt-4">
 						<i class="fas fa-phone mr-2"></i>
 						<b>Telefono: <?php echo $datAlm->telefono_al; ?></b>
-					</h5>
-					<h5 class="text-left text-capitalize text-primary mt-4">
+					</h6>
+					<h6 class="text-left text-capitalize text-primary mt-4">
 						<i class="fas fa-calendar-check mr-2"></i>
 						<b>Registro : <?php echo formatFech($datAlm->fecha_reg); ?>.</b>
-					</h5>
-					<h5 class="text-left text-capitalize text-primary mt-4">
+					</h6>
+					<h6 class="text-left text-capitalize text-primary mt-4">
 						<i class="fas fa-calendar mr-2"></i>
 						<b>Ultima sesion : <?php echo formatFech($datAlm->fecha_ult_ses_alm); ?>.</b>
-					</h5>
+					</h6>
 					<?php 
 						if ($datAlm -> fin_car == 0) {
 					?>

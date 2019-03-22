@@ -475,10 +475,12 @@ class Docentes
 
 	public function validBajDat($id_alumno) {
 		try {
+			$valid = 1;
 			$dbc = new Connect();
 			$dbc = $dbc -> getDB();
-			$stmt = $dbc -> prepare("SELECT COUNT(id_bajaalmdat) AS 'CANTIDAD' FROM bajasalm_dat WHERE id_alumno = :id_alumno");
+			$stmt = $dbc -> prepare("SELECT COUNT(id_bajaalmdat) AS 'CANTIDAD' FROM bajasalm_dat WHERE id_alumno = :id_alumno && estado_baj_alm = :valid");
 			$stmt -> bindParam("id_alumno", $id_alumno, PDO::PARAM_INT);
+			$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
 			$stmt -> execute();
 			$data = $stmt -> fetch(PDO::FETCH_OBJ);
 			return $data;
