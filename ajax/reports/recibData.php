@@ -21,34 +21,34 @@ $tag = $_GET['tag'];
 $estado = 1;
 if ($file) {
 	$fileUpload = $_FILES['fileUpload']['name'];
-		$tipoImg = $_FILES['fileUpload']['type'];
-		if (($fileUpload == !NULL)) {
-			if ($tipoImg == "image/jpeg" || $tipoImg == "image/jpg" || $tipoImg == "image/png") {
-				$directorioG = "../../modDevop/reports/";
-				move_uploaded_file($_FILES['fileUpload']['tmp_name'], $directorioG.$fileUpload);
-			}
+	$tipoImg = $_FILES['fileUpload']['type'];
+	if (($fileUpload == !NULL)) {
+		if ($tipoImg == "image/jpeg" || $tipoImg == "image/jpg" || $tipoImg == "image/png") {
+			$directorioG = "../../modDevop/reports/";
+			move_uploaded_file($_FILES['fileUpload']['tmp_name'], $directorioG.$fileUpload);
 		}
-		try {
-			$stmt = $dbc -> prepare("INSERT INTO reportsprob (num_serie_rep, fecha_reg_rep, estado_rep, id_user, tag_user, describ_prob, arch_prob) VALUES (:num_ser, :fechAct, :estado, :clv_us, :tag, :descProb, :fileUpload)");
-	 		$stmt -> bindParam(":num_ser", $num_ser, PDO::PARAM_STR);
-	 		$stmt -> bindParam(":fechAct", $fechAct, PDO::PARAM_STR);
-	 		$stmt -> bindParam(":estado", $estado, PDO::PARAM_INT);
-	 		$stmt -> bindParam(":clv_us", $clv_us, PDO::PARAM_INT);
-	 		$stmt -> bindParam(":tag", $tag, PDO::PARAM_STR);
-	 		$stmt -> bindParam(":descProb", $descProb, PDO::PARAM_STR);
-	 		$stmt -> bindParam(":fileUpload", $fileUpload, PDO::PARAM_STR);
-	 		$resStmt = $stmt -> execute();
-	 		if ($resStmt) {
-	 			echo "1";
-	 		} else {
-	 			echo "2";
-	 		}
-		} catch (PDOException $e) {
-			echo $e->getMessage();
-		} finally {
-			$dbc = null; $stmt = null;
-			unset($num_ser,$fechAct,$estado,$clv_us,$tag,$descProb,$fileUpload);
-		}
+	}
+	try {
+		$stmt = $dbc -> prepare("INSERT INTO reportsprob (num_serie_rep, fecha_reg_rep, estado_rep, id_user, tag_user, describ_prob, arch_prob) VALUES (:num_ser, :fechAct, :estado, :clv_us, :tag, :descProb, :fileUpload)");
+ 		$stmt -> bindParam(":num_ser", $num_ser, PDO::PARAM_STR);
+ 		$stmt -> bindParam(":fechAct", $fechAct, PDO::PARAM_STR);
+ 		$stmt -> bindParam(":estado", $estado, PDO::PARAM_INT);
+ 		$stmt -> bindParam(":clv_us", $clv_us, PDO::PARAM_INT);
+ 		$stmt -> bindParam(":tag", $tag, PDO::PARAM_STR);
+ 		$stmt -> bindParam(":descProb", $descProb, PDO::PARAM_STR);
+ 		$stmt -> bindParam(":fileUpload", $fileUpload, PDO::PARAM_STR);
+ 		$resStmt = $stmt -> execute();
+ 		if ($resStmt) {
+ 			echo "1";
+ 		} else {
+ 			echo "2";
+ 		}
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+	} finally {
+		$dbc = null; $stmt = null;
+		unset($num_ser,$fechAct,$estado,$clv_us,$tag,$descProb,$fileUpload);
+	}
 } else {
 	try {
 		$noImg = "Sin imagen";
