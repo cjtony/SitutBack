@@ -37,69 +37,86 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 			$dbConexion = null; $consult = null;
 			break;
 		case 'mostNotif':
-			$consult = $dbConexion -> prepare("SELECT COUNT(just.id_justificante) AS 'CantJust', alm.nombre_c_al, alm.foto_perf_alm, alm.sexo_al, alm.id_alumno FROM justificantes just 
+			$consult = $dbConexion -> prepare("SELECT alm.nombre_c_al, alm.foto_perf_alm, alm.sexo_al, alm.id_alumno FROM justificantes just 
 				INNER JOIN alumnos alm ON alm.id_alumno = just.id_alumno 
 				INNER JOIN det_grupo det ON det.id_detgrupo = alm.id_detgrupo 
 				INNER JOIN grupos grp ON grp.id_grupo = det.id_grupo
 				INNER JOIN docentes doc ON doc.id_docente = det.id_docente 
-				WHERE just.estado_justif = 0 && doc.id_docente = :keyDoc && det.id_detgrupo = :grp && just.cuatrimestre_justif = grp.cuatrimestre_g && alm.acept_grp = 1
-				GROUP BY alm.nombre_c_al");
+				WHERE just.estado_justif = 0 && doc.id_docente = :keyDoc && det.id_detgrupo = :grp && just.cuatrimestre_justif = grp.cuatrimestre_g && alm.acept_grp = 1");
 			$consult -> bindParam("keyDoc", $keyDoc, PDO::PARAM_INT);
 			$consult -> bindParam("grp", $grp, PDO::PARAM_INT);
 			$consult -> execute();
 			$salida = "";
-			while ($data = $consult->fetch(PDO::FETCH_OBJ)) {
-				if ($data->foto_perf_alm != "") {
-					$salida .= 
-						"<div class='row pad10'>
-							<div class='col-sm-3'>
-								<img src='".$urlFront."modAlm/Arch/perfil/".$data->foto_perf_alm."' class='img-fluid rounded' height='70' width='70'>
-							</div>
-							<div class='col-sm-8'>
-								<a href='".SERVERURLDOC."PerfAlm/".base64_encode($data->id_alumno)."/' class='dropdown-item text-primary' href='#'>".$data->nombre_c_al." <br> solicito un nuevo justificante </a>
-							</div>
-							<div class='col-sm-1'>
-								<span class='badge badge-info'>".$data->CantJust."</span>
-							</div>
-						</div>
-						<div class='dropdown-divider'></div>
-						"
-					;
-				} else {
-					if ($data->sexo_al == "Masculino") {
-						$salida .= 
-							"<div class='row pad10'>
-								<div class='col-sm-3'>
-									<img src='".$urlFront."vistas/img/usermal.png' class='img-fluid rounded' height='70' width='70'>
-								</div>
-								<div class='col-sm-8'>
-									<a href='".SERVERURLDOC."PerfAlm/".base64_encode($data->id_alumno)."/' class='dropdown-item text-primary' href='#'>".$data->nombre_c_al." <br> solicito un nuevo justificante </a>
-								</div>
-								<div class='col-sm-1'>
-									<span class='text-info'>".$data->CantJust."</span>
-								</div>
-							</div>
-							<div class='dropdown-divider'></div>
-							"
-						;
-					} else {
-						$salida .= 
-							"<div class='row pad10'>
-								<div class='col-sm-3'>
-									<img src='".$urlFront."vistas/img/userfem.png' class='img-fluid rounded' height='70' width='70'>
-								</div>
-								<div class='col-sm-8'>
-									<a href='".SERVERURLDOC."PerfAlm/".base64_encode($data->id_alumno)."/' class='dropdown-item lead text-primary' href='#'>".$data->nombre_c_al." <br> solicito un nuevo justificante </a>
-								</div>
-								<div class='col-sm-1'>
-									<span class='text-info'>".$data->CantJust."</span>
-								</div>
-							</div>
-							<div class='dropdown-divider'></div>
-							"
-						;
-					}
+			$resConsult = $consult -> rowCount();
+			if ($resConsult > 0) {
+				while ($data = $consult->fetch(PDO::FETCH_OBJ)) {
+					// if ($data->foto_perf_alm != "") {
+					// 	$salida .= 
+					// 		"<div class='row pad10'>
+					// 			<div class='col-sm-3'>
+					// 				<img src='".$urlFront."modAlm/Arch/perfil/".$data->foto_perf_alm."' class='img-fluid rounded' height='70' width='70'>
+					// 			</div>
+					// 			<div class='col-sm-8'>
+					// 				<a href='".SERVERURLDOC."PerfAlm/".base64_encode($data->id_alumno)."/' class='dropdown-item text-primary' href='#'>".$data->nombre_c_al." <br> solicito un nuevo justificante </a>
+					// 			</div>
+					// 			<div class='col-sm-1'>
+					// 				<span class='badge badge-info'>".$data->CantJust."</span>
+					// 			</div>
+					// 		</div>
+					// 		<div class='dropdown-divider'></div>
+					// 		"
+					// 	;
+					// } else {
+					// 	if ($data->sexo_al == "Masculino") {
+					// 		$salida .= 
+					// 			"<div class='row pad10'>
+					// 				<div class='col-sm-3'>
+					// 					<img src='".$urlFront."vistas/img/usermal.png' class='img-fluid rounded' height='70' width='70'>
+					// 				</div>
+					// 				<div class='col-sm-8'>
+					// 					<a href='".SERVERURLDOC."PerfAlm/".base64_encode($data->id_alumno)."/' class='dropdown-item text-primary' href='#'>".$data->nombre_c_al." <br> solicito un nuevo justificante </a>
+					// 				</div>
+					// 				<div class='col-sm-1'>
+					// 					<span class='text-info'>".$data->CantJust."</span>
+					// 				</div>
+					// 			</div>
+					// 			<div class='dropdown-divider'></div>
+					// 			"
+					// 		;
+					// 	} else {
+					// 		$salida .= 
+					// 			"<div class='row pad10'>
+					// 				<div class='col-sm-3'>
+					// 					<img src='".$urlFront."vistas/img/userfem.png' class='img-fluid rounded' height='70' width='70'>
+					// 				</div>
+					// 				<div class='col-sm-8'>
+					// 					<a href='".SERVERURLDOC."PerfAlm/".base64_encode($data->id_alumno)."/' class='dropdown-item lead text-primary' href='#'>".$data->nombre_c_al." <br> solicito un nuevo justificante </a>
+					// 				</div>
+					// 				<div class='col-sm-1'>
+					// 					<span class='text-info'>".$data->CantJust."</span>
+					// 				</div>
+					// 			</div>
+					// 			<div class='dropdown-divider'></div>
+					// 			"
+					// 		;
+					// 	}
+					// }
+					$salida .= '<a class="dropdown-item d-flex align-items-center" href="'.SERVERURLDOC."PerfAlm/".base64_encode($data->id_alumno).'/">
+	                    <div class="mr-3">
+	                      <div class="icon-circle bg-primary">
+	                        <i class="fas fa-file-alt text-white"></i>
+	                      </div>
+	                    </div>
+	                    <div>
+	                      <span class="font-weight-bold">
+							'.$data->nombre_c_al.'
+	                      </span>
+	                      <div class="small text-gray-500">Solicito un nuevo justificante</div>
+	                    </div>
+	                  </a>';
 				}
+			} else {
+				$salida .= "<h5 class='text-primary text-center mb-0 mt-3 font-weight-bold'>No hay nuevas solicitudes</h5>";
 			}
 			echo $salida;
 			$dbConexion = null; $consult = null;
@@ -259,51 +276,64 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 			$resstmt = $stmt -> rowCount();
 			if ($resstmt > 0) {
 				while ($data = $stmt -> fetch(PDO::FETCH_OBJ)) {
-					if ($data->foto_perf_alm != "") {
-						$salida .= 
-							"<div class='row pad10'>
-								<div class='col-sm-3'>
-									<img src='".$urlFront."modAlm/Arch/perfil/".$data->foto_perf_alm."' class='img-fluid rounded' height='70' width='70'>
-								</div>
-								<div class='col-sm-8'>
-									<a href='PerfAlm.php?v=".base64_encode($data->id_alumno)."' class='dropdown-item lead text-primary' href='#'>".$data->nombre_c_al." <br> solicito una tutoría personal </a>
-								</div>
-							</div>
-							<div class='dropdown-divider'></div>
-							"
-						;
-					} else {
-						if ($data->sexo_al == "Masculino") {
-							$salida .= 
-								"<div class='row pad10'>
-									<div class='col-sm-3'>
-										<img src='".$urlFront."vistas/img/usermal.png' class='img-fluid rounded' height='70' width='70'>
-									</div>
-									<div class='col-sm-8'>
-										<a href='PerfAlm.php?v=".base64_encode($data->id_alumno)."' class='dropdown-item lead text-primary' href='#'>".$data->nombre_c_al." <br> solicito una tutoría personal </a>
-									</div>
-								</div>
-								<div class='dropdown-divider'></div>
-								"
-							;
-						} else {
-							$salida .= 
-								"<div class='row pad10'>
-									<div class='col-sm-3'>
-										<img src='".$urlFront."vistas/img/userfem.png' class='img-fluid rounded' height='70' width='70'>
-									</div>
-									<div class='col-sm-8'>
-										<a href='PerfAlm.php?v=".base64_encode($data->id_alumno)."' class='dropdown-item lead text-primary' href='#'>".$data->nombre_c_al." <br> solicito una tutoría personal </a>
-									</div>
-								</div>
-								<div class='dropdown-divider'></div>
-								"
-							;
-						}
-					}
+					// if ($data->foto_perf_alm != "") {
+					// 	$salida .= 
+					// 		"<div class='row pad10'>
+					// 			<div class='col-sm-3'>
+					// 				<img src='".$urlFront."modAlm/Arch/perfil/".$data->foto_perf_alm."' class='img-fluid rounded' height='70' width='70'>
+					// 			</div>
+					// 			<div class='col-sm-8'>
+					// 				<a href='PerfAlm.php?v=".base64_encode($data->id_alumno)."' class='dropdown-item lead text-primary' href='#'>".$data->nombre_c_al." <br> solicito una tutoría personal </a>
+					// 			</div>
+					// 		</div>
+					// 		<div class='dropdown-divider'></div>
+					// 		"
+					// 	;
+					// } else {
+					// 	if ($data->sexo_al == "Masculino") {
+					// 		$salida .= 
+					// 			"<div class='row pad10'>
+					// 				<div class='col-sm-3'>
+					// 					<img src='".$urlFront."vistas/img/usermal.png' class='img-fluid rounded' height='70' width='70'>
+					// 				</div>
+					// 				<div class='col-sm-8'>
+					// 					<a href='PerfAlm.php?v=".base64_encode($data->id_alumno)."' class='dropdown-item lead text-primary' href='#'>".$data->nombre_c_al." <br> solicito una tutoría personal </a>
+					// 				</div>
+					// 			</div>
+					// 			<div class='dropdown-divider'></div>
+					// 			"
+					// 		;
+					// 	} else {
+					// 		$salida .= 
+					// 			"<div class='row pad10'>
+					// 				<div class='col-sm-3'>
+					// 					<img src='".$urlFront."vistas/img/userfem.png' class='img-fluid rounded' height='70' width='70'>
+					// 				</div>
+					// 				<div class='col-sm-8'>
+					// 					<a href='PerfAlm.php?v=".base64_encode($data->id_alumno)."' class='dropdown-item lead text-primary' href='#'>".$data->nombre_c_al." <br> solicito una tutoría personal </a>
+					// 				</div>
+					// 			</div>
+					// 			<div class='dropdown-divider'></div>
+					// 			"
+					// 		;
+					// 	}
+					// }
+					$salida .= '<a class="dropdown-item d-flex align-items-center" href="'.SERVERURLDOC."PerfAlm/".base64_encode($data->id_alumno).'/">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-chalkboard-teacher text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <span class="font-weight-bold">
+						'.$data->nombre_c_al.'
+                      </span>
+                      <div class="small text-gray-500">Solicito una tutoria personal</div>
+                    </div>
+                  </a>';
 				}
 			} else {
-				$salida .= "<h5 class='text-primary'></h5>";
+				$salida .= "<h5 class='text-primary text-center mb-0 mt-3 font-weight-bold'>No hay nuevas solicitudes</h5>";
 			}
 			echo $salida;
 			break;

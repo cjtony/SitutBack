@@ -157,25 +157,17 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <span class="badge badge-danger badge-counter">3+</span>
+                <i class="fas fa-file-alt fa-fw"></i>
+                <span class="badge badge-danger badge-counter" id="cantNotif"></span>
               </a>
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Alerts Center
+                  Justificantes
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <div  class="listNot">
+                  
+                </div>
+                <!-- <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
                     <div class="icon-circle bg-success">
                       <i class="fas fa-donate text-white"></i>
@@ -196,12 +188,32 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
                     <div class="small text-gray-500">December 2, 2019</div>
                     Spending Alert: We've noticed unusually high spending for your account.
                   </div>
+                </a> -->
+                <a class="dropdown-item text-center small text-gray-500" href="#">
+                  
                 </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>
 
             <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="tutorias" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-chalkboard-teacher fa-fw"></i>
+                <span class="badge badge-danger badge-counter" id="cantNotifTut"></span>
+              </a>
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="tutorias">
+                <h6 class="dropdown-header">
+                  Tutorias
+                </h6>
+                <div  class="listTut">
+                  
+                </div>
+                <a class="dropdown-item text-center small text-gray-500" href="#">
+                  
+                </a>
+              </div>
+            </li>
+
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <span class="badge badge-danger badge-counter">7</span>
@@ -252,7 +264,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
-            </li>
+            </li> -->
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -361,6 +373,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 
   <!-- Custom scripts for all pages-->
   <script src="<?php echo SERVERURL; ?>assets/js/sb-admin-2.min.js"></script>
+  <script src="<?php echo SERVERURLDOC; ?>doc/js/notifGrp.js"></script>
 
 </body>
 

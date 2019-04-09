@@ -21,10 +21,10 @@
 		<div class="btn-group">
 		  	<button class="btn bg-white text-primary cardShadow btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    Justificantes <i id="bell" class="fas fa-bell icoPri"></i>
-		    	<span class="ml-2 lead icoIni icoPri" id="cantNotif"></span>
+		    	<span class="ml-2 lead icoIni icoPri" id="cantNotsif"></span>
 		  	</button>
 		  	<div class="dropdown-menu" style="width: 500px;" aria-labelledby="dropdownMenuLink">
-		  		<div class="container-fluid listNot"></div>
+		  		<div class="container-fluid listNsot"></div>
 			</div>
 		</div>
 		<div class="btn-group ml-3">
@@ -550,4 +550,4 @@
 	<!--====  End of Ventana modal Editar beca  ====-->
 
     <script src="<?php echo SERVERURLDOC; ?>doc/js/detGrp.js"></script>
-	<script src="<?php echo SERVERURLDOC; ?>doc/js/notifGrp.js"></script>
+	<!-- <script src="<?php echo SERVERURLDOC; ?>doc/js/notifGrp.js"></script> -->

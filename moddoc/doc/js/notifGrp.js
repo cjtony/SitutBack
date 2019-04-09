@@ -20,10 +20,10 @@ $(document).ready(function(){
 		cargarNotifTut();
 		cantNotifTut();
 	}, 10000);
-    setInterval(function () {
+    /*setInterval(function () {
     	animNotif();
     	animNotifTut();
-	},10000);
+	},10000);*/
 
     function animNotif(){
     	$.ajax({
