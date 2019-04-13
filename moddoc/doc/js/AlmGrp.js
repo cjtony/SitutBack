@@ -801,6 +801,7 @@ function aceptTutCit(e) {
 							$("#citTut").modal("hide");
 							tablaSolicHist.ajax.reload();
 							tablaHist.ajax.reload();
+							location.reload();
 						});
 					} else if ( resp == "failUpd" ) {
 						swal({
