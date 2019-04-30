@@ -14,7 +14,7 @@
 <div class="container-fluid animated fadeIn delay-1s">
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800 text-center">Reportes enviados.</h1>
-        <a href="<?php echo SERVERURLCOR; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="<?php echo SERVERURLADM; ?>Home/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-arrow-left fa-sm text-white-50 mr-2"></i> Regresar 
         </a>
     </div>

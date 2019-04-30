@@ -132,7 +132,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
             <i class="fa fa-bars"></i>
           </button>
 
-          <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="msjbien">
             <h4>
               Bienvenido nuevamente docente.
             </h4>
@@ -205,6 +205,24 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
                   Tutorias
                 </h6>
                 <div  class="listTut">
+                  
+                </div>
+                <a class="dropdown-item text-center small text-gray-500" href="#">
+                  
+                </a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="tutorias" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <span class="badge badge-danger badge-counter" id="cantNotifRep"></span>
+              </a>
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="tutorias">
+                <h6 class="dropdown-header">
+                  Notificaciones del día de hoy
+                </h6>
+                <div  class="listNotif">
                   
                 </div>
                 <a class="dropdown-item text-center small text-gray-500" href="#">
@@ -597,6 +615,40 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
           $("#listAsist").removeClass("animated jackInTheBox");
         }, 2000);
       }
+    });
+  </script>
+
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+
+      cargaNotif = () => {
+        $.ajax({
+          url:'<?php echo SERVERURL; ?>ajax/doc/notifAlm.php?oper=notifRep',
+          type : "POST",
+          success: ( data ) => {
+            $('.listNotif').html(data);
+          }
+        });
+      }
+
+      let reloadNotif = setInterval( cargaNotif, 10000 );
+
+      // cargaNotif();
+
+      cantNotifRep = () => {
+        $.ajax({
+          url : '<?php echo SERVERURL; ?>ajax/doc/notifAlm.php?oper=cantNotif',
+          type : "POST",
+          success : ( data ) => {
+            $('#cantNotifRep').text(data);
+          }
+        });
+      }
+
+      let reloadCant = setInterval( cantNotifRep, 10000 );
+
+      // cantNotifRep();
+
     });
   </script>
 

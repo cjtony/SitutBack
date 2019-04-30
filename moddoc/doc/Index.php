@@ -1,6 +1,27 @@
+<style type="text/css">
+	.ocult {
+		display: none;
+	}
+</style>
 
 <div class="container-fluid animated fadeIn delay-1s mt-4">
-	<div class="row mt-4">
+
+	<div class="row mt-5">
+		<div class="col-md-12 col-lg-12" id="loader">
+			<div class="text-center mt-5">
+				<div class="spinner-grow text-primary mb-3" role="status" style="width: 100px; height: 100px;">
+				  <span class="sr-only">Loading...</span>
+				</div>
+				<b>
+					<h3 class="text-primary font-weight-bold mt-5" id="textLoad">
+						Cargando contenido...
+					</h3>
+				</b>	
+			</div>
+		</div>
+	</div>
+
+	<div class="row mt-4 ocult" id="contend">
 		<?php 
 			$sql = "SELECT det.id_detgrupo, grp.grupo_n, grp.period_cuat, car.nombre_car FROM det_grupo det
 			INNER JOIN grupos grp ON grp.id_grupo = det.id_grupo 
@@ -82,3 +103,23 @@
 		?>
 	</div>
 </div>
+
+<script type="text/javascript">
+	
+	document.addEventListener('DOMContentLoaded', () => {
+		setTimeout(function(){
+			$("#textLoad").html("<i class='fas fa-thumbs-up mr-2'></i> Todo correcto!");
+			setTimeout(function(){
+				$("#loader").addClass("animated fadeOut");
+				setTimeout(function(){
+					$("#loader").hide();
+					setTimeout(function(){
+						$("#contend").removeClass("ocult");
+						$("#contend").addClass("animated fadeIn");
+					},500);
+				}, 1000);
+			},1500);
+		},9000);
+	});
+
+</script>

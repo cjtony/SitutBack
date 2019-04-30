@@ -13,8 +13,11 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 	$urlFront = $urlFront -> ctrRutaFront();
 	$keyDoc = $_SESSION['keyDoc'];
 	// $alm = $_SESSION["clvAlm"];
-	$grp = $_SESSION["clvGrp"];
-	$datGrp = $docente -> datGrpSel($keyDoc, $grp);
+	
+	if (!empty($_SESSION['clvGrp'])) {
+		$grp = $_SESSION["clvGrp"];
+		$datGrp = $docente -> datGrpSel($keyDoc, $grp);
+	}
 	$fechAct = date("Y-m-d");
 	$dbConexion = new Connect();
 	$dbConexion = $dbConexion -> getDB();
@@ -354,7 +357,54 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
 				$salida = $data["CantTut"];
 			}
 			echo $salida;
-			break;			
+			break;		
+		case 'notifRep':
+			$valid = 0; $tag = 'Docente';
+			$stmt = $dbConexion -> prepare("SELECT * FROM represult rs INNER JOIN reportsprob rp ON rp.id_report = rs.id_reportprob WHERE rp.estado_rep = :valid && rp.id_user = :keyDoc && rp.tag_user = :tag && rs.fecha_result = :fechAct");
+			$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+			$stmt -> bindParam("keyDoc", $keyDoc, PDO::PARAM_INT);
+			$stmt -> bindParam("tag", $tag, PDO::PARAM_STR);
+			$stmt -> bindParam("fechAct", $fechAct, PDO::PARAM_STR);
+			$stmt -> execute();
+			$salida = "";
+			$resstmt = $stmt -> rowCount();
+			if ($resstmt > 0) {
+				while ($data = $stmt -> fetch(PDO::FETCH_OBJ)) {
+					$salida .= '<a class="dropdown-item d-flex align-items-center" href="'.SERVERURLDOC.'MyReports/">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-check-circle text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <span class="font-weight-bold">
+						'.$data->num_serie_rep.'
+                      </span>
+                      <div class="small text-gray-500">Reporte resuelto</div>
+                    </div>
+                  </a>';
+				}
+			} else {
+				$salida .= "<h5 class='text-primary text-center mb-0 mt-3 font-weight-bold'> <i class='fas fa-thumbs-up mr-2 text-primary'></i> Sin novedad!... </h5>";
+			}
+			echo $salida;
+			break;
+		case 'cantNotif':
+			$valid = 0; $tag = 'Docente';
+			$stmt = $dbConexion -> prepare("SELECT COUNT(rs.id_represult) AS 'Cantidad' FROM represult rs INNER JOIN reportsprob rp ON rp.id_report = rs.id_reportprob WHERE rp.estado_rep = :valid && rp.id_user = :keyDoc && rp.tag_user = :tag && rs.fecha_result = :fechAct");
+			$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+			$stmt -> bindParam("keyDoc", $keyDoc, PDO::PARAM_INT);
+			$stmt -> bindParam("tag", $tag, PDO::PARAM_STR);
+			$stmt -> bindParam("fechAct", $fechAct, PDO::PARAM_STR);
+			$stmt -> execute();
+			$stmt -> execute();
+			$salida = "";
+			while ( $data = $stmt -> fetch(PDO::FETCH_ASSOC) ) {
+				$salida .= $data["Cantidad"];
+			}
+			echo $salida;
+			$dbConexion = null; $stmt = null;
+			break;	
 		default:
 			$dbConexion = null;
 			break;
