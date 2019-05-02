@@ -168,6 +168,62 @@ class Administrador
     		echo '{"error":{"text":'.$e->getMessage().'}}';
     	}
     }
+
+    public function directRegister(){
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$valid = 1;
+			$stmt = $dbc->prepare("SELECT * FROM directores WHERE estado_dir = :valid ORDER BY nombre_c_dir"); 
+			$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+			$stmt->execute();
+			return $stmt;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function dataDirectSel($clv) {
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM directores dir INNER JOIN carreras car ON car.id_carrera = dir.id_carrera WHERE id_director = :clv"); 
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt->execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function coordiRegister(){
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$valid = 1;
+			$stmt = $dbc->prepare("SELECT * FROM coordinadores WHERE estado_cor = :valid ORDER BY nombre_c_cor"); 
+			$stmt -> bindParam("valid", $valid, PDO::PARAM_INT);
+			$stmt->execute();
+			return $stmt;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+
+	public function dataCoordiSel($clv) {
+		try {
+			$dbc = new Connect();
+			$dbc = $dbc -> getDB();
+			$stmt = $dbc->prepare("SELECT * FROM coordinadores WHERE id_coordinador = :clv"); 
+			$stmt -> bindParam("clv", $clv, PDO::PARAM_INT);
+			$stmt->execute();
+			$data = $stmt -> fetch(PDO::FETCH_OBJ);
+			return $data;
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	}
 	
 	/*=====  End of Cantidad docentes(tutores) A/I  ======*/
 	public function mostrarCarrera($id_carrera)

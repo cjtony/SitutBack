@@ -21,6 +21,8 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
     $datDocen = $admin->estadistDocCant();
     $datDocenAct = $admin->estadistDocCantAct();
     $datDocenDes = $admin->estadistDocCantDes();
+    $datDir = $admin -> directRegister();
+    $datCor = $admin -> coordiRegister();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -87,8 +89,12 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confCont" href="#">Contraseña</a>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confDat" href="#">Datos</a>
+            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confCont" href="#">
+              <i class="fas fa-key mr-2 text-primary font-weight-bold"></i> Contraseña
+            </a>
+            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confDat" href="#">
+              <i class="fas fa-id-card mr-2 text-primary font-weight-bold"></i> Datos
+            </a>
           </div>
         </div>
       </li>
@@ -101,8 +107,12 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" href="<?php echo SERVERURLADM; ?>RepProblem/">Reportar un problema</a>
-            <a class="collapse-item" href="<?php echo SERVERURLADM; ?>MyReports/">Reportes enviados</a>
+            <a class="collapse-item" href="<?php echo SERVERURLADM; ?>RepProblem/">
+              <i class="fas fa-file mr-2 text-primary font-weight-bold"></i> Reportar un problema
+            </a>
+            <a class="collapse-item" href="<?php echo SERVERURLADM; ?>MyReports/">
+              <i class="fas fa-check-circle mr-2 text-primary font-weight-bold"></i> Reportes enviados
+            </a>
           </div>
         </div>
       </li>
@@ -125,18 +135,22 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
               if ($datAdmin->privileg == "ALL") {
             ?>
             <a class="collapse-item text-capitalize" href="<?php echo SERVERURLADM; ?>DetAdmin/">
+              <i class="fas fa-user-check mr-2 text-primary font-weight-bold"></i>
               Administradores
             </a>
             <?php
           }
             ?>
             <a class="collapse-item text-capitalize" href="<?php echo SERVERURLADM; ?>DetCarreras/">
+              <i class="fas fa-university mr-2 text-primary font-weight-bold"></i>
               Carreras
             </a>
             <a class="collapse-item text-capitalize" href="<?php echo SERVERURLADM; ?>DetDirectores/">
+              <i class="fas fa-user-tie mr-2 text-primary font-weight-bold"></i>
               Directores
             </a>
             <a class="collapse-item text-capitalize" href="<?php echo SERVERURLADM; ?>DetCoord/">
+              <i class="fas fa-user mr-2 text-primary font-weight-bold"></i>
               Coordinadores
             </a>
           </div>
@@ -150,6 +164,28 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
       </div>
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dataCoordinadores" aria-expanded="true" aria-controls="dataCoordinadores">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Coordinadores</span>
+        </a>
+        <div id="dataCoordinadores" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Selecciona</h6>
+            <?php 
+              while ($dataCor = $datCor -> fetch(PDO::FETCH_OBJ)) {
+            ?>
+              <a class="collapse-item text-capitalize text-truncate" href="<?php echo SERVERURLADM; ?>ProfileDoc/<?php echo base64_encode($dataCor->id_coordinador); ?>/cor/" title="<?php echo $dataCor->nombre_c_cor; ?>">
+                <i class="fas fa-user mr-2 text-primary font-weight-bold"></i> <?php echo $dataCor -> nombre_c_cor; ?>
+              </a>
+              <div class="collapse-divider"></div>
+            <?php
+              }
+            ?>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dataDirect" aria-expanded="true" aria-controls="dataDirect">
           <i class="fas fa-fw fa-folder"></i>
           <span>Directores</span>
@@ -157,18 +193,16 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
         <div id="dataDirect" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona</h6>
-            <a class="collapse-item text-capitalize" href="<?php echo SERVERURLADM; ?>DetAdmin/">
-              Administradores
-            </a>
-            <a class="collapse-item text-capitalize" href="<?php echo SERVERURLADM; ?>DetCarreras/">
-              Carreras
-            </a>
-            <a class="collapse-item text-capitalize" href="<?php echo SERVERURLADM; ?>DetDirectores/">
-              Directores
-            </a>
-            <a class="collapse-item text-capitalize" href="<?php echo SERVERURLADM; ?>DetCoord/">
-              Coordinadores
-            </a>
+            <?php 
+              while ($dataDir = $datDir -> fetch(PDO::FETCH_OBJ)) {
+            ?>
+              <a class="collapse-item text-capitalize text-truncate" href="<?php echo SERVERURLADM; ?>ProfileDoc/<?php echo base64_encode($dataDir->id_director); ?>/dir/" title="<?php echo $dataDir->nombre_c_dir; ?>">
+                <i class="fas fa-user-tie mr-2 text-primary font-weight-bold"></i> <?php echo $dataDir -> nombre_c_dir; ?>
+              </a>
+              <div class="collapse-divider"></div>
+            <?php
+              }
+            ?>
           </div>
         </div>
       </li>
@@ -365,8 +399,8 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Esta seguro de cerrar sesion?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title text-danger font-weight-bold text-center" id="exampleModalLabel">¿ Esta seguro de cerrar sesion ?</h5>
+          <button class="close text-danger" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
@@ -374,7 +408,7 @@ if ($_SESSION['keyAdm'] == "" || $_SESSION['keyAdm'] == null) {
           Seleccione salir para continuar...
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
           <a class="btn btn-primary" href="<?php echo SERVERURLADM; ?>adm/Logout.php">Salir</a>
         </div>
       </div>

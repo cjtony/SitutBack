@@ -96,7 +96,9 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" href="<?php echo SERVERURLDEV; ?>ConfCont/">Contraseña</a>
+            <a class="collapse-item" href="<?php echo SERVERURLDEV; ?>ConfCont/">
+              <i class="fas fa-key mr-2 text-primary font-weight-bold"></i> Contraseña
+            </a>
           </div>
         </div>
       </li>
@@ -109,8 +111,12 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" href="<?php echo SERVERURLDEV; ?>EstateRep/res/">Resueltos</a>
-            <a class="collapse-item" href="<?php echo SERVERURLDEV; ?>EstateRep/not/">Sin resolver</a>
+            <a class="collapse-item" href="<?php echo SERVERURLDEV; ?>EstateRep/res/">
+              <i class="fas fa-check-circle mr-2 text-primary font-weight-bold"></i> Resueltos
+            </a>
+            <a class="collapse-item" href="<?php echo SERVERURLDEV; ?>EstateRep/not/">
+              <i class="fas fa-times-circle mr-2 text-primary font-weight-bold"></i> Sin resolver
+            </a>
           </div>
         </div>
       </li>
@@ -138,8 +144,8 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
                 <?php 
                   while ($datAdm = $dataAdm -> fetch(PDO::FETCH_OBJ)) {
                 ?>
-                  <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datAdm->id_admin); ?>/adm/">
-                    <?php echo $datAdm -> nombre_c; ?>
+                  <a class="collapse-item text-capitalize text-truncate" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datAdm->id_admin); ?>/adm/" title="<?php echo $datAdm->nombre_c; ?>">
+                    <i class="fas fa-user-tie mr-2 text-primary font-weight-bold"></i> <?php echo $datAdm -> nombre_c; ?>
                   </a>
                   <div class="collapse-divider"></div>
                 <?php
@@ -167,8 +173,8 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
                 <?php 
                   while ($datCor = $dataCor -> fetch(PDO::FETCH_OBJ)) {
                 ?>
-                  <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datCor->id_coordinador); ?>/cor/">
-                    <?php echo $datCor -> nombre_c_cor; ?>
+                  <a class="collapse-item text-capitalize text-truncate" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datCor->id_coordinador); ?>/cor/" title="<?php echo $datCor->nombre_c_cor; ?>">
+                    <i class="fas fa-user-tie mr-2 text-primary font-weight-bold"></i> <?php echo $datCor -> nombre_c_cor; ?>
                   </a>
                   <div class="collapse-divider"></div>
                 <?php
@@ -196,8 +202,8 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
               <?php 
                 while ($datDir = $dataDir -> fetch(PDO::FETCH_OBJ)) {
               ?>
-                <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datDir->id_director); ?>/dir/">
-                  <?php echo $datDir -> nombre_c_dir; ?>
+                <a class="collapse-item text-capitalize text-truncate" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datDir->id_director); ?>/dir/" title="<?php echo $datDir->nombre_c_dir; ?>">
+                  <i class="fas fa-user-tie mr-2 text-primary font-weight-bold"></i> <?php echo $datDir -> nombre_c_dir; ?>
                 </a>
                 <div class="collapse-divider"></div>
               <?php
@@ -223,8 +229,8 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
                 <?php 
                   while ($datDoc = $dataDoc -> fetch(PDO::FETCH_OBJ)) {
                 ?>
-                  <a class="collapse-item text-capitalize" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datDoc->id_docente); ?>/doc/">
-                    <?php echo $datDoc -> nombre_c_doc; ?>
+                  <a class="collapse-item text-capitalize text-truncate" href="<?php echo SERVERURLDEV; ?>ProfileUsr/<?php echo base64_encode($datDoc->id_docente); ?>/doc/" title="<?php echo $datDoc->nombre_c_doc; ?>">
+                    <i class="fas fa-user-tie mr-2 text-primary font-weight-bold"></i> <?php echo $datDoc -> nombre_c_doc; ?>
                   </a>
                   <div class="collapse-divider"></div>
                 <?php
@@ -365,7 +371,7 @@ if ($_SESSION['keyDevop'] == "" || $_SESSION['keyDevop'] == null) {
                     }
                 ?>
 
-                  <a class="dropdown-item text-center small text-gray-500" href="#">
+                  <a class="dropdown-item text-center small text-gray-500" href="<?php echo SERVERURLDEV; ?>EstateRep/not/">
                     Mostrar todos los reportes
                   </a>
 

@@ -83,9 +83,15 @@ if ($_SESSION['keyCor'] == "" || $_SESSION['keyCor'] == null) {
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confContCor" href="#">Contraseña</a>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confDatCor" href="#">Datos</a>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confFotPerf" href="#">Foto</a>
+            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confContCor" href="#">
+              <i class="fas fa-key mr-2 text-primary font-weight-bold"></i> Contraseña
+            </a>
+            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confDatCor" href="#">
+              <i class="fas fa-id-card mr-2 text-primary font-weight-bold"></i> Datos
+            </a>
+            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confFotPerf" href="#">
+              <i class="fas fa-image mr-2 text-primary font-weight-bold"></i> Foto
+            </a>
           </div>
         </div>
       </li>
@@ -98,8 +104,12 @@ if ($_SESSION['keyCor'] == "" || $_SESSION['keyCor'] == null) {
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" href="<?php echo SERVERURLCOR; ?>RepProblem/">Reportar un problema</a>
-            <a class="collapse-item" href="<?php echo SERVERURLCOR; ?>MyReports/">Reportes enviados</a>
+            <a class="collapse-item" href="<?php echo SERVERURLCOR; ?>RepProblem/">
+              <i class="fas fa-file mr-2 text-primary font-weight-bold"></i> Reportar un problema
+            </a>
+            <a class="collapse-item" href="<?php echo SERVERURLCOR; ?>MyReports/">
+              <i class="fas fa-check-circle mr-2 text-primary font-weight-bold"></i> Reportes enviados
+            </a>
           </div>
         </div>
       </li>
@@ -121,8 +131,8 @@ if ($_SESSION['keyCor'] == "" || $_SESSION['keyCor'] == null) {
             <?php 
               while ($dataDir = $datDir -> fetch(PDO::FETCH_OBJ)) {
             ?>
-              <a class="collapse-item text-capitalize" href="<?php echo SERVERURLCOR ?>ProfileDoc/<?php echo base64_encode($dataDir->id_director); ?>/dir/">
-                <?php echo $dataDir -> nombre_c_dir; ?>
+              <a class="collapse-item text-capitalize text-truncate" href="<?php echo SERVERURLCOR ?>ProfileDoc/<?php echo base64_encode($dataDir->id_director); ?>/dir/" title="<?php echo $dataDir->nombre_c_dir; ?>">
+                <i class="fas fa-user-tie mr-2 text-primary font-weight-bold"></i> <?php echo $dataDir -> nombre_c_dir; ?>
               </a>
               <div class="collapse-divider"></div>
             <?php
@@ -142,8 +152,8 @@ if ($_SESSION['keyCor'] == "" || $_SESSION['keyCor'] == null) {
             <?php 
               while ($dataDoc = $datDoc -> fetch(PDO::FETCH_OBJ)) {
             ?>
-              <a class="collapse-item text-capitalize" href="<?php echo SERVERURLCOR ?>ProfileDoc/<?php echo base64_encode($dataDoc->id_docente); ?>/doc/">
-                <?php echo $dataDoc -> nombre_c_doc; ?>
+              <a class="collapse-item text-capitalize text-truncate" href="<?php echo SERVERURLCOR ?>ProfileDoc/<?php echo base64_encode($dataDoc->id_docente); ?>/doc/" title="<?php echo $dataDoc->nombre_c_doc; ?>">
+                <i class="fas fa-user-tie mr-2 text-primary font-weight-bold"></i> <?php echo $dataDoc -> nombre_c_doc; ?>
               </a>
               <div class="collapse-divider"></div>
             <?php
@@ -361,8 +371,8 @@ if ($_SESSION['keyCor'] == "" || $_SESSION['keyCor'] == null) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Esta seguro de cerrar sesion?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title text-danger font-weight-bold text-center" id="exampleModalLabel">¿ Esta seguro de cerrar sesion ?</h5>
+          <button class="close text-danger" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
@@ -370,7 +380,7 @@ if ($_SESSION['keyCor'] == "" || $_SESSION['keyCor'] == null) {
           Seleccione salir para continuar...
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
           <a class="btn btn-primary" href="<?php echo SERVERURLCOR; ?>cor/Logout.php">Salir</a>
         </div>
       </div>

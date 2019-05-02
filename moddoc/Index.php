@@ -11,6 +11,9 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
   $docente = new Docentes();
   $keyDoc = $_SESSION['keyDoc'];
   $datDoce = $docente->userDocDet($keyDoc);
+  $datDir = $docente -> directRegister();
+  $datDoc = $docente -> docentRegister($keyDoc);
+  $datCor = $docente -> coordiRegister();
   function formatFech($fechForm) {
     $fechDat = substr($fechForm, 0,4);
     $fechM = substr($fechForm, 5,2);
@@ -87,9 +90,15 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confContDoc" href="#">Contraseña</a>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confDatDoc" href="#">Datos</a>
-            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confFotPerf" href="#">Foto</a>
+            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confContDoc" href="#">
+              <i class="fas fa-key mr-2 text-primary font-weight-bold"></i> Contraseña
+            </a>
+            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confDatDoc" href="#">
+              <i class="fas fa-id-card mr-2 text-primary font-weight-bold"></i> Datos
+            </a>
+            <a class="collapse-item" data-backdrop="false" data-toggle="modal" data-target="#confFotPerf" href="#">
+              <i class="fas fa-image mr-2 text-primary font-weight-bold"></i> Foto
+            </a>
           </div>
         </div>
       </li>
@@ -102,17 +111,86 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Selecciona:</h6>
-            <a class="collapse-item" href="<?php echo SERVERURLDOC; ?>RepProblem/">Reportar un problema</a>
-            <a class="collapse-item" href="<?php echo SERVERURLDOC; ?>MyReports/">Reportes enviados</a>
+            <a class="collapse-item" href="<?php echo SERVERURLDOC; ?>RepProblem/">
+              <i class="fas fa-file mr-2 text-primary font-weight-bold"></i> Reportar un problema
+            </a>
+            <a class="collapse-item" href="<?php echo SERVERURLDOC; ?>MyReports/">
+              <i class="fas fa-check-circle mr-2 text-primary font-weight-bold"></i> Reportes enviados
+            </a>
           </div>
         </div>
       </li>
 
-      <!-- <hr class="sidebar-divider"> -->
+      <hr class="sidebar-divider">
 
       <div class="sidebar-heading">
         Directorio
       </div>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dataCoordinadores" aria-expanded="true" aria-controls="dataCoordinadores">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Coordinadores</span>
+        </a>
+        <div id="dataCoordinadores" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Selecciona</h6>
+            <?php 
+              while ($dataCor = $datCor -> fetch(PDO::FETCH_OBJ)) {
+            ?>
+              <a class="collapse-item text-capitalize text-truncate" href="<?php echo SERVERURLDOC ?>ProfileDoc/<?php echo base64_encode($dataCor->id_coordinador); ?>/cor/" title="<?php echo $dataCor->nombre_c_cor; ?>">
+                <i class="fas fa-user-tie mr-2 text-primary font-weight-bold"></i> <?php echo $dataCor -> nombre_c_cor; ?>
+              </a>
+              <div class="collapse-divider"></div>
+            <?php
+              }
+            ?>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dataDirect" aria-expanded="true" aria-controls="dataDirect">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Directores</span>
+        </a>
+        <div id="dataDirect" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Selecciona</h6>
+            <?php 
+              while ($dataDir = $datDir -> fetch(PDO::FETCH_OBJ)) {
+            ?>
+              <a class="collapse-item text-capitalize text-truncate" href="<?php echo SERVERURLDOC ?>ProfileDoc/<?php echo base64_encode($dataDir->id_director); ?>/dir/" title="<?php echo $dataDir->nombre_c_dir; ?>">
+                <i class="fas fa-user-tie mr-2 text-primary font-weight-bold"></i> <?php echo $dataDir -> nombre_c_dir; ?>
+              </a>
+              <div class="collapse-divider"></div>
+            <?php
+              }
+            ?>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dataDocentes" aria-expanded="true" aria-controls="dataDocentes">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Docentes</span>
+        </a>
+        <div id="dataDocentes" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Selecciona</h6>
+            <?php 
+              while ($dataDoc = $datDoc -> fetch(PDO::FETCH_OBJ)) {
+            ?>
+              <a class="collapse-item text-capitalize text-truncate" href="<?php echo SERVERURLDOC ?>ProfileDoc/<?php echo base64_encode($dataDoc->id_docente); ?>/doc/" title="<?php echo $dataDoc->nombre_c_doc; ?>">
+                <i class="fas fa-user-tie mr-2 text-primary font-weight-bold"></i> <?php echo $dataDoc -> nombre_c_doc; ?>
+              </a>
+              <div class="collapse-divider"></div>
+            <?php
+              }
+            ?>
+          </div>
+        </div>
+      </li>
 
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -368,8 +446,8 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Esta seguro de cerrar sesion?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title text-danger font-weight-bold text-center" id="exampleModalLabel">¿ Esta seguro de cerrar sesion ?</h5>
+          <button class="close text-danger" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
@@ -377,7 +455,7 @@ if ($_SESSION['keyDoc'] == "" || $_SESSION['keyDoc'] == null) {
           Seleccione salir para continuar...
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
           <a class="btn btn-primary" href="<?php echo SERVERURLDOC; ?>doc/Logout.php">Salir</a>
         </div>
       </div>
